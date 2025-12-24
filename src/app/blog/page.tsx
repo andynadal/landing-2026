@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+import ContactForm from "@/components/contact-form";
+
 const blogPosts = [
     {
         title: "Building Pausa: Lessons from Creating a Productivity Startup",
@@ -268,19 +270,13 @@ export default function BlogPage() {
                             technology, entrepreneurship, and product
                             development.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                            <input
-                                type="email"
-                                placeholder="your@email.com"
-                                className="flex-1 px-4 py-3 rounded-lg bg-background border border-foreground/20 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+                        <div className="max-w-md mx-auto">
+                            <ContactForm
+                                includeNameField={false}
+                                includeSubjectField={false}
+                                submitButtonText="Subscribe"
+                                successMessage="Thank you for subscribing! You'll receive updates when I publish new content."
                             />
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 rounded-lg bg-gradient-to-r from-green-600 to-blue-600 text-white font-medium hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300"
-                            >
-                                Subscribe
-                            </motion.button>
                         </div>
                     </motion.div>
                 </div>
