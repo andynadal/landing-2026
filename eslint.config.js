@@ -4,7 +4,7 @@ import tseslint from "typescript-eslint";
 
 export default [
     {
-        ignores: [".next/**/*"],
+        ignores: [".next/**/*", "**/*.yml", "**/*.yaml"],
     },
     {
         files: ["**/*.ts", "**/*.tsx"],
