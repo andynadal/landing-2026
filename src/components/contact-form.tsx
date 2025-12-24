@@ -7,6 +7,7 @@ import FormField from "./form-field";
 import FormTextarea from "./form-textarea";
 
 interface ContactFormProps {
+    formspreeId?: string;
     includeNameField?: boolean;
     includeSubjectField?: boolean;
     submitButtonText?: string;
@@ -15,13 +16,14 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({
+    formspreeId = "xlgrkbnp",
     includeNameField = true,
     includeSubjectField = true,
     submitButtonText = "Send Message",
     successMessage = "Thank you for your message! I'll get back to you soon.",
     className = "",
 }: ContactFormProps) {
-    const [state, handleSubmit] = useForm("xlgrkbnp");
+    const [state, handleSubmit] = useForm(formspreeId);
 
     if (state.succeeded) {
         return (
@@ -41,8 +43,14 @@ export default function ContactForm({
 
     return (
         <form onSubmit={handleSubmit} className={`space-y-6 ${className}`}>
-            {includeNameField && includeSubjectField && (
-                <div className="grid md:grid-cols-2 gap-6">
+            <div
+                className={
+                    includeNameField && includeSubjectField
+                        ? "grid md:grid-cols-2 gap-6"
+                        : ""
+                }
+            >
+                {includeNameField && (
                     <div>
                         <FormField
                             label="Name"
@@ -58,25 +66,8 @@ export default function ContactForm({
                             errors={state.errors}
                         />
                     </div>
-                    <div>
-                        <FormField
-                            label="Email"
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="your@email.com"
-                            required
-                        />
-                        <ValidationError
-                            prefix="Email"
-                            field="email"
-                            errors={state.errors}
-                        />
-                    </div>
-                </div>
-            )}
+                )}
 
-            {!includeNameField && (
                 <div>
                     <FormField
                         label="Email"
@@ -92,7 +83,7 @@ export default function ContactForm({
                         errors={state.errors}
                     />
                 </div>
-            )}
+            </div>
 
             {includeSubjectField && (
                 <div>
