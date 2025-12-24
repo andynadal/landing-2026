@@ -1,6 +1,7 @@
 # landing-2026
 
-A personal landing page (andynadal.com) that showcases entrepreneur and developer experience.
+A personal landing page (andynadal.com) that showcases entrepreneur and
+developer experience.
 
 ## Tech Stack
 
@@ -27,7 +28,7 @@ A personal landing page (andynadal.com) that showcases entrepreneur and develope
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -138,4 +139,3 @@ This repository is prepared for future issues that will add:
 ## License
 
 MIT License - see LICENSE file for details
-

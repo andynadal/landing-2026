@@ -1,0 +1,135 @@
+name: 🚀 Release on merge to main
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout (full history + tags)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine bump from PR label
+        id: bump
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const releaseLabels = labels.filter(l =>
+              l === "release:major" || l === "release:minor" || l === "release:patch"
+            );
+
+            if (releaseLabels.length !== 1) {
+              core.setFailed(
+                `Expected exactly one release label (release:patch|minor|major). Found: ${releaseLabels.join(", ") || "(none)"}`
+              );
+              return;
+            }
+
+            const bump = releaseLabels[0].split(":")[1]; // major|minor|patch
+            core.setOutput("bump", bump);
+
+      - name: Compute next SemVer tag
+        id: ver
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          bump="${{ steps.bump.outputs.bump }}"
+
+          git fetch --tags --force
+
+          latest_tag="$(git tag -l 'v*' --sort=-v:refname | head -n 1 || true)"
+          if [[ -z "$latest_tag" ]]; then
+            latest_tag="v0.0.0"
+          fi
+
+          base="${latest_tag#v}"
+          IFS='.' read -r major minor patch <<<"$base"
+
+          case "$bump" in
+            major) major=$((major+1)); minor=0; patch=0 ;;
+            minor) minor=$((minor+1)); patch=0 ;;
+            patch) patch=$((patch+1)) ;;
+            *) echo "Invalid bump: $bump"; exit 1 ;;
+          esac
+
+          next="${major}.${minor}.${patch}"
+          tag="v${next}"
+
+          echo "latest_tag=$latest_tag" >> "$GITHUB_OUTPUT"
+          echo "version=$next" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Build release notes
+        id: notes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          pr_title="${{ github.event.pull_request.title }}"
+          pr_number="${{ github.event.pull_request.number }}"
+          pr_body="${{ github.event.pull_request.body }}"
+          from="${{ steps.ver.outputs.latest_tag }}"
+          to="${{ github.sha }}"
+
+          commits="$(git log --pretty=format:'- %s (%h)' "${from}..${to}" || true)"
+          if [[ -z "$commits" ]]; then
+            commits="- No commits detected since last tag."
+          fi
+
+          # Keep it readable. Use PR description first, then commits.
+          notes="## ${pr_title} (#${pr_number})
+
+          ${pr_body:-_No PR description provided._}
+          ## Changes since ${from}
+          ${commits}
+          "
+          printf "notes<<'EOF'\n%s\nEOF\n" "$notes" >> "$GITHUB_OUTPUT"
+
+      - name: Safety check - tag must not exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${{ steps.ver.outputs.tag }}"
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "Tag already exists: ${tag}"
+            exit 1
+          fi
+
+      - name: Create and push tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${{ steps.ver.outputs.tag }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${tag}"
+          git push origin "${tag}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${{ steps.ver.outputs.tag }}"
+          title="${tag}"
+          gh release create "$tag" \
+            --title "$title" \
+            --notes "${{ steps.notes.outputs.notes }}"
