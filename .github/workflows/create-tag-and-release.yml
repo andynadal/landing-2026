@@ -119,7 +119,7 @@ jobs:
           tag="${{ steps.ver.outputs.tag }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "${tag}"
+          git tag "${tag} -m "Release ${tag}""
           git push origin "${tag}"
 
       - name: Create GitHub Release
