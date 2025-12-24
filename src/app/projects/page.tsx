@@ -14,45 +14,32 @@ const projects = [
     link: "/pausa",
   },
   {
-    title: "E-Commerce Platform",
-    description: "Scalable multi-tenant e-commerce solution serving 100k+ users",
-    category: "Web Application",
-    tech: ["React", "Node.js", "PostgreSQL", "AWS"],
+    title: "RUUT",
+    description: "An investment platform for non-investors, making stock investments more accessible for Mexicans. Allows users to transfer Mexican pesos and invest in US dollars in the US stock market",
+    category: "FinTech",
+    tech: ["iOS", "Android", "Serverless", "Cloud"],
     gradient: "from-purple-600 to-pink-600",
-    icon: "🛒",
-    link: "#",
+    icon: "💰",
+    link: "https://ruut.mx",
+    role: "Head of Technology",
   },
   {
-    title: "Analytics Dashboard",
-    description: "Real-time data visualization and business intelligence platform",
-    category: "SaaS Product",
-    tech: ["Vue.js", "Python", "Redis", "D3.js"],
+    title: "Journal Habit",
+    description: "An app that combines journaling with habit tracking, to promote a safe space for building the life you want",
+    category: "Personal Development",
+    tech: ["Mobile", "Cloud", "Habit Tracking"],
     gradient: "from-green-600 to-blue-600",
-    icon: "📊",
+    icon: "📓",
+    role: "Founder & Developer",
   },
   {
-    title: "Mobile Health App",
-    description: "Cross-platform health tracking and wellness application",
-    category: "Mobile App",
-    tech: ["React Native", "GraphQL", "Firebase", "ML"],
+    title: "Pro Ledger",
+    description: "An app that allows you to track your expenses and get professional-grade financial analysis and metrics",
+    category: "Finance",
+    tech: ["Mobile", "Analytics", "Financial Tools"],
     gradient: "from-orange-600 to-red-600",
-    icon: "❤️",
-  },
-  {
-    title: "DevOps Automation Tool",
-    description: "CI/CD pipeline automation and infrastructure management",
-    category: "Developer Tools",
-    tech: ["Go", "Kubernetes", "Docker", "Terraform"],
-    gradient: "from-cyan-600 to-blue-600",
-    icon: "⚙️",
-  },
-  {
-    title: "Social Learning Platform",
-    description: "Collaborative education platform with live video and interactive features",
-    category: "EdTech",
-    tech: ["Next.js", "WebRTC", "MongoDB", "Stripe"],
-    gradient: "from-indigo-600 to-purple-600",
-    icon: "🎓",
+    icon: "📊",
+    role: "Founder & Developer",
   },
 ];
 
@@ -156,6 +143,13 @@ export default function ProjectsPage() {
                     </span>
                   </h3>
 
+                  {/* Role */}
+                  {project.role && (
+                    <p className="text-sm font-medium text-foreground/60 mb-3">
+                      {project.role}
+                    </p>
+                  )}
+
                   {/* Description */}
                   <p className="text-foreground/70 mb-6">
                     {project.description}
@@ -175,25 +169,49 @@ export default function ProjectsPage() {
 
                   {/* Link */}
                   {project.link && (
-                    <Link
-                      href={project.link}
-                      className={`inline-flex items-center text-sm font-medium bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
-                    >
-                      Learn More
-                      <svg
-                        className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    project.link.startsWith('http') ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center text-sm font-medium bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </Link>
+                        Learn More
+                        <svg
+                          className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </a>
+                    ) : (
+                      <Link
+                        href={project.link}
+                        className={`inline-flex items-center text-sm font-medium bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
+                      >
+                        Learn More
+                        <svg
+                          className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
+                    )
                   )}
                 </div>
               </motion.div>
