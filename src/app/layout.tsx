@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Andy Nadal - Entrepreneur & Developer",
@@ -36,7 +38,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <Navigation />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
