@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 import Hero from "@/components/hero";
 
@@ -90,9 +91,22 @@ export default function Home() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="relative h-64 md:h-80 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center"
+                            className="relative h-64 md:h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 group hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
                         >
-                            <div className="text-6xl">⏸️</div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+                            <Image
+                                src="/pausa-a.jpg"
+                                alt="Pausa - Time and Productivity Management"
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-105 origin-center"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                priority
+                            />
+                            <div className="absolute bottom-4 left-4 right-4 z-20">
+                                <div className="text-white/90 font-medium text-sm md:text-base">
+                                    Revolutionizing Time Management
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </motion.section>
@@ -108,9 +122,14 @@ export default function Home() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="relative h-64 md:h-80 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center order-2 md:order-1"
+                            className="relative h-64 md:h-80 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center order-2 md:order-1 group hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300"
                         >
-                            <div className="text-6xl">🚀</div>
+                            <div
+                                className="text-6xl transition-transform duration-300 group-hover:scale-110"
+                                style={{ transformOrigin: "center center" }}
+                            >
+                                🚀
+                            </div>
                         </motion.div>
                         <div className="space-y-6 order-1 md:order-2">
                             <motion.div

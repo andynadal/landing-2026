@@ -6,7 +6,8 @@ on:
     branches: [main]
 
 permissions:
-  pull-requests: read
+  contents: write
+  pull-requests: write
 
 jobs:
   require-release-label:
@@ -35,4 +36,127 @@ jobs:
               core.setFailed(
                 `Multiple release labels found (${releaseLabels.join(", ")}). Keep exactly one.`
               );
+            }
+      - name: Determine release bump from PR label
+        id: bump
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const releaseLabels = labels.filter(l =>
+              l === "release:major" ||
+              l === "release:minor" ||
+              l === "release:patch"
+            );
+
+            if (releaseLabels.length !== 1) {
+              core.setFailed(
+                `Expected exactly one release label (release:patch | minor | major). Found: ${releaseLabels.join(", ") || "(none)"}`
+              );
+              return;
+            }
+
+            const bump = releaseLabels[0].split(":")[1];
+            core.setOutput("bump", bump);
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history and tags
+
+      - name: Compute next semver tag
+        id: ver
+        if: steps.bump.outputs.bump != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          bump="${{ steps.bump.outputs.bump }}"
+
+          git fetch --tags --force
+
+          latest_tag="$(git tag -l 'v*' --sort=-v:refname | head -n 1 || true)"
+          if [[ -z "$latest_tag" ]]; then
+            latest_tag="v0.0.0"
+          fi
+
+          base="${latest_tag#v}"
+
+          # Validate semver format
+          if [[ ! "$base" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Warning: Latest tag '$latest_tag' is not valid semver, defaulting to 0.0.0"
+            major=0; minor=0; patch=0
+          else
+            IFS='.' read -r major minor patch <<<"$base"
+          fi
+
+          case "$bump" in
+            major)
+              major=$((major+1)); minor=0; patch=0 ;;
+            minor)
+              minor=$((minor+1)); patch=0 ;;
+            patch)
+              patch=$((patch+1)) ;;
+            *)
+              echo "invalid bump: $bump"
+              exit 1 ;;
+          esac
+
+          next="${major}.${minor}.${patch}"
+          tag="v${next}"
+
+          echo "latest_tag=$latest_tag" >> "$GITHUB_OUTPUT"
+          echo "version=$next" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Comment PR with next version
+        if: steps.ver.outputs.tag != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const currentTag = "${{ steps.ver.outputs.latest_tag }}";
+            const nextVersion = "${{ steps.ver.outputs.version }}";
+            const nextTag = "${{ steps.ver.outputs.tag }}";
+            const releaseType = "${{ steps.bump.outputs.bump }}";
+
+            const body = "## 🏷️ Next Release Version\n\n" +
+              "**Current version:** `" + currentTag + "`\n" +
+              "**Next version:** `" + nextTag + "`\n" +
+              "**Release type:** `" + releaseType + "`\n\n" +
+              "This PR will trigger a **" + releaseType + "** release when merged to main.\n\n" +
+              "---\n" +
+              "*This comment is automatically updated when the release label changes.*";
+
+            // Check if we already have a comment from this action
+            const comments = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number,
+            });
+
+            const botComment = comments.data.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('## 🏷️ Next Release Version')
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: botComment.id,
+                body,
+              });
+              console.log(`Updated existing comment #${botComment.id}`);
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+              console.log('Created new version comment');
             }

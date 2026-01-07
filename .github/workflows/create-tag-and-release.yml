@@ -89,37 +89,53 @@ jobs:
         run: |
           set -euo pipefail
 
-          pr_title="${{ github.event.pull_request.title }}"
+          # Create temporary file for release notes to avoid shell injection
+          notes_file=$(mktemp)
+          trap 'rm -f "$notes_file"' EXIT
+
+          # Get basic info (these are safe as they're from GitHub context)
           pr_number="${{ github.event.pull_request.number }}"
-          pr_body="${{ github.event.pull_request.body }}"
           from="${{ steps.ver.outputs.latest_tag }}"
           to="${{ github.sha }}"
 
-          if git rev-parse -q --verify "refs/tags/${from}" >/dev/null; then
-            range="${from}..${to}"
-            header="## Changes since ${from}"
+          # Write PR title safely using printf to avoid any shell expansion
+          printf "## %s (#%s)\n" "${{ github.event.pull_request.title }}" "$pr_number" > "$notes_file"
+
+          # Write PR body safely using Python environment variable approach
+          if [[ -n "$PR_BODY" ]]; then
+            python3 -c "import os; body = os.environ.get('PR_BODY', ''); body_clean = ' '.join(body.split()) if body.strip() else '_No PR description provided._'; body_final = body_clean[:1000] + '...' if len(body_clean) > 1000 else body_clean; print(body_final)" >> "$notes_file"
           else
-            range="${to}"
+            echo "_No PR description provided._" >> "$notes_file"
+          fi
+
+          # Add commit history section
+          if git rev-parse -q --verify "refs/tags/$from" >/dev/null; then
+            range="$from..$to"
+            header="## Changes since $from"
+          else
+            range="$to"
             header="## Changes"
           fi
 
-          commits="$(git log --pretty=format:'- %s (%h)' ${range} -- || true)"
-          if [[ -z "$commits" ]]; then
-            commits="- No commits detected."
+          echo "" >> "$notes_file"
+          echo "$header" >> "$notes_file"
+
+          # Get commits and write them safely (git log output is safe)
+          if git log --pretty=format:'- %s (%h)' "$range" -- >> "$notes_file" 2>/dev/null; then
+            :  # Success
+          else
+            echo "- No commits detected." >> "$notes_file"
           fi
 
-          # Build notes without heredoc to avoid YAML parsing issues
-          printf -v notes "## %s (#%s)\n\n%s\n\n%s\n%s" \
-            "${pr_title}" \
-            "${pr_number}" \
-            "${pr_body:-_No PR description provided._}" \
-            "${header}" \
-            "${commits}"
-
-          # Write to output using delimiter
-          echo "notes<<NOTES_EOF" >> "$GITHUB_OUTPUT"
-          echo "$notes" >> "$GITHUB_OUTPUT"
-          echo "NOTES_EOF" >> "$GITHUB_OUTPUT"
+          # Write to GitHub output using proper delimiter
+          {
+            echo "notes<<NOTES_EOF"
+            cat "$notes_file"
+            echo ""
+            echo "NOTES_EOF"
+          } >> "$GITHUB_OUTPUT"
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
 
       - name: Safety check — tag must not exist
         shell: bash

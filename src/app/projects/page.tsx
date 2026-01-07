@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const projects = [
     {
@@ -10,7 +11,7 @@ const projects = [
         category: "Current Startup",
         tech: ["Next.js", "AI/ML", "TypeScript", "Cloud"],
         gradient: "from-blue-600 to-purple-600",
-        icon: "⏸️",
+        icon: "/pausa-logo.jpg",
         link: "/pausa",
     },
     {
@@ -20,7 +21,7 @@ const projects = [
         category: "FinTech",
         tech: ["iOS", "Android", "Serverless", "Cloud"],
         gradient: "from-purple-600 to-pink-600",
-        icon: "💰",
+        icon: "/ruut.png",
         link: "https://ruut.mx",
         role: "Head of Technology",
     },
@@ -31,7 +32,7 @@ const projects = [
         category: "Personal Development",
         tech: ["Mobile", "Cloud", "Habit Tracking"],
         gradient: "from-green-600 to-blue-600",
-        icon: "📓",
+        icon: "/journal-habit.png",
         role: "Founder & Developer",
     },
     {
@@ -41,7 +42,7 @@ const projects = [
         category: "Finance",
         tech: ["Mobile", "Analytics", "Financial Tools"],
         gradient: "from-orange-600 to-red-600",
-        icon: "📊",
+        icon: "/pro-ledger.png",
         role: "Founder & Developer",
     },
 ];
@@ -137,8 +138,22 @@ export default function ProjectsPage() {
                                     </div>
 
                                     {/* Icon */}
-                                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        {project.icon}
+                                    <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                                        {project.icon.startsWith("/") ? (
+                                            <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-lg">
+                                                <Image
+                                                    src={project.icon}
+                                                    alt={`${project.title} logo`}
+                                                    fill
+                                                    className="object-contain"
+                                                    sizes="64px"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="text-5xl w-16 h-16 rounded-2xl bg-gradient-to-br from-foreground/5 to-foreground/10 flex items-center justify-center shadow-lg">
+                                                {project.icon}
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Title */}
