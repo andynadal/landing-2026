@@ -1,3 +1,10 @@
+export interface GhostTag {
+    id: string;
+    name: string;
+    slug: string;
+    description: string | null;
+}
+
 export interface GhostPost {
     slug: string;
     id: string;
@@ -31,6 +38,7 @@ export interface GhostPost {
     meta_title: string | null;
     meta_description: string | null;
     email_subject: string | null;
+    tags?: GhostTag[];
 }
 
 export interface GhostPostsResponse {

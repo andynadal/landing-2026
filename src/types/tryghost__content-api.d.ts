@@ -1,4 +1,6 @@
 declare module "@tryghost/content-api" {
+    import type { GhostPost } from "@/types/ghost";
+
     interface GhostAPIOptions {
         url: string;
         key: string;
@@ -17,11 +19,11 @@ declare module "@tryghost/content-api" {
     }
 
     interface PostsAPI {
-        browse(options?: BrowseOptions): Promise<unknown[]>;
+        browse(options?: BrowseOptions): Promise<GhostPost[]>;
         read(
             data: { slug: string } | { id: string },
             options?: ReadOptions
-        ): Promise<unknown>;
+        ): Promise<GhostPost>;
     }
 
     class GhostContentAPI {

@@ -32,10 +32,16 @@ export async function generateMetadata({
         };
     }
 
+    // Generate keywords from tags or extract from title/excerpt
+    const keywords =
+        post.tags && post.tags.length > 0
+            ? post.tags.map((tag) => tag.name)
+            : undefined;
+
     return {
         title: post.meta_title || post.title,
         description: post.meta_description || post.excerpt,
-        keywords: post.title.split(" "),
+        keywords,
         authors: [{ name: "Andy Nadal" }],
         openGraph: {
             type: "article",

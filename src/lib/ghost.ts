@@ -2,27 +2,29 @@ import GhostContentAPI from "@tryghost/content-api";
 
 import type { GhostPost } from "@/types/ghost";
 
-// Validate environment variables
-if (!process.env.GHOST_CONTENT_URL) {
-    throw new Error("GHOST_CONTENT_URL environment variable is required");
-}
+// Initialize Ghost Content API client with conditional initialization
+let api: GhostContentAPI | null = null;
 
-if (!process.env.GHOST_CONTENT_API_KEY) {
-    throw new Error("GHOST_CONTENT_API_KEY environment variable is required");
+if (process.env.GHOST_CONTENT_URL && process.env.GHOST_CONTENT_API_KEY) {
+    api = new GhostContentAPI({
+        url: process.env.GHOST_CONTENT_URL,
+        key: process.env.GHOST_CONTENT_API_KEY,
+        version: "v5.0",
+    });
 }
-
-// Initialize Ghost Content API client
-const api = new GhostContentAPI({
-    url: process.env.GHOST_CONTENT_URL,
-    key: process.env.GHOST_CONTENT_API_KEY,
-    version: "v5.0",
-});
 
 /**
  * Fetch all published posts from Ghost CMS
  * @returns Promise with array of Ghost posts
  */
 export async function getPosts(): Promise<GhostPost[]> {
+    if (!api) {
+        console.warn(
+            "Ghost CMS is not configured. Please set GHOST_CONTENT_URL and GHOST_CONTENT_API_KEY environment variables."
+        );
+        return [];
+    }
+
     try {
         const posts = await api.posts.browse({
             limit: "all",
@@ -42,6 +44,13 @@ export async function getPosts(): Promise<GhostPost[]> {
  * @returns Promise with a single Ghost post or null if not found
  */
 export async function getPostBySlug(slug: string): Promise<GhostPost | null> {
+    if (!api) {
+        console.warn(
+            "Ghost CMS is not configured. Please set GHOST_CONTENT_URL and GHOST_CONTENT_API_KEY environment variables."
+        );
+        return null;
+    }
+
     try {
         const post = await api.posts.read(
             { slug },
