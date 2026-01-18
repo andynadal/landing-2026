@@ -6,19 +6,37 @@ import { getPosts } from "@/lib/ghost";
 import { BlogListClient } from "@/components/blog-list-client";
 
 export const metadata: Metadata = {
-    title: "Blog - Andy Nadal",
+    title: "Blog",
     description:
-        "Thoughts on entrepreneurship, development, and building products that matter.",
+        "Thoughts on entrepreneurship, development, and building products that matter. Articles about startups, software engineering, product development, and lessons learned building companies.",
+    keywords: [
+        "blog",
+        "entrepreneurship",
+        "software development",
+        "startup blog",
+        "product development",
+        "technical blog",
+        "business strategy",
+        "software engineering",
+        "startup lessons",
+        "building products",
+        "tech entrepreneurship",
+    ],
     openGraph: {
         title: "Blog - Andy Nadal",
         description:
             "Thoughts on entrepreneurship, development, and building products that matter.",
+        url: "https://andynadal.com/blog",
+        type: "website",
     },
     twitter: {
         card: "summary_large_image",
         title: "Blog - Andy Nadal",
         description:
             "Thoughts on entrepreneurship, development, and building products that matter.",
+    },
+    alternates: {
+        canonical: "https://andynadal.com/blog",
     },
 };
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 
 import { getPostBySlug, getAllPostSlugs } from "@/lib/ghost";
@@ -42,7 +43,7 @@ export async function generateMetadata({
         title: post.meta_title || post.title,
         description: post.meta_description || post.excerpt,
         keywords,
-        authors: [{ name: "Andy Nadal" }],
+        authors: [{ name: "Andy Nadal", url: "https://andynadal.com" }],
         openGraph: {
             type: "article",
             title: post.og_title || post.title,
@@ -50,12 +51,18 @@ export async function generateMetadata({
             images: post.og_image || post.feature_image || undefined,
             publishedTime: post.published_at,
             modifiedTime: post.updated_at,
+            authors: ["Andy Nadal"],
+            url: `https://andynadal.com/blog/${slug}`,
         },
         twitter: {
             card: "summary_large_image",
             title: post.twitter_title || post.title,
             description: post.twitter_description || post.excerpt,
             images: post.twitter_image || post.feature_image || undefined,
+            creator: "@andynadal",
+        },
+        alternates: {
+            canonical: `https://andynadal.com/blog/${slug}`,
         },
     };
 }
@@ -72,8 +79,41 @@ export default async function BlogPostPage({
         notFound();
     }
 
+    // Generate JSON-LD structured data for the blog post
+    const blogPostSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        image: post.feature_image || undefined,
+        datePublished: post.published_at,
+        dateModified: post.updated_at,
+        author: {
+            "@type": "Person",
+            name: "Andy Nadal",
+            url: "https://andynadal.com",
+        },
+        publisher: {
+            "@type": "Person",
+            name: "Andy Nadal",
+            url: "https://andynadal.com",
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://andynadal.com/blog/${slug}`,
+        },
+        keywords: post.tags?.map((tag) => tag.name).join(", "),
+    };
+
     return (
         <main className="min-h-screen bg-background pt-20 md:pt-24">
+            <Script
+                id="blog-post-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(blogPostSchema),
+                }}
+            />
             <BlogPostClient>
                 <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
                     {/* Back Link */}
