@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllPostSlugs } from "@/lib/ghost";
+import { getPosts } from "@/lib/ghost";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://andynadal.com";
@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         {
             url: `${baseUrl}/blog`,
             lastModified: new Date(),
-            changeFrequency: "daily",
+            changeFrequency: "weekly",
             priority: 0.9,
         },
         {
@@ -39,16 +39,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     ];
 
-    // Dynamic blog posts
+    // Dynamic blog posts - fetch actual posts to get real dates
     let blogPosts: MetadataRoute.Sitemap = [];
     try {
-        const slugs = await getAllPostSlugs();
-        blogPosts = slugs.map((slug) => ({
-            url: `${baseUrl}/blog/${slug}`,
-            lastModified: new Date(),
-            changeFrequency: "weekly" as const,
-            priority: 0.7,
-        }));
+        const posts = await getPosts();
+        blogPosts = posts.map((post) => {
+            // Use updated_at if available, fallback to published_at
+            const lastModified = post.updated_at || post.published_at;
+            return {
+                url: `${baseUrl}/blog/${post.slug}`,
+                lastModified: new Date(lastModified),
+                changeFrequency: "monthly" as const,
+                priority: 0.7,
+            };
+        });
     } catch (error) {
         console.error("Error generating sitemap for blog posts:", error);
     }
