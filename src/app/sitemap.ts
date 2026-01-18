@@ -43,12 +43,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let blogPosts: MetadataRoute.Sitemap = [];
     try {
         const posts = await getPosts();
-        blogPosts = posts.map((post) => ({
-            url: `${baseUrl}/blog/${post.slug}`,
-            lastModified: new Date(post.updated_at || post.published_at),
-            changeFrequency: "monthly" as const,
-            priority: 0.7,
-        }));
+        blogPosts = posts.map((post) => {
+            // Use updated_at if available, fallback to published_at
+            const lastModified = post.updated_at || post.published_at;
+            return {
+                url: `${baseUrl}/blog/${post.slug}`,
+                lastModified: new Date(lastModified),
+                changeFrequency: "monthly" as const,
+                priority: 0.7,
+            };
+        });
     } catch (error) {
         console.error("Error generating sitemap for blog posts:", error);
     }
