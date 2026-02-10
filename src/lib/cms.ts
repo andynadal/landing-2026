@@ -61,8 +61,12 @@ export async function fetchArticles(
     }
 
     try {
-        const url = `${CMS_URL}/read?apiKey=${CMS_API_KEY}&lang=${lang}&page=${page}&page_size=${pageSize}`;
+        const url = `${CMS_URL}/api/read?apiKey=${CMS_API_KEY}&lang=${lang}&page=${page}&page_size=${pageSize}`;
         const response = await fetch(url, {
+            headers: {
+                "api-key": CMS_API_KEY,
+                "Content-Type": "application/json",
+            },
             next: { revalidate: 86400 }, // Revalidate every 24 hours
         });
 
