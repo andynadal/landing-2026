@@ -25,7 +25,12 @@ export async function fetchArticles(
         );
         return {
             articles: [],
-            pagination: { page: 0, page_size: pageSize, total: 0, total_pages: 0 },
+            pagination: {
+                page: 0,
+                page_size: pageSize,
+                total: 0,
+                total_pages: 0,
+            },
         };
     }
 
@@ -55,7 +60,12 @@ export async function fetchArticles(
         console.error("Error fetching articles from Minute CMS:", error);
         return {
             articles: [],
-            pagination: { page: 0, page_size: pageSize, total: 0, total_pages: 0 },
+            pagination: {
+                page: 0,
+                page_size: pageSize,
+                total: 0,
+                total_pages: 0,
+            },
         };
     }
 }
