@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 
-import { getPostBySlug, getAllPostSlugs } from "@/lib/ghost";
+import { getArticleBySlug, getAllArticleSlugs } from "@/lib/cms";
 import { BlogPostClient } from "@/components/blog-post-client";
 
 // Revalidate every 24 hours (86400 seconds)
@@ -12,7 +11,7 @@ export const revalidate = 86400;
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-    const slugs = await getAllPostSlugs();
+    const slugs = await getAllArticleSlugs("en");
     return slugs.map((slug) => ({
         slug: slug,
     }));
@@ -25,40 +24,30 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
     const { slug } = await params;
-    const post = await getPostBySlug(slug);
+    const article = await getArticleBySlug(slug, "en");
 
-    if (!post) {
+    if (!article) {
         return {
             title: "Post Not Found - Andy Nadal",
         };
     }
 
-    // Generate keywords from tags or extract from title/excerpt
-    const keywords =
-        post.tags && post.tags.length > 0
-            ? post.tags.map((tag) => tag.name)
-            : undefined;
-
     return {
-        title: post.meta_title || post.title,
-        description: post.meta_description || post.excerpt,
-        keywords,
-        authors: [{ name: "Andy Nadal", url: "https://andynadal.com" }],
+        title: article.title,
+        description: article.title,
+        authors: [{ name: article.author, url: "https://andynadal.com" }],
         openGraph: {
             type: "article",
-            title: post.og_title || post.title,
-            description: post.og_description || post.excerpt,
-            images: post.og_image || post.feature_image || undefined,
-            publishedTime: post.published_at,
-            modifiedTime: post.updated_at,
-            authors: ["Andy Nadal"],
+            title: article.title,
+            description: article.title,
+            publishedTime: article.published_at,
+            authors: [article.author],
             url: `https://andynadal.com/blog/${slug}`,
         },
         twitter: {
             card: "summary_large_image",
-            title: post.twitter_title || post.title,
-            description: post.twitter_description || post.excerpt,
-            images: post.twitter_image || post.feature_image || undefined,
+            title: article.title,
+            description: article.title,
             creator: "@andynadal",
         },
         alternates: {
@@ -73,9 +62,9 @@ export default async function BlogPostPage({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const post = await getPostBySlug(slug);
+    const article = await getArticleBySlug(slug, "en");
 
-    if (!post) {
+    if (!article) {
         notFound();
     }
 
@@ -83,26 +72,23 @@ export default async function BlogPostPage({
     const blogPostSchema = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        headline: post.title,
-        description: post.excerpt,
-        image: post.feature_image || undefined,
-        datePublished: post.published_at,
-        dateModified: post.updated_at,
+        headline: article.title,
+        description: article.title,
+        datePublished: article.published_at,
         author: {
             "@type": "Person",
-            name: "Andy Nadal",
+            name: article.author,
             url: "https://andynadal.com",
         },
         publisher: {
             "@type": "Person",
-            name: "Andy Nadal",
+            name: article.author,
             url: "https://andynadal.com",
         },
         mainEntityOfPage: {
             "@type": "WebPage",
             "@id": `https://andynadal.com/blog/${slug}`,
         },
-        keywords: post.tags?.map((tag) => tag.name).join(", "),
     };
 
     return (
@@ -141,49 +127,23 @@ export default async function BlogPostPage({
                     <header className="mb-12 space-y-6">
                         {/* Meta Info */}
                         <div className="flex items-center gap-2 text-sm text-foreground/60">
-                            <time dateTime={post.published_at}>
-                                {new Date(post.published_at).toLocaleDateString(
-                                    "en-US",
-                                    {
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "numeric",
-                                    }
-                                )}
+                            <time dateTime={article.published_at}>
+                                {new Date(
+                                    article.published_at
+                                ).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
                             </time>
                             <span>•</span>
-                            <span>{post.reading_time} min read</span>
+                            <span>{article.author}</span>
                         </div>
 
                         {/* Title */}
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                            {post.title}
+                            {article.title}
                         </h1>
-
-                        {/* Excerpt */}
-                        {post.custom_excerpt && (
-                            <p className="text-xl text-foreground/70">
-                                {post.custom_excerpt}
-                            </p>
-                        )}
-
-                        {/* Feature Image */}
-                        {post.feature_image && (
-                            <div className="relative h-64 md:h-96 w-full rounded-2xl overflow-hidden bg-foreground/5">
-                                <Image
-                                    src={post.feature_image}
-                                    alt={post.feature_image_alt || post.title}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                                {post.feature_image_caption && (
-                                    <figcaption className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm p-4">
-                                        {post.feature_image_caption}
-                                    </figcaption>
-                                )}
-                            </div>
-                        )}
                     </header>
 
                     {/* Content */}
@@ -200,7 +160,7 @@ export default async function BlogPostPage({
                             prose-hr:border-foreground/10
                             prose-ul:text-foreground/80 prose-ol:text-foreground/80
                             prose-li:text-foreground/80"
-                        dangerouslySetInnerHTML={{ __html: post.html }}
+                        dangerouslySetInnerHTML={{ __html: article.content }}
                     />
                 </article>
             </BlogPostClient>

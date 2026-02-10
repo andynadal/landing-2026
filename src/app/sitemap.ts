@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getPosts } from "@/lib/ghost";
+import { getAllArticles } from "@/lib/cms";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://andynadal.com";
@@ -39,16 +39,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     ];
 
-    // Dynamic blog posts - fetch actual posts to get real dates
+    // Dynamic blog posts - fetch actual articles to get real dates
     let blogPosts: MetadataRoute.Sitemap = [];
     try {
-        const posts = await getPosts();
-        blogPosts = posts.map((post) => {
-            // Use updated_at if available, fallback to published_at
-            const lastModified = post.updated_at || post.published_at;
+        const articles = await getAllArticles("en");
+        blogPosts = articles.map((article) => {
             return {
-                url: `${baseUrl}/blog/${post.slug}`,
-                lastModified: new Date(lastModified),
+                url: `${baseUrl}/blog/${article.slug}`,
+                lastModified: new Date(article.published_at),
                 changeFrequency: "monthly" as const,
                 priority: 0.7,
             };
