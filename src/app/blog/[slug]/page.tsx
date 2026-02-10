@@ -15,7 +15,7 @@ export const revalidate = 86400;
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-    const slugs = await getAllArticleSlugs("en");
+    const slugs = await getAllArticleSlugs();
     return slugs.map((slug) => ({
         slug: slug,
     }));
@@ -28,7 +28,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
     const { slug } = await params;
-    const article = await getArticleBySlug(slug, "en");
+    const article = await getArticleBySlug(slug);
 
     if (!article) {
         return {
@@ -68,7 +68,7 @@ export default async function BlogPostPage({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const article = await getArticleBySlug(slug, "en");
+    const article = await getArticleBySlug(slug);
 
     if (!article) {
         notFound();

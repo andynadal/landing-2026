@@ -37,13 +37,11 @@ function extractTextFromHtml(html: string, maxLength: number = 160): string {
  * Fetch articles from Minute CMS
  * @param page - Page number for pagination (0-indexed)
  * @param pageSize - Number of articles per page (default: 10)
- * @param lang - Language code (default: "en")
  * @returns Promise with articles and pagination info
  */
 export async function fetchArticles(
     page: number = 0,
-    pageSize: number = 10,
-    lang: string = "en"
+    pageSize: number = 10
 ): Promise<{ articles: MinuteArticle[]; pagination: MinutePagination }> {
     if (!CMS_URL || !CMS_API_KEY) {
         console.warn(
@@ -61,7 +59,7 @@ export async function fetchArticles(
     }
 
     try {
-        const url = `${CMS_URL}/api/read?apiKey=${CMS_API_KEY}&lang=${lang}&page=${page}&page_size=${pageSize}`;
+        const url = `${CMS_URL}/api/read?apiKey=${CMS_API_KEY}&lang=en&page=${page}&page_size=${pageSize}`;
         const response = await fetch(url, {
             headers: {
                 "api-key": CMS_API_KEY,
@@ -102,22 +100,15 @@ export async function fetchArticles(
 
 /**
  * Fetch all articles from Minute CMS (all pages)
- * @param lang - Language code (default: "en")
  * @returns Promise with array of all articles
  */
-export async function getAllArticles(
-    lang: string = "en"
-): Promise<MinuteArticle[]> {
+export async function getAllArticles(): Promise<MinuteArticle[]> {
     const allArticles: MinuteArticle[] = [];
     let currentPage = 0;
     let hasMorePages = true;
 
     while (hasMorePages) {
-        const { articles, pagination } = await fetchArticles(
-            currentPage,
-            100,
-            lang
-        );
+        const { articles, pagination } = await fetchArticles(currentPage, 100);
         allArticles.push(...articles);
 
         currentPage += 1;
@@ -130,16 +121,14 @@ export async function getAllArticles(
 /**
  * Fetch a single article by slug from Minute CMS
  * @param slug - The article slug
- * @param lang - Language code (default: "en")
  * @returns Promise with a single article or null if not found
  */
 export async function getArticleBySlug(
-    slug: string,
-    lang: string = "en"
+    slug: string
 ): Promise<MinuteArticle | null> {
     try {
         // Fetch all articles and find the one with matching slug
-        const allArticles = await getAllArticles(lang);
+        const allArticles = await getAllArticles();
         const article = allArticles.find((a) => a.slug === slug);
         return article || null;
     } catch (error) {
@@ -150,14 +139,11 @@ export async function getArticleBySlug(
 
 /**
  * Get all article slugs for static generation
- * @param lang - Language code (default: "en")
  * @returns Promise with array of article slugs
  */
-export async function getAllArticleSlugs(
-    lang: string = "en"
-): Promise<string[]> {
+export async function getAllArticleSlugs(): Promise<string[]> {
     try {
-        const articles = await getAllArticles(lang);
+        const articles = await getAllArticles();
         return articles.map((article) => article.slug);
     } catch (error) {
         console.error("Error fetching article slugs:", error);

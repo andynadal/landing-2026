@@ -54,8 +54,7 @@ export default async function BlogPage({
 
     const { articles, pagination } = await fetchArticles(
         currentPage - 1,
-        pageSize,
-        "en"
+        pageSize
     );
 
     return (

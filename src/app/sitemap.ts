@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Dynamic blog posts - fetch actual articles to get real dates
     let blogPosts: MetadataRoute.Sitemap = [];
     try {
-        const articles = await getAllArticles("en");
+        const articles = await getAllArticles();
         blogPosts = articles.map((article) => {
             return {
                 url: `${baseUrl}/blog/${article.slug}`,
