@@ -59,7 +59,7 @@ export async function fetchArticles(
     }
 
     try {
-        const url = `${CMS_URL}/api/read?apiKey=${CMS_API_KEY}&lang=en&page=${page}&page_size=${pageSize}`;
+        const url = `${CMS_URL}/api/read?apiKey=${CMS_API_KEY}&language=en&page=${page}&page_size=${pageSize}`;
         const response = await fetch(url, {
             headers: {
                 "api-key": CMS_API_KEY,
