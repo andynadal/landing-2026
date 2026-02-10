@@ -3,7 +3,11 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 
-import { getArticleBySlug, getAllArticleSlugs } from "@/lib/cms";
+import {
+    getArticleBySlug,
+    getAllArticleSlugs,
+    getArticleDescription,
+} from "@/lib/cms";
 import { BlogPostClient } from "@/components/blog-post-client";
 
 // Revalidate every 24 hours (86400 seconds)
@@ -32,14 +36,16 @@ export async function generateMetadata({
         };
     }
 
+    const description = getArticleDescription(article);
+
     return {
         title: article.title,
-        description: article.title,
+        description: description,
         authors: [{ name: article.author, url: "https://andynadal.com" }],
         openGraph: {
             type: "article",
             title: article.title,
-            description: article.title,
+            description: description,
             publishedTime: article.published_at,
             authors: [article.author],
             url: `https://andynadal.com/blog/${slug}`,
@@ -47,7 +53,7 @@ export async function generateMetadata({
         twitter: {
             card: "summary_large_image",
             title: article.title,
-            description: article.title,
+            description: description,
             creator: "@andynadal",
         },
         alternates: {
@@ -68,12 +74,14 @@ export default async function BlogPostPage({
         notFound();
     }
 
+    const description = getArticleDescription(article);
+
     // Generate JSON-LD structured data for the blog post
     const blogPostSchema = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: article.title,
-        description: article.title,
+        description: description,
         datePublished: article.published_at,
         author: {
             "@type": "Person",

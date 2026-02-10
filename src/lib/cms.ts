@@ -8,6 +8,32 @@ const CMS_URL = process.env.MINUTE_CMS_URL;
 const CMS_API_KEY = process.env.MINUTE_CMS_KEY;
 
 /**
+ * Extract plain text from HTML content for descriptions
+ * @param html - HTML content
+ * @param maxLength - Maximum length of the excerpt
+ * @returns Plain text excerpt
+ */
+function extractTextFromHtml(html: string, maxLength: number = 160): string {
+    // Remove HTML tags
+    const text = html.replace(/<[^>]*>/g, " ");
+    // Decode HTML entities
+    const decoded = text
+        .replace(/&nbsp;/g, " ")
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'");
+    // Clean up whitespace
+    const cleaned = decoded.replace(/\s+/g, " ").trim();
+    // Truncate to maxLength
+    if (cleaned.length <= maxLength) {
+        return cleaned;
+    }
+    return cleaned.substring(0, maxLength).trim() + "...";
+}
+
+/**
  * Fetch articles from Minute CMS
  * @param page - Page number for pagination (0-indexed)
  * @param pageSize - Number of articles per page (default: 10)
@@ -133,4 +159,17 @@ export async function getAllArticleSlugs(
         console.error("Error fetching article slugs:", error);
         return [];
     }
+}
+
+/**
+ * Get a description/excerpt from an article's HTML content
+ * @param article - The article object
+ * @param maxLength - Maximum length of the description
+ * @returns Plain text description
+ */
+export function getArticleDescription(
+    article: MinuteArticle,
+    maxLength: number = 160
+): string {
+    return extractTextFromHtml(article.content, maxLength);
 }
