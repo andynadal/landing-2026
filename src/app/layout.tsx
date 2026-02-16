@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
+import CalBooking from "@/components/cal-booking";
 
 import "./globals.css";
 
@@ -98,6 +99,7 @@ export default function RootLayout({
                     <Navigation />
                     {children}
                     <Footer />
+                    <CalBooking />
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
