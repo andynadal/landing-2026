@@ -21,7 +21,10 @@ export default function robots(): MetadataRoute.Robots {
                 crawlDelay: 0,
             },
         ],
-        sitemap: "https://andynadal.com/sitemap.xml",
+        sitemap: [
+            "https://andynadal.com/sitemap.xml",
+            "https://andynadal.com/video-sitemap.xml",
+        ],
         host: "https://andynadal.com",
     };
 }
