@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { fetchVideos } from "@/lib/cms";
 import { Pagination } from "@/components/pagination";
@@ -101,12 +102,14 @@ export default async function VideosPage({
                                                     className={`w-full ${aspectRatio} bg-foreground/5 relative overflow-hidden`}
                                                 >
                                                     {video.thumbnail_url ? (
-                                                        <img
+                                                        <Image
                                                             src={
                                                                 video.thumbnail_url
                                                             }
                                                             alt={video.title}
-                                                            className="w-full h-full object-cover"
+                                                            fill
+                                                            className="object-cover"
+                                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center text-4xl">
