@@ -41,7 +41,6 @@ export default function Home() {
                 viewport={{ once: true, margin: "-100px" }}
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32"
             >
-                {/* Pausa Section */}
                 <motion.section
                     variants={itemVariants}
                     className="mb-20 md:mb-32"
@@ -59,15 +58,24 @@ export default function Home() {
                                         Pausa
                                     </span>
                                 </h2>
+                                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground/90">
+                                    Breath Work & Breathing Techniques for
+                                    Modern Life
+                                </h3>
                                 <p className="text-lg text-foreground/70">
-                                    My current startup revolutionizing how
-                                    people manage their time and productivity.
-                                    Building the future of work-life balance.
+                                    A breakthrough breathing app revolutionizing
+                                    stress management. Master breath work and
+                                    breathing techniques to regulate your
+                                    nervous system - no meditation required.
+                                    Built for founders, professionals, and
+                                    anyone seeking fast relief from stress and
+                                    anxiety.
                                 </p>
                             </motion.div>
                             <Link
                                 href="/pausa"
                                 className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 group"
+                                aria-label="Learn more about Pausa breathing app"
                             >
                                 Learn More
                                 <svg
@@ -75,6 +83,7 @@ export default function Home() {
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
+                                    aria-hidden="true"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -91,13 +100,14 @@ export default function Home() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
                             className="relative h-64 md:h-80 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center"
+                            role="img"
+                            aria-label="Pausa breathing app illustration"
                         >
                             <div className="text-6xl">⏸️</div>
                         </motion.div>
                     </div>
                 </motion.section>
 
-                {/* Projects Section */}
                 <motion.section
                     variants={itemVariants}
                     className="mb-20 md:mb-32"
@@ -109,6 +119,8 @@ export default function Home() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
                             className="relative h-64 md:h-80 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center order-2 md:order-1"
+                            role="img"
+                            aria-label="Product building illustration"
                         >
                             <div className="text-6xl">🚀</div>
                         </motion.div>
@@ -124,15 +136,22 @@ export default function Home() {
                                         Projects
                                     </span>
                                 </h2>
+                                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground/90">
+                                    Building Compelling Products
+                                </h3>
                                 <p className="text-lg text-foreground/70">
-                                    Explore my portfolio of innovative projects,
-                                    from cutting-edge web applications to
-                                    scalable cloud solutions.
+                                    Explore my portfolio of compelling products
+                                    built from zero to one. From fintech
+                                    platforms to wellness apps, each project
+                                    solves real problems for real people. See
+                                    what happens when entrepreneurship meets
+                                    execution.
                                 </p>
                             </motion.div>
                             <Link
                                 href="/projects"
                                 className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group"
+                                aria-label="View product portfolio and projects"
                             >
                                 View Projects
                                 <svg
@@ -140,6 +159,7 @@ export default function Home() {
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
+                                    aria-hidden="true"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -153,7 +173,6 @@ export default function Home() {
                     </div>
                 </motion.section>
 
-                {/* Blog Section */}
                 <motion.section
                     variants={itemVariants}
                     className="mb-20 md:mb-32"
@@ -165,19 +184,25 @@ export default function Home() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                            <h2
+                                id="blog-heading"
+                                className="text-3xl md:text-5xl font-bold mb-4"
+                            >
                                 <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                                     Blog & Insights
                                 </span>
                             </h2>
                             <p className="text-lg text-foreground/70">
-                                Thoughts on entrepreneurship, development, and
-                                building products that matter.
+                                Thoughts on entrepreneurship, building
+                                compelling products, breath work, and creating
+                                solutions that matter. Lessons from the trenches
+                                of startup building.
                             </p>
                         </motion.div>
                         <Link
                             href="/blog"
                             className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-green-600 to-blue-600 text-white font-medium hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 group"
+                            aria-label="Read blog articles about entrepreneurship and product building"
                         >
                             Read Articles
                             <svg
@@ -185,6 +210,7 @@ export default function Home() {
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
+                                aria-hidden="true"
                             >
                                 <path
                                     strokeLinecap="round"
@@ -197,10 +223,10 @@ export default function Home() {
                     </div>
                 </motion.section>
 
-                {/* CTA Section */}
                 <motion.section
                     variants={itemVariants}
                     className="text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl p-12 md:p-16 border border-foreground/10"
+                    aria-label="Contact call to action"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -210,15 +236,17 @@ export default function Home() {
                         className="max-w-2xl mx-auto space-y-6"
                     >
                         <h2 className="text-3xl md:text-4xl font-bold">
-                            Let&apos;s Work Together
+                            Let&apos;s Build Something Compelling
                         </h2>
                         <p className="text-lg text-foreground/70">
-                            Have a project in mind? Let&apos;s create something
-                            amazing together.
+                            Looking for a founder who ships? Whether you&apos;re
+                            an investor, fellow entrepreneur, or potential
+                            partner, let&apos;s create something worth building.
                         </p>
                         <Link
                             href="/contact"
                             className="inline-flex items-center px-8 py-4 rounded-lg bg-foreground text-background font-medium hover:scale-105 transition-transform duration-300"
+                            aria-label="Get in touch with Andy Nadal"
                         >
                             Get in Touch
                         </Link>

@@ -3,26 +3,45 @@ import Script from "next/script";
 export function JsonLd() {
     const personSchema = {
         "@context": "https://schema.org",
-        "@type": "Person",
+        "@type": ["Person", "Entrepreneur"],
         name: "Andy Nadal",
         url: "https://andynadal.com",
-        jobTitle: "Entrepreneur & Software Engineer",
+        jobTitle: "Founder & Entrepreneur",
         description:
-            "Entrepreneur, software engineer, and startup founder. Founder of Pausa, former Head of Technology at RUUT.",
+            "Serial entrepreneur and founder building compelling products. Creator of Pausa, a breakthrough breathing app for stress relief and anxiety management. Expert in breath work, breathing techniques, product development, and building startups from zero to one.",
         sameAs: [
             "https://linkedin.com/in/andynadal",
             "https://github.com/andynadal",
             "https://twitter.com/andynadal",
         ],
         knowsAbout: [
-            "Software Engineering",
             "Entrepreneurship",
+            "Building Products",
             "Product Development",
-            "Fintech",
-            "AI Applications",
-            "Mobile Development",
+            "Breath Work",
+            "Breathing Techniques",
+            "Stress Management",
+            "Mental Health Technology",
             "Startup Building",
+            "Zero to One",
+            "Product Market Fit",
+            "Software Engineering",
+            "Fintech",
+            "Wellness Technology",
+            "Nervous System Regulation",
         ],
+        hasOccupation: {
+            "@type": "Occupation",
+            name: "Entrepreneur",
+            occupationalCategory: "Startup Founder",
+            skills: [
+                "Product Development",
+                "Entrepreneurship",
+                "Breath Work",
+                "Building Compelling Products",
+                "Technical Leadership",
+            ],
+        },
         alumniOf: {
             "@type": "Organization",
             name: "RUUT",
@@ -32,8 +51,9 @@ export function JsonLd() {
                 "@type": "Organization",
                 name: "Pausa",
                 description:
-                    "AI-powered productivity and work-life balance platform",
+                    "A breakthrough breathing app for people who don't meditate. Helps manage stress, anxiety, and nervous system regulation through breath work and breathing techniques.",
                 url: "https://pausaapp.com",
+                category: "Mental Health & Wellness",
             },
         ],
     };

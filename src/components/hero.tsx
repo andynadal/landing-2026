@@ -58,7 +58,7 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="text-xl md:text-2xl lg:text-3xl text-foreground/80 max-w-2xl mx-auto"
                 >
-                    Entrepreneur & Experienced Developer
+                    Founder & Product Builder
                 </motion.p>
 
                 <motion.p
@@ -67,9 +67,9 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto"
                 >
-                    Building innovative solutions and leading technical teams to
-                    success. Transforming ideas into reality through code and
-                    creativity.
+                    Building compelling products from zero to one. Creator of
+                    Pausa, a breakthrough breathing app revolutionizing stress
+                    management through breath work.
                 </motion.p>
 
                 <motion.div
