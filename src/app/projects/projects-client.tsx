@@ -14,6 +14,15 @@ const projects = [
         link: "/pausa",
     },
     {
+        title: "Minute CMS",
+        description: "The simplest CMS to integrate for automatic AI blogging",
+        category: "Content Management",
+        tech: ["CMS", "AI", "Automation", "Cloud"],
+        gradient: "from-cyan-600 to-blue-600",
+        icon: "✍️",
+        link: "https://minutecms.com",
+    },
+    {
         title: "RUUT",
         description:
             "An investment platform for non-investors, making stock investments more accessible for Mexicans. Allows users to transfer Mexican pesos and invest in US dollars in the US stock market",
@@ -130,18 +139,33 @@ export default function ProjectsPage() {
                                 whileHover={{ y: -8 }}
                                 className="group relative"
                             >
-                                <div className="h-full p-8 rounded-2xl bg-background border border-foreground/10 hover:border-foreground/20 transition-all duration-300 hover:shadow-xl">
+                                {/* Gradient Glow Effect */}
+                                <div
+                                    className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-500`}
+                                />
+
+                                <div className="relative h-full p-8 rounded-2xl bg-background border border-foreground/10 hover:border-foreground/20 transition-all duration-300 hover:shadow-2xl backdrop-blur-sm">
                                     {/* Category Badge */}
-                                    <div className="inline-block px-3 py-1 rounded-full bg-foreground/5 text-xs font-medium text-foreground/70 mb-4">
+                                    <div className="inline-block px-3 py-1 rounded-full bg-foreground/5 text-xs font-semibold text-foreground/70 mb-4 border border-foreground/5">
                                         {project.category}
                                     </div>
 
-                                    {/* Icon */}
-                                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    {/* Icon with subtle animation */}
+                                    <motion.div
+                                        className="text-5xl mb-4"
+                                        whileHover={{
+                                            scale: 1.1,
+                                            rotate: [0, -10, 10, 0],
+                                        }}
+                                        transition={{
+                                            duration: 0.5,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
                                         {project.icon}
-                                    </div>
+                                    </motion.div>
 
-                                    {/* Title */}
+                                    {/* Title with enhanced gradient */}
                                     <h3 className="text-2xl font-bold mb-3">
                                         <span
                                             className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
@@ -152,40 +176,40 @@ export default function ProjectsPage() {
 
                                     {/* Role */}
                                     {project.role && (
-                                        <p className="text-sm font-medium text-foreground/60 mb-3">
+                                        <p className="text-sm font-semibold text-foreground/60 mb-3">
                                             {project.role}
                                         </p>
                                     )}
 
-                                    {/* Description */}
-                                    <p className="text-foreground/70 mb-6">
+                                    {/* Description with better line height */}
+                                    <p className="text-foreground/70 mb-6 leading-relaxed">
                                         {project.description}
                                     </p>
 
-                                    {/* Tech Stack */}
+                                    {/* Tech Stack with improved styling */}
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {project.tech.map((tech, i) => (
                                             <span
                                                 key={i}
-                                                className="px-3 py-1 rounded-full bg-foreground/5 text-xs font-medium text-foreground/60"
+                                                className="px-3 py-1 rounded-full bg-foreground/5 text-xs font-medium text-foreground/60 border border-foreground/5 hover:bg-foreground/10 transition-colors duration-200"
                                             >
                                                 {tech}
                                             </span>
                                         ))}
                                     </div>
 
-                                    {/* Link */}
+                                    {/* Link with enhanced styling */}
                                     {project.link &&
                                         (project.link.startsWith("http") ? (
                                             <a
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`inline-flex items-center text-sm font-medium bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
+                                                className={`inline-flex items-center text-sm font-semibold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
                                             >
-                                                Learn More
+                                                Explore Project
                                                 <svg
-                                                    className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                                                    className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
                                                     fill="none"
                                                     stroke="currentColor"
                                                     viewBox="0 0 24 24"
@@ -201,11 +225,11 @@ export default function ProjectsPage() {
                                         ) : (
                                             <Link
                                                 href={project.link}
-                                                className={`inline-flex items-center text-sm font-medium bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
+                                                className={`inline-flex items-center text-sm font-semibold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
                                             >
-                                                Learn More
+                                                Explore Project
                                                 <svg
-                                                    className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                                                    className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
                                                     fill="none"
                                                     stroke="currentColor"
                                                     viewBox="0 0 24 24"
