@@ -2,6 +2,8 @@ import type {
     MinuteApiResponse,
     MinuteArticle,
     MinutePagination,
+    MinuteVideo,
+    MinuteVideoApiResponse,
 } from "@/types/cms";
 
 const CMS_URL = process.env.MINUTE_CMS_URL;
@@ -162,4 +164,122 @@ export function getArticleDescription(
     maxLength: number = 160
 ): string {
     return extractTextFromHtml(article.content, maxLength);
+}
+
+/**
+ * Fetch videos from Minute CMS
+ * @param page - Page number for pagination (0-indexed)
+ * @param pageSize - Number of videos per page (default: 10)
+ * @returns Promise with videos and pagination info
+ */
+export async function fetchVideos(
+    page: number = 0,
+    pageSize: number = 10
+): Promise<{ videos: MinuteVideo[]; pagination: MinutePagination }> {
+    if (!CMS_URL || !CMS_API_KEY) {
+        console.warn(
+            "Minute CMS is not configured. Please set MINUTE_CMS_URL and MINUTE_CMS_KEY environment variables."
+        );
+        return {
+            videos: [],
+            pagination: {
+                page: 0,
+                page_size: pageSize,
+                total: 0,
+                total_pages: 0,
+            },
+        };
+    }
+
+    try {
+        const url = `${CMS_URL}/api/videos?apiKey=${CMS_API_KEY}&page=${page}&page_size=${pageSize}`;
+        const response = await fetch(url, {
+            headers: {
+                "api-key": CMS_API_KEY,
+                "Content-Type": "application/json",
+            },
+            next: { revalidate: 86400 }, // Revalidate every 24 hours
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                `Failed to fetch videos: ${response.status} ${response.statusText}`
+            );
+        }
+
+        const data: MinuteVideoApiResponse = await response.json();
+
+        if (!data.success) {
+            throw new Error("API returned success: false");
+        }
+
+        return {
+            videos: data.data.videos,
+            pagination: data.data.pagination,
+        };
+    } catch (error) {
+        console.error("Error fetching videos from Minute CMS:", error);
+        return {
+            videos: [],
+            pagination: {
+                page: 0,
+                page_size: pageSize,
+                total: 0,
+                total_pages: 0,
+            },
+        };
+    }
+}
+
+/**
+ * Fetch all videos from Minute CMS (all pages)
+ * @returns Promise with array of all videos
+ */
+export async function getAllVideos(): Promise<MinuteVideo[]> {
+    const allVideos: MinuteVideo[] = [];
+    let currentPage = 0;
+    let hasMorePages = true;
+
+    while (hasMorePages) {
+        const { videos, pagination } = await fetchVideos(currentPage, 100);
+        allVideos.push(...videos);
+
+        currentPage += 1;
+        hasMorePages = currentPage < pagination.total_pages;
+    }
+
+    return allVideos;
+}
+
+/**
+ * Fetch a single video by slug from Minute CMS
+ * @param slug - The video slug
+ * @returns Promise with a single video or null if not found
+ */
+export async function getVideoBySlug(
+    slug: string
+): Promise<MinuteVideo | null> {
+    try {
+        // Fetch all videos and find the one with matching slug
+        const allVideos = await getAllVideos();
+        const video = allVideos.find((v) => v.slug === slug);
+        return video || null;
+    } catch (error) {
+        console.error(`Error fetching video with slug ${slug}:`, error);
+        return null;
+    }
+}
+
+/**
+ * Get all video slugs for static generation
+ * @returns Promise with array of video slugs
+ */
+export async function getAllVideoSlugs(): Promise<string[]> {
+    try {
+        const videos = await getAllVideos();
+        return videos.map((video) => video.slug);
+    } catch (error) {
+        console.error("Error fetching video slugs:", error);
+        return [];
+    }
 }

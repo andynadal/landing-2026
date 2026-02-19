@@ -18,12 +18,28 @@ const nextConfig: NextConfig = {
                 protocol: "https",
                 hostname: "*.cloudfront.net",
             },
-            // Add your specific Ghost instance domain if known
-            // Uncomment and replace with your domain:
-            // {
-            //     protocol: "https",
-            //     hostname: "your-ghost-instance.com",
-            // },
+            // Video thumbnail providers
+            {
+                protocol: "https",
+                hostname: "i.ytimg.com",
+            },
+            {
+                protocol: "https",
+                hostname: "img.youtube.com",
+            },
+            {
+                protocol: "https",
+                hostname: "i.vimeocdn.com",
+            },
+            {
+                protocol: "https",
+                hostname: "vumbnail.com",
+            },
+            // Allow all HTTPS images for video thumbnails from various sources
+            {
+                protocol: "https",
+                hostname: "**",
+            },
         ],
     },
 };

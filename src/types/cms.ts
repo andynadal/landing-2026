@@ -25,3 +25,25 @@ export interface MinuteApiResponse {
         pagination: MinutePagination;
     };
 }
+
+export interface MinuteVideo {
+    id: string;
+    account_id: string;
+    created_at: string;
+    title: string;
+    slug: string;
+    description: string;
+    embed_url: string;
+    thumbnail_url: string | null;
+    is_short: boolean | null;
+    video_site_id: string | null;
+    publisher_site: string | null;
+}
+
+export interface MinuteVideoApiResponse {
+    success: boolean;
+    data: {
+        videos: MinuteVideo[];
+        pagination: MinutePagination;
+    };
+}

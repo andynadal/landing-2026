@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllArticles } from "@/lib/cms";
+import { getAllArticles, getAllVideos } from "@/lib/cms";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://andynadal.com";
@@ -21,6 +21,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
         {
             url: `${baseUrl}/blog`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/videos`,
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 0.9,
@@ -61,5 +67,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         console.error("Error generating sitemap for blog posts:", error);
     }
 
-    return [...staticPages, ...blogPosts];
+    // Dynamic videos - fetch actual videos to get real dates
+    let videos: MetadataRoute.Sitemap = [];
+    try {
+        const allVideos = await getAllVideos();
+        videos = allVideos.map((video) => {
+            return {
+                url: `${baseUrl}/videos/${video.slug}`,
+                lastModified: new Date(video.created_at),
+                changeFrequency: "monthly" as const,
+                priority: 0.7,
+            };
+        });
+    } catch (error) {
+        console.error("Error generating sitemap for videos:", error);
+    }
+
+    return [...staticPages, ...blogPosts, ...videos];
 }
