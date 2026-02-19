@@ -261,6 +261,81 @@ export default function AboutPage() {
                                     </motion.li>
                                 </motion.ul>
                             </motion.div>
+
+                            <motion.div
+                                variants={staggerContainer}
+                                className="bg-foreground/5 rounded-lg p-6 md:p-8 space-y-4 mt-6"
+                            >
+                                <motion.p
+                                    variants={fadeInItem}
+                                    className="text-lg text-foreground font-medium"
+                                >
+                                    Developer tools & resources:
+                                </motion.p>
+
+                                <motion.ul
+                                    variants={staggerContainer}
+                                    className="space-y-3"
+                                >
+                                    <motion.li variants={fadeInItem}>
+                                        <Link
+                                            href="https://minutecms.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                        >
+                                            Minute CMS
+                                            <svg
+                                                className="w-4 h-4"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                                />
+                                            </svg>
+                                        </Link>
+                                        <p className="text-base text-foreground/70 mt-1">
+                                            The easiest CMS to integrate into
+                                            your website — simple, fast, and
+                                            developer-friendly
+                                        </p>
+                                    </motion.li>
+
+                                    <motion.li variants={fadeInItem}>
+                                        <Link
+                                            href="https://andynadal.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                        >
+                                            Andy Nadal
+                                            <svg
+                                                className="w-4 h-4"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                                />
+                                            </svg>
+                                        </Link>
+                                        <p className="text-base text-foreground/70 mt-1">
+                                            Personal landing page showcasing
+                                            projects, blog, and professional
+                                            experience
+                                        </p>
+                                    </motion.li>
+                                </motion.ul>
+                            </motion.div>
                         </motion.div>
                     </motion.div>
                 </div>

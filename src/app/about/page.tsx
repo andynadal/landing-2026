@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "About Andy Nadal",
     description:
-        "Andy Nadal is the CEO and Founder of Pausa, a breakthrough breathing app that helps people manage stress and anxiety. Serial entrepreneur, software engineer, and mental health advocate building the future of accessible wellness technology.",
+        "Andy Nadal is the CEO and Founder of Pausa, a breakthrough breathing app that helps people manage stress and anxiety. Serial entrepreneur, software engineer, creator of Minute CMS, and mental health advocate building the future of accessible wellness technology.",
     keywords: [
         "Andy Nadal",
         "Pausa founder",
@@ -19,11 +19,14 @@ export const metadata: Metadata = {
         "tech entrepreneur",
         "Mexico entrepreneur",
         "nervous system regulation",
+        "Minute CMS",
+        "CMS developer",
+        "web development tools",
     ],
     openGraph: {
         title: "About Andy Nadal - Founder & CEO of Pausa",
         description:
-            "Serial entrepreneur and software engineer building Pausa, a breakthrough breathing app for stress and anxiety management.",
+            "Serial entrepreneur and software engineer building Pausa, a breakthrough breathing app for stress and anxiety management, and creator of Minute CMS.",
         url: "https://andynadal.com/about",
         type: "profile",
     },
@@ -31,7 +34,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "About Andy Nadal - Founder & CEO of Pausa",
         description:
-            "Serial entrepreneur and software engineer building Pausa, a breakthrough breathing app for stress and anxiety management.",
+            "Serial entrepreneur and software engineer building Pausa, a breakthrough breathing app for stress and anxiety management, and creator of Minute CMS.",
     },
     alternates: {
         canonical: "https://andynadal.com/about",
