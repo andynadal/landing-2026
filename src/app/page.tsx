@@ -202,32 +202,20 @@ export default function Home() {
                         className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-12 md:p-16"
                     >
                         <h4 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-                            What We&apos;re Building
+                            Building for Impact
                         </h4>
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="space-y-4">
                                 <div className="flex items-start gap-4">
-                                    <div className="text-2xl">📱</div>
+                                    <div className="text-2xl">🎯</div>
                                     <div>
                                         <h5 className="font-semibold text-lg mb-2">
-                                            Native Mobile Apps
+                                            Product-First Mindset
                                         </h5>
                                         <p className="text-foreground/70">
-                                            Built iOS app in Swift and SwiftUI,
-                                            Android app in Kotlin and Jetpack
-                                            Compose
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">🤖</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
-                                            AI-Powered Development
-                                        </h5>
-                                        <p className="text-foreground/70">
-                                            Designed MCP-based context servers
-                                            for AI coding agents
+                                            Every decision starts with the user.
+                                            Built products from scratch that
+                                            people actually want to use daily.
                                         </p>
                                     </div>
                                 </div>
@@ -235,52 +223,66 @@ export default function Home() {
                                     <div className="text-2xl">💰</div>
                                     <div>
                                         <h5 className="font-semibold text-lg mb-2">
-                                            Dual Revenue Streams
+                                            Building Businesses
                                         </h5>
                                         <p className="text-foreground/70">
-                                            B2C and B2B subscription products
-                                            for individuals and businesses
+                                            Created sustainable revenue models
+                                            with B2C and B2B subscriptions that
+                                            drive real growth.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="text-2xl">👥</div>
+                                    <div>
+                                        <h5 className="font-semibold text-lg mb-2">
+                                            Team Building
+                                        </h5>
+                                        <p className="text-foreground/70">
+                                            Hired and led teams that ship.
+                                            Created culture where execution
+                                            meets excellence.
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div className="space-y-4">
                                 <div className="flex items-start gap-4">
-                                    <div className="text-2xl">📊</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
-                                            Data-Driven Insights
-                                        </h5>
-                                        <p className="text-foreground/70">
-                                            Internal dashboards for user
-                                            segmentation, retention, and product
-                                            decisions
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4">
                                     <div className="text-2xl">📈</div>
                                     <div>
                                         <h5 className="font-semibold text-lg mb-2">
-                                            Growth & Marketing
+                                            Growth & Scale
                                         </h5>
                                         <p className="text-foreground/70">
-                                            Running paid ads, SEO, growth
-                                            experiments, and AI blogging
-                                            workflows
+                                            Drove user acquisition from 0 to
+                                            100K+ through marketing, growth
+                                            experiments, and product iteration.
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="text-2xl">🎯</div>
+                                    <div className="text-2xl">💡</div>
                                     <div>
                                         <h5 className="font-semibold text-lg mb-2">
-                                            Founder-Led Everything
+                                            Problem Solving
                                         </h5>
                                         <p className="text-foreground/70">
-                                            Fundraising, hiring, team
-                                            management, product, engineering,
-                                            and execution
+                                            Identified pain points and built
+                                            solutions. From stress management to
+                                            financial access.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="text-2xl">🚀</div>
+                                    <div>
+                                        <h5 className="font-semibold text-lg mb-2">
+                                            Fundraising & Investors
+                                        </h5>
+                                        <p className="text-foreground/70">
+                                            Raised capital and worked with top
+                                            investors including 500 Global.
+                                            Pitched, closed, and delivered.
                                         </p>
                                     </div>
                                 </div>
@@ -361,8 +363,9 @@ export default function Home() {
                             </span>
                         </h2>
                         <p className="text-2xl md:text-3xl text-center text-foreground/80 font-light max-w-3xl mx-auto">
-                            CTO of a 500 Global-backed fintech helping Mexicans
-                            invest in the US stock market
+                            Founding team member at 500 Global-backed fintech.
+                            Built and scaled products helping Mexicans invest in
+                            US markets.
                         </p>
                     </motion.div>
 
@@ -370,10 +373,10 @@ export default function Home() {
                         <motion.div variants={itemVariants}>
                             <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-8 h-full">
                                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                    CTO / Founding Team
+                                    Head of Product & Technology
                                 </h3>
                                 <p className="text-foreground/60 mb-6">
-                                    April 2024 - July 2025
+                                    March 2022 - July 2025 · Founding Team
                                 </p>
                                 <ul className="space-y-4 text-foreground/70">
                                     <li className="flex items-start gap-3">
@@ -381,9 +384,8 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Promoted to CTO after leading iOS
-                                            from scratch through launch and
-                                            scale
+                                            Joined as founding team member and
+                                            built product from 0 to 100K users
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -391,9 +393,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Managed 7-person team including
-                                            hiring, architecture, and technical
-                                            execution
+                                            Led team of 7, built mobile and web
+                                            products enabling cross-border
+                                            investing
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -401,9 +403,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Led development of money-transfer
-                                            system reducing Mexico-US transfers
-                                            from ~3 days to immediate
+                                            Shipped instant money transfers
+                                            between Mexico and US, reducing
+                                            transfer time from 3 days to seconds
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -411,8 +413,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Worked with investors including 500
-                                            Global and Mexico&apos;s securities
+                                            Worked directly with 500 Global and
+                                            navigated regulatory requirements
+                                            with Mexico&apos;s securities
                                             commission
                                         </span>
                                     </li>
@@ -423,10 +426,10 @@ export default function Home() {
                         <motion.div variants={itemVariants}>
                             <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-8 h-full">
                                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                    Senior iOS Engineer / Founding Team
+                                    What We Built
                                 </h3>
                                 <p className="text-foreground/60 mb-6">
-                                    March 2022 - April 2024
+                                    Democratizing US investing for Mexico
                                 </p>
                                 <ul className="space-y-4 text-foreground/70">
                                     <li className="flex items-start gap-3">
@@ -434,9 +437,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Started RUUT&apos;s iOS app from
-                                            scratch and led App Store launch in
-                                            July 2022
+                                            Mobile app allowing Mexicans to
+                                            invest in US stocks with Mexican
+                                            pesos
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -444,8 +447,8 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Built core flows for Mexicans
-                                            investing in US stock market
+                                            Instant cross-border money transfers
+                                            with compliance built-in
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -453,8 +456,8 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Developed onboarding, KYC, account
-                                            management, and investment flows
+                                            Full KYC onboarding, account
+                                            management, and investment platform
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -462,8 +465,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span>
-                                            Used Swift, UIKit, SwiftUI, Combine,
-                                            async/await, and REST APIs
+                                            Regulatory-compliant fintech product
+                                            working with Mexico&apos;s
+                                            authorities
                                         </span>
                                     </li>
                                 </ul>
@@ -482,7 +486,7 @@ export default function Home() {
                 </div>
             </motion.section>
 
-            {/* Experience & Education */}
+            {/* Education */}
             <motion.section
                 variants={containerVariants}
                 initial="hidden"
@@ -490,141 +494,60 @@ export default function Home() {
                 viewport={{ once: true, margin: "-100px" }}
                 className="py-32 md:py-48 px-4 sm:px-6 lg:px-8"
             >
-                <div className="max-w-7xl mx-auto">
-                    <motion.div variants={itemVariants} className="mb-16">
-                        <h2 className="text-4xl md:text-6xl font-black mb-12 text-center">
-                            Experience & Education
-                        </h2>
+                <div className="max-w-4xl mx-auto">
+                    <motion.div variants={itemVariants}>
+                        <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-12 text-center">
+                            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                                Tecnológico de Monterrey
+                            </h3>
+                            <p className="text-xl font-semibold text-foreground/80 mb-2">
+                                Bachelor of Arts, Financial Management
+                            </p>
+                            <p className="text-foreground/60 mb-4">
+                                Graduated December 2022
+                            </p>
+                            <p className="text-foreground/70">
+                                Campus Santa Fe, Ciudad de México, Mexico
+                            </p>
+                        </div>
                     </motion.div>
-
-                    <div className="grid md:grid-cols-2 gap-12">
-                        <motion.div variants={itemVariants}>
-                            <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-8">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                    UPAX
-                                </h3>
-                                <p className="text-lg font-semibold text-foreground/80 mb-2">
-                                    iOS Engineer
-                                </p>
-                                <p className="text-foreground/60 mb-6">
-                                    August 2021 - March 2022
-                                </p>
-                                <ul className="space-y-3 text-foreground/70">
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-green-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Worked on iOS side of internal ERP
-                                            platform
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-green-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Product focused on people management
-                                            and access control
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-green-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Contributed to mobile app redesign
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </motion.div>
-
-                        <motion.div variants={itemVariants}>
-                            <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-8">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                    Tecnológico de Monterrey
-                                </h3>
-                                <p className="text-lg font-semibold text-foreground/80 mb-2">
-                                    Bachelor of Arts, Financial Management
-                                </p>
-                                <p className="text-foreground/60 mb-6">
-                                    Graduated December 2022
-                                </p>
-                                <p className="text-foreground/70">
-                                    Campus Santa Fe, Ciudad de México, Mexico
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
 
                     <motion.div
                         variants={itemVariants}
                         className="mt-16 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-12"
                     >
                         <h3 className="text-3xl font-bold mb-8 text-center">
-                            Skills & Expertise
+                            How I Work
                         </h3>
                         <div className="grid md:grid-cols-3 gap-8">
                             <div>
                                 <h4 className="font-bold text-xl mb-4 text-blue-500">
-                                    Founder Leadership
+                                    Build & Ship
                                 </h4>
                                 <p className="text-foreground/70">
-                                    Fundraising, hiring, team management,
-                                    product strategy, growth, marketing,
-                                    investor communication, zero-to-one
-                                    execution
+                                    Zero to one execution. Turn ideas into
+                                    products people use. Ship fast, iterate
+                                    faster.
                                 </p>
                             </div>
                             <div>
                                 <h4 className="font-bold text-xl mb-4 text-purple-500">
-                                    Product & Growth
+                                    Raise & Scale
                                 </h4>
                                 <p className="text-foreground/70">
-                                    B2C/B2B subscriptions, SEO, paid ads,
-                                    retention, segmentation, recommendation
-                                    logic, analytics dashboards
+                                    Fundraising, investor relations, and
+                                    building teams. Grown products to 100K+
+                                    users.
                                 </p>
                             </div>
                             <div>
                                 <h4 className="font-bold text-xl mb-4 text-pink-500">
-                                    AI & Systems
+                                    Product & Business
                                 </h4>
                                 <p className="text-foreground/70">
-                                    MCP servers, AI coding agents, internal
-                                    tooling, technical specs automation, AI
-                                    blogging workflows
-                                </p>
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-xl mb-4 text-green-500">
-                                    Mobile Engineering
-                                </h4>
-                                <p className="text-foreground/70">
-                                    Swift, SwiftUI, UIKit, Combine, async/await,
-                                    Kotlin, Jetpack Compose, REST APIs, App
-                                    Store launch
-                                </p>
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-xl mb-4 text-indigo-500">
-                                    Fintech
-                                </h4>
-                                <p className="text-foreground/70">
-                                    KYC, compliance, investing products, money
-                                    movement, Mexico-US transfers,
-                                    regulator-facing communication
-                                </p>
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-xl mb-4 text-cyan-500">
-                                    Location
-                                </h4>
-                                <p className="text-foreground/70">
-                                    Based in Aguascalientes & Mexico City. Open
-                                    to remote collaboration and partnerships
-                                    worldwide.
+                                    Product strategy, growth marketing, revenue
+                                    models. Focus on what matters: users and
+                                    metrics.
                                 </p>
                             </div>
                         </div>

@@ -125,14 +125,15 @@ export default function Hero() {
                     className="space-y-4"
                 >
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground">
-                        CEO & Co-Founder of{" "}
+                        Founder of{" "}
                         <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             Pausa
                         </span>
                     </h2>
                     <p className="text-xl md:text-2xl lg:text-3xl text-foreground/70 font-light max-w-3xl mx-auto leading-relaxed">
-                        Founder-level product and engineering leader building
-                        wellness, fintech, and AI-assisted software products
+                        Building products that help people live better lives.
+                        From wellness to fintech, solving real problems at
+                        scale.
                     </p>
                 </motion.div>
 
@@ -146,9 +147,9 @@ export default function Hero() {
                     }}
                     className="text-base md:text-xl text-foreground/60 max-w-3xl mx-auto leading-relaxed"
                 >
-                    Helping people manage stress, anxiety, and emotional
-                    overwhelm through guided breathwork and nervous system
-                    regulation
+                    Turning personal struggles into products that matter. Raised
+                    capital, built teams, and shipped products used by 100K+
+                    people.
                 </motion.p>
 
                 <motion.div
