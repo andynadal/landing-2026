@@ -68,7 +68,7 @@ export default function Hero() {
                 {/* Particle effects */}
                 {[...Array(20)].map((_, i) => (
                     <motion.div
-                        key={i}
+                        key={`particle-${i}`}
                         className="absolute w-1 h-1 bg-blue-500/30 rounded-full"
                         style={{
                             left: `${Math.random() * 100}%`,
@@ -98,7 +98,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none">
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
                         <motion.span
                             className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
                             initial={{ opacity: 0, scale: 0.8 }}

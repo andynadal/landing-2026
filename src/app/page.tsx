@@ -175,7 +175,11 @@ export default function Home() {
                         variants={itemVariants}
                         className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
                     >
-                        <MetricCard value="$125K" label="Raised" delay={0.1} />
+                        <MetricCard
+                            value="$125K"
+                            label="Seed Funding"
+                            delay={0.1}
+                        />
                         <MetricCard
                             value="15K+"
                             label="Downloads"
@@ -618,8 +622,9 @@ export default function Home() {
                                     Location
                                 </h4>
                                 <p className="text-foreground/70">
-                                    Based in Aguascalientes & Mexico City,
-                                    looking for remote opportunities worldwide
+                                    Based in Aguascalientes & Mexico City. Open
+                                    to remote collaboration and partnerships
+                                    worldwide.
                                 </p>
                             </div>
                         </div>
