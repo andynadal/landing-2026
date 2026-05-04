@@ -1,90 +1,174 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { useRef } from "react";
 
 export default function Hero() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"],
+    });
+
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+
     return (
-        <div className="relative flex min-h-screen flex-col items-center justify-center px-6 py-12 pt-20 md:pt-24">
-            {/* Animated background gradient */}
+        <div
+            ref={containerRef}
+            className="relative flex min-h-screen flex-col items-center justify-center px-6 py-12 pt-20 md:pt-24 overflow-hidden"
+        >
+            {/* Enhanced animated background with particles */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Large gradient orbs */}
                 <motion.div
                     animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 90, 0],
+                        scale: [1, 1.3, 1],
+                        rotate: [0, 180, 0],
+                        x: [0, 50, 0],
+                        y: [0, -30, 0],
                     }}
                     transition={{
-                        duration: 20,
+                        duration: 25,
                         repeat: Infinity,
-                        ease: "linear",
+                        ease: "easeInOut",
                     }}
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+                    className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
                         scale: [1.2, 1, 1.2],
-                        rotate: [90, 0, 90],
+                        rotate: [180, 0, 180],
+                        x: [0, -50, 0],
+                        y: [0, 30, 0],
+                    }}
+                    transition={{
+                        duration: 25,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                    className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1, 1.15, 1],
+                        rotate: [90, 270, 90],
+                        x: [0, 30, 0],
+                        y: [0, 50, 0],
                     }}
                     transition={{
                         duration: 20,
                         repeat: Infinity,
-                        ease: "linear",
+                        ease: "easeInOut",
                     }}
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+                    className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-gradient-to-r from-indigo-500/15 to-violet-500/15 rounded-full blur-3xl"
                 />
+
+                {/* Particle effects */}
+                {[...Array(20)].map((_, i) => (
+                    <motion.div
+                        key={`particle-${i}`}
+                        className="absolute w-1 h-1 bg-blue-500/30 rounded-full"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            y: [0, -100, 0],
+                            opacity: [0, 1, 0],
+                            scale: [0, 1.5, 0],
+                        }}
+                        transition={{
+                            duration: 3 + Math.random() * 4,
+                            repeat: Infinity,
+                            delay: Math.random() * 5,
+                            ease: "easeInOut",
+                        }}
+                    />
+                ))}
             </div>
 
-            <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+            <motion.div
+                style={{ opacity, scale }}
+                className="max-w-5xl mx-auto text-center space-y-10 relative z-10"
+            >
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
                         <motion.span
-                            className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                            initial={{ opacity: 0, scale: 0.5 }}
+                            className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                            initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                            transition={{
+                                duration: 1,
+                                delay: 0.2,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
                         >
                             Andy Nadal
                         </motion.span>
                     </h1>
                 </motion.div>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-xl md:text-2xl lg:text-3xl text-foreground/80 max-w-2xl mx-auto"
+                    transition={{
+                        duration: 1,
+                        delay: 0.3,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="space-y-4"
                 >
-                    Founder & Product Builder
-                </motion.p>
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground">
+                        Founder of{" "}
+                        <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Pausa
+                        </span>
+                    </h2>
+                    <p className="text-xl md:text-2xl lg:text-3xl text-foreground/70 font-light max-w-3xl mx-auto leading-relaxed">
+                        Building products that help people live better lives.
+                        From wellness to fintech, solving real problems at
+                        scale.
+                    </p>
+                </motion.div>
 
                 <motion.p
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto"
+                    transition={{
+                        duration: 1,
+                        delay: 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="text-base md:text-xl text-foreground/60 max-w-3xl mx-auto leading-relaxed"
                 >
-                    Building compelling products from zero to one. Creator of
-                    Pausa, a breakthrough breathing app revolutionizing stress
-                    management through breath work.
+                    Turning personal struggles into products that matter. Raised
+                    capital, built teams, and shipped products used by 100K+
+                    people.
                 </motion.p>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.6,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
                 >
                     <Link
-                        href="/projects"
-                        className="group px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center"
+                        href="/pausa"
+                        className="group px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 flex items-center"
                     >
-                        View Projects
+                        Explore Pausa
                         <svg
-                            className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                            className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -99,29 +183,29 @@ export default function Hero() {
                     </Link>
                     <Link
                         href="/contact"
-                        className="px-6 py-3 rounded-lg border-2 border-foreground/20 hover:border-foreground/40 hover:bg-foreground/5 font-medium transition-all duration-300"
+                        className="px-8 py-4 rounded-xl border-2 border-foreground/20 hover:border-foreground/40 hover:bg-foreground/5 text-lg font-semibold transition-all duration-300 hover:scale-105"
                     >
-                        Contact Me
+                        Get in Touch
                     </Link>
                 </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                    className="pt-12"
+                    transition={{ duration: 1, delay: 1 }}
+                    className="pt-16"
                 >
                     <motion.div
-                        animate={{ y: [0, 10, 0] }}
+                        animate={{ y: [0, 12, 0] }}
                         transition={{
-                            duration: 2,
+                            duration: 2.5,
                             repeat: Infinity,
                             ease: "easeInOut",
                         }}
                         className="inline-block"
                     >
                         <svg
-                            className="w-6 h-6 text-foreground/30"
+                            className="w-8 h-8 text-foreground/40"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -135,7 +219,7 @@ export default function Hero() {
                         </svg>
                     </motion.div>
                 </motion.div>
-            </div>
+            </motion.div>
         </div>
     );
 }
