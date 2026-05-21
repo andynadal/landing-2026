@@ -16,8 +16,8 @@ const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
                     setCurrentIndex((prev) => prev + 1);
                 }
             },
-            delay + currentIndex * 50
-        ); // 50ms per character
+            delay + currentIndex * 30
+        ); // 30ms per character
 
         return () => clearTimeout(timeout);
     }, [currentIndex, text, delay]);
