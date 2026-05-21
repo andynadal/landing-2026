@@ -12,6 +12,14 @@ export default {
             colors: {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
+                accent: "var(--accent)",
+                "accent-light": "var(--accent-light)",
+                muted: "var(--muted)",
+                border: "var(--border)",
+            },
+            fontFamily: {
+                serif: ["Georgia", "Garamond", "Times New Roman", "serif"],
+                display: ["Georgia", "Garamond", "Times New Roman", "serif"],
             },
         },
     },

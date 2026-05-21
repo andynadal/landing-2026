@@ -11,18 +11,18 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.15,
+            staggerChildren: 0.2,
         },
     },
 };
 
 const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 80 },
     visible: {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.8,
+            duration: 1,
             ease: [0.22, 1, 0.36, 1] as const,
         },
     },
@@ -38,16 +38,16 @@ const MetricCard = ({
     delay?: number;
 }) => (
     <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay }}
-        className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300"
+        transition={{ duration: 0.8, delay }}
+        className="bg-accent/5 border border-accent/20 p-8 text-center hover:bg-accent/10 hover:border-accent/30 transition-all duration-500"
     >
-        <div className="text-3xl md:text-4xl font-black bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-2">
+        <div className="text-4xl md:text-5xl font-display font-bold text-accent mb-3">
             {value}
         </div>
-        <div className="text-sm md:text-base text-foreground/70 font-medium">
+        <div className="text-sm md:text-base text-foreground/60 font-medium uppercase tracking-wider">
             {label}
         </div>
     </motion.div>
@@ -73,76 +73,94 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="relative py-32 md:py-48 px-4 sm:px-6 lg:px-8 overflow-hidden"
+                className="relative py-32 md:py-48 px-4 sm:px-6 lg:px-8 overflow-hidden border-t border-border"
             >
-                {/* Floating elements */}
+                {/* Floating particles */}
                 <motion.div
                     style={{ y: pausaY }}
-                    className="absolute top-20 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"
+                    className="absolute top-20 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl pointer-events-none"
                 />
 
                 <div className="max-w-7xl mx-auto">
                     <motion.div
                         variants={itemVariants}
-                        className="text-center mb-20"
+                        className="text-center mb-24"
                     >
-                        <h2 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                                Pausa
-                            </span>
+                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight text-foreground">
+                            Pausa
                         </h2>
-                        <p className="text-2xl md:text-3xl text-foreground/80 font-light max-w-4xl mx-auto leading-relaxed">
-                            Born from a panic attack, built to help others
-                            breathe through life&apos;s hardest moments
+                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-4xl mx-auto leading-relaxed">
+                            Born from a panic attack,{" "}
+                            <strong className="font-semibold not-italic text-foreground">
+                                built to help others
+                            </strong>{" "}
+                            breathe through life's hardest moments
                         </p>
                     </motion.div>
 
                     <motion.div
                         variants={itemVariants}
-                        className="grid md:grid-cols-2 gap-16 items-center mb-20"
+                        className="grid md:grid-cols-2 gap-20 items-start mb-24"
                     >
-                        <div className="space-y-6">
-                            <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                        <div className="space-y-8">
+                            <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground">
                                 The Founding Story
                             </h3>
-                            <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
-                                After personally experiencing a panic attack, I
-                                turned that moment of vulnerability into action.
-                                Pausa was born from the simple truth that
-                                breathing can transform how we feel—but most
-                                people don&apos;t know where to start.
-                            </p>
-                            <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
-                                We&apos;re building a guided breathwork app that
-                                helps people identify how they feel, feel less
-                                alone, and regulate their nervous system through
-                                breathing. No meditation required, no spiritual
-                                rituals—just breathe and feel better.
-                            </p>
+                            <div className="space-y-6 font-serif text-lg md:text-xl text-foreground/70 leading-relaxed">
+                                <p>
+                                    After personally experiencing a{" "}
+                                    <em className="text-foreground/90">
+                                        panic attack
+                                    </em>
+                                    , I turned that moment of vulnerability into
+                                    action. Pausa was born from the simple truth
+                                    that breathing can{" "}
+                                    <strong className="font-bold text-foreground">
+                                        transform
+                                    </strong>{" "}
+                                    how we feel—but most people don't know where
+                                    to start.
+                                </p>
+                                <p>
+                                    We're building a guided breathwork app that
+                                    helps people identify how they feel, feel
+                                    less alone, and regulate their nervous
+                                    system through breathing.{" "}
+                                    <strong className="font-bold">
+                                        No meditation required, no spiritual
+                                        rituals
+                                    </strong>
+                                    —just breathe and feel better.
+                                </p>
+                            </div>
                         </div>
 
                         <motion.div
-                            initial={{ opacity: 0, x: 50 }}
+                            initial={{ opacity: 0, x: 60 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 1 }}
                             className="relative"
                         >
-                            <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center relative overflow-hidden group">
+                            {/* Screenshot placeholder */}
+                            <div className="aspect-[4/5] bg-accent/10 border-2 border-accent/30 flex flex-col items-center justify-center relative overflow-hidden group">
                                 <motion.div
                                     animate={{
-                                        scale: [1, 1.1, 1],
+                                        scale: [1, 1.05, 1],
                                     }}
                                     transition={{
-                                        duration: 4,
+                                        duration: 5,
                                         repeat: Infinity,
                                         ease: "easeInOut",
                                     }}
-                                    className="text-9xl"
+                                    className="text-8xl opacity-30"
                                 >
                                     ⏸️
                                 </motion.div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <p className="absolute bottom-8 text-center text-sm text-foreground/40 uppercase tracking-widest px-4">
+                                    App Screenshot Placeholder
+                                </p>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -155,17 +173,17 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-500/5 to-transparent"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-y border-border"
             >
                 <div className="max-w-7xl mx-auto">
                     <motion.div
                         variants={itemVariants}
-                        className="text-center mb-20"
+                        className="text-center mb-24"
                     >
-                        <h3 className="text-4xl md:text-6xl font-black mb-6">
+                        <h3 className="font-display text-5xl md:text-7xl font-bold mb-8 text-foreground">
                             Making an Impact
                         </h3>
-                        <p className="text-xl md:text-2xl text-foreground/70 max-w-3xl mx-auto">
+                        <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl mx-auto italic">
                             Real numbers from helping people manage stress,
                             anxiety, and emotional overwhelm
                         </p>
@@ -173,7 +191,7 @@ export default function Home() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+                        className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24"
                     >
                         <MetricCard
                             value="$125K"
@@ -199,46 +217,50 @@ export default function Home() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-12 md:p-16"
+                        className="bg-background border-2 border-accent/20 p-12 md:p-16"
                     >
-                        <h4 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+                        <h4 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
                             Building for Impact
                         </h4>
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">🎯</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
+                        <div className="grid md:grid-cols-2 gap-12">
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-3xl">🎯</div>
+                                    <div className="space-y-2">
+                                        <h5 className="font-bold text-xl text-foreground">
                                             Product-First Mindset
                                         </h5>
-                                        <p className="text-foreground/70">
+                                        <p className="font-serif text-foreground/70 leading-relaxed">
                                             Every decision starts with the user.
                                             Built products from scratch that
-                                            people actually want to use daily.
+                                            people actually want to use{" "}
+                                            <em>daily</em>.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">💰</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-3xl">��</div>
+                                    <div className="space-y-2">
+                                        <h5 className="font-bold text-xl text-foreground">
                                             Building Businesses
                                         </h5>
-                                        <p className="text-foreground/70">
-                                            Created sustainable revenue models
+                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                            Created{" "}
+                                            <strong>
+                                                sustainable revenue models
+                                            </strong>{" "}
                                             with B2C and B2B subscriptions that
                                             drive real growth.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">👥</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-3xl">👥</div>
+                                    <div className="space-y-2">
+                                        <h5 className="font-bold text-xl text-foreground">
                                             Team Building
                                         </h5>
-                                        <p className="text-foreground/70">
+                                        <p className="font-serif text-foreground/70 leading-relaxed">
                                             Hired and led teams that ship.
                                             Created culture where execution
                                             meets excellence.
@@ -246,42 +268,45 @@ export default function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">📈</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-3xl">📈</div>
+                                    <div className="space-y-2">
+                                        <h5 className="font-bold text-xl text-foreground">
                                             Growth & Scale
                                         </h5>
-                                        <p className="text-foreground/70">
-                                            Drove user acquisition from 0 to
-                                            100K+ through marketing, growth
-                                            experiments, and product iteration.
+                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                            Drove user acquisition from 0 to{" "}
+                                            <strong>100K+</strong> through
+                                            marketing, growth experiments, and
+                                            product iteration.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">💡</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-3xl">💡</div>
+                                    <div className="space-y-2">
+                                        <h5 className="font-bold text-xl text-foreground">
                                             Problem Solving
                                         </h5>
-                                        <p className="text-foreground/70">
+                                        <p className="font-serif text-foreground/70 leading-relaxed">
                                             Identified pain points and built
-                                            solutions. From stress management to
-                                            financial access.
+                                            solutions. From{" "}
+                                            <em>stress management</em> to{" "}
+                                            <em>financial access</em>.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="text-2xl">🚀</div>
-                                    <div>
-                                        <h5 className="font-semibold text-lg mb-2">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-3xl">🚀</div>
+                                    <div className="space-y-2">
+                                        <h5 className="font-bold text-xl text-foreground">
                                             Fundraising & Investors
                                         </h5>
-                                        <p className="text-foreground/70">
+                                        <p className="font-serif text-foreground/70 leading-relaxed">
                                             Raised capital and worked with top
-                                            investors including 500 Global.
+                                            investors including{" "}
+                                            <strong>500 Global</strong>.
                                             Pitched, closed, and delivered.
                                         </p>
                                     </div>
@@ -298,34 +323,40 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 border-b border-border"
             >
                 <div className="max-w-7xl mx-auto">
                     <motion.div
                         variants={itemVariants}
-                        className="text-center max-w-4xl mx-auto space-y-8"
+                        className="text-center max-w-5xl mx-auto space-y-12"
                     >
-                        <h3 className="text-4xl md:text-6xl font-black leading-tight">
+                        <h3 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-foreground">
                             Helping People Manage Stress & Anxiety
                         </h3>
-                        <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed">
-                            Our mission is aspirational yet grounded: help
-                            people identify how they feel, feel less alone, and
-                            regulate through breathing. We&apos;re building for
-                            the stressed founder, the anxious professional, and
-                            anyone who needs fast relief without meditation or
-                            spiritual practices.
+                        <p className="font-serif text-xl md:text-3xl text-foreground/70 leading-relaxed">
+                            Our mission is{" "}
+                            <em className="text-foreground/90">
+                                aspirational yet grounded
+                            </em>
+                            : help people identify how they feel, feel less
+                            alone, and regulate through breathing. We're
+                            building for the stressed founder, the anxious
+                            professional, and anyone who needs{" "}
+                            <strong className="font-bold text-foreground">
+                                fast relief
+                            </strong>{" "}
+                            without meditation or spiritual practices.
                         </p>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            className="pt-8"
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="pt-12"
                         >
                             <Link
                                 href="/pausa"
-                                className="inline-flex items-center px-10 py-5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xl font-bold hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 group"
+                                className="group inline-flex items-center px-12 py-6 bg-accent text-background text-xl font-bold hover:bg-accent-light transition-all duration-300 border-2 border-accent hover:border-accent-light"
                             >
                                 Learn More About Pausa
                                 <svg
@@ -353,70 +384,75 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-500/5 to-transparent"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
             >
                 <div className="max-w-7xl mx-auto">
-                    <motion.div variants={itemVariants} className="mb-16">
-                        <h2 className="text-5xl md:text-7xl font-black mb-8 text-center">
-                            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                                RUUT
-                            </span>
+                    <motion.div variants={itemVariants} className="mb-20">
+                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-10 text-center text-foreground">
+                            RUUT
                         </h2>
-                        <p className="text-2xl md:text-3xl text-center text-foreground/80 font-light max-w-3xl mx-auto">
-                            Founding team member at 500 Global-backed fintech.
-                            Built and scaled products helping Mexicans invest in
-                            US markets.
+                        <p className="font-serif text-2xl md:text-4xl text-center text-foreground/70 italic max-w-4xl mx-auto leading-relaxed">
+                            Founding team member at{" "}
+                            <strong className="not-italic font-semibold text-accent">
+                                500 Global-backed
+                            </strong>{" "}
+                            fintech. Built and scaled products helping Mexicans
+                            invest in US markets.
                         </p>
                     </motion.div>
 
-                    <div className="grid md:grid-cols-2 gap-12 mb-16">
+                    <div className="grid md:grid-cols-2 gap-16 mb-20">
                         <motion.div variants={itemVariants}>
-                            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-8 h-full">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                            <div className="bg-background border-2 border-accent/20 p-10 h-full">
+                                <h3 className="font-display text-3xl md:text-4xl font-bold mb-6 text-foreground">
                                     Head of Product & Technology
                                 </h3>
-                                <p className="text-foreground/60 mb-6">
+                                <p className="text-foreground/60 mb-8 font-medium uppercase tracking-wider text-sm">
                                     March 2022 - July 2025 · Founding Team
                                 </p>
-                                <ul className="space-y-4 text-foreground/70">
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
+                                <ul className="space-y-6 font-serif text-foreground/70 text-lg">
+                                    <li className="flex items-start gap-4">
+                                        <span className="text-accent text-2xl font-bold">
                                             ✓
                                         </span>
-                                        <span>
-                                            Joined as founding team member and
-                                            built product from 0 to 100K users
+                                        <span className="leading-relaxed">
+                                            Joined as{" "}
+                                            <strong className="font-bold text-foreground">
+                                                founding team member
+                                            </strong>{" "}
+                                            and built product from 0 to 100K
+                                            users
                                         </span>
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
+                                    <li className="flex items-start gap-4">
+                                        <span className="text-accent text-2xl font-bold">
                                             ✓
                                         </span>
-                                        <span>
+                                        <span className="leading-relaxed">
                                             Led team of 7, built mobile and web
-                                            products enabling cross-border
-                                            investing
+                                            products enabling{" "}
+                                            <em>cross-border investing</em>
                                         </span>
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
+                                    <li className="flex items-start gap-4">
+                                        <span className="text-accent text-2xl font-bold">
                                             ✓
                                         </span>
-                                        <span>
+                                        <span className="leading-relaxed">
                                             Shipped instant money transfers
                                             between Mexico and US, reducing
-                                            transfer time from 3 days to seconds
+                                            transfer time from{" "}
+                                            <strong>3 days to seconds</strong>
                                         </span>
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
+                                    <li className="flex items-start gap-4">
+                                        <span className="text-accent text-2xl font-bold">
                                             ✓
                                         </span>
-                                        <span>
+                                        <span className="leading-relaxed">
                                             Worked directly with 500 Global and
                                             navigated regulatory requirements
-                                            with Mexico&apos;s securities
-                                            commission
+                                            with Mexico's securities commission
                                         </span>
                                     </li>
                                 </ul>
@@ -424,53 +460,25 @@ export default function Home() {
                         </motion.div>
 
                         <motion.div variants={itemVariants}>
-                            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-8 h-full">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                    What We Built
-                                </h3>
-                                <p className="text-foreground/60 mb-6">
-                                    Democratizing US investing for Mexico
+                            {/* Screenshot placeholder for RUUT */}
+                            <div className="h-full min-h-[500px] bg-accent/10 border-2 border-accent/30 flex flex-col items-center justify-center relative overflow-hidden group">
+                                <motion.div
+                                    animate={{
+                                        y: [0, -20, 0],
+                                    }}
+                                    transition={{
+                                        duration: 6,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="text-9xl opacity-30"
+                                >
+                                    📱
+                                </motion.div>
+                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <p className="absolute bottom-8 text-center text-sm text-foreground/40 uppercase tracking-widest px-4">
+                                    RUUT App Screenshot Placeholder
                                 </p>
-                                <ul className="space-y-4 text-foreground/70">
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Mobile app allowing Mexicans to
-                                            invest in US stocks with Mexican
-                                            pesos
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Instant cross-border money transfers
-                                            with compliance built-in
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Full KYC onboarding, account
-                                            management, and investment platform
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-purple-500 text-xl">
-                                            ✓
-                                        </span>
-                                        <span>
-                                            Regulatory-compliant fintech product
-                                            working with Mexico&apos;s
-                                            authorities
-                                        </span>
-                                    </li>
-                                </ul>
                             </div>
                         </motion.div>
                     </div>
@@ -492,21 +500,21 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 border-b border-border"
             >
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-5xl mx-auto">
                     <motion.div variants={itemVariants}>
-                        <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-12 text-center">
-                            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                        <div className="bg-accent/5 border-2 border-accent/20 p-12 md:p-16 text-center">
+                            <h3 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground">
                                 Tecnológico de Monterrey
                             </h3>
-                            <p className="text-xl font-semibold text-foreground/80 mb-2">
+                            <p className="font-serif text-xl md:text-2xl font-semibold text-foreground/80 mb-3 italic">
                                 Bachelor of Arts, Financial Management
                             </p>
-                            <p className="text-foreground/60 mb-4">
+                            <p className="text-foreground/60 mb-4 uppercase tracking-wider text-sm font-medium">
                                 Graduated December 2022
                             </p>
-                            <p className="text-foreground/70">
+                            <p className="text-foreground/70 font-serif">
                                 Campus Santa Fe, Ciudad de México, Mexico
                             </p>
                         </div>
@@ -514,40 +522,40 @@ export default function Home() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="mt-16 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-foreground/10 rounded-3xl p-12"
+                        className="mt-20 bg-background border-2 border-accent/20 p-12 md:p-16"
                     >
-                        <h3 className="text-3xl font-bold mb-8 text-center">
+                        <h3 className="font-display text-4xl font-bold mb-12 text-center text-foreground">
                             How I Work
                         </h3>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            <div>
-                                <h4 className="font-bold text-xl mb-4 text-blue-500">
+                        <div className="grid md:grid-cols-3 gap-12">
+                            <div className="space-y-4">
+                                <h4 className="font-bold text-2xl mb-4 text-accent">
                                     Build & Ship
                                 </h4>
-                                <p className="text-foreground/70">
+                                <p className="font-serif text-foreground/70 leading-relaxed">
                                     Zero to one execution. Turn ideas into
-                                    products people use. Ship fast, iterate
-                                    faster.
+                                    products people use.{" "}
+                                    <strong>Ship fast, iterate faster.</strong>
                                 </p>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-xl mb-4 text-purple-500">
+                            <div className="space-y-4">
+                                <h4 className="font-bold text-2xl mb-4 text-accent-light">
                                     Raise & Scale
                                 </h4>
-                                <p className="text-foreground/70">
+                                <p className="font-serif text-foreground/70 leading-relaxed">
                                     Fundraising, investor relations, and
-                                    building teams. Grown products to 100K+
-                                    users.
+                                    building teams. Grown products to{" "}
+                                    <strong>100K+ users</strong>.
                                 </p>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-xl mb-4 text-pink-500">
+                            <div className="space-y-4">
+                                <h4 className="font-bold text-2xl mb-4 text-accent">
                                     Product & Business
                                 </h4>
-                                <p className="text-foreground/70">
+                                <p className="font-serif text-foreground/70 leading-relaxed">
                                     Product strategy, growth marketing, revenue
-                                    models. Focus on what matters: users and
-                                    metrics.
+                                    models. Focus on what matters:{" "}
+                                    <em>users and metrics</em>.
                                 </p>
                             </div>
                         </div>
@@ -561,26 +569,30 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-green-500/5 to-transparent"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
             >
-                <div className="max-w-4xl mx-auto text-center space-y-8">
+                <div className="max-w-5xl mx-auto text-center space-y-12">
                     <motion.div variants={itemVariants}>
-                        <h2 className="text-4xl md:text-6xl font-black mb-6">
-                            <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-                                Blog & Insights
-                            </span>
+                        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-foreground">
+                            Blog & Insights
                         </h2>
-                        <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed">
-                            Thoughts on entrepreneurship, building compelling
-                            products, breath work, and creating solutions that
-                            matter. Lessons from the trenches of startup
-                            building.
+                        <p className="font-serif text-xl md:text-3xl text-foreground/70 leading-relaxed">
+                            Thoughts on{" "}
+                            <em className="text-foreground/90">
+                                entrepreneurship
+                            </em>
+                            , building compelling products, breathwork, and
+                            creating solutions that matter.{" "}
+                            <strong className="font-semibold text-foreground">
+                                Lessons from the trenches
+                            </strong>{" "}
+                            of startup building.
                         </p>
                     </motion.div>
                     <motion.div variants={itemVariants}>
                         <Link
                             href="/blog"
-                            className="inline-flex items-center px-10 py-5 rounded-xl bg-gradient-to-r from-green-600 to-blue-600 text-white text-xl font-bold hover:shadow-2xl hover:shadow-green-500/50 hover:scale-105 transition-all duration-300 group"
+                            className="group inline-flex items-center px-12 py-6 bg-accent text-background text-xl font-bold hover:bg-accent-light transition-all duration-300 border-2 border-accent hover:border-accent-light"
                         >
                             Read Articles
                             <svg
@@ -607,45 +619,49 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 px-4 sm:px-6 lg:px-8"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8"
             >
                 <motion.div
                     variants={itemVariants}
-                    className="max-w-5xl mx-auto text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl p-16 md:p-24 border border-foreground/10 relative overflow-hidden"
+                    className="max-w-5xl mx-auto text-center bg-accent/10 border-2 border-accent/30 p-16 md:p-24 relative overflow-hidden"
                 >
-                    {/* Animated background */}
+                    {/* Animated particles */}
                     <motion.div
                         animate={{
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 90, 0],
+                            scale: [1, 1.3, 1],
+                            rotate: [0, 180, 0],
                         }}
                         transition={{
-                            duration: 20,
+                            duration: 25,
                             repeat: Infinity,
                             ease: "linear",
                         }}
-                        className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+                        className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
                     />
 
-                    <div className="relative z-10 space-y-8">
-                        <h2 className="text-4xl md:text-6xl font-black">
-                            Let&apos;s Build Something Compelling
+                    <div className="relative z-10 space-y-10">
+                        <h2 className="font-display text-5xl md:text-7xl font-bold text-foreground">
+                            Let's Build Something Compelling
                         </h2>
-                        <p className="text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto">
-                            Looking for a founder who ships? Whether you&apos;re
-                            an investor, fellow entrepreneur, or potential
-                            partner, let&apos;s create something worth building.
+                        <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+                            Looking for a founder who ships? Whether you're an
+                            investor, fellow entrepreneur, or potential partner,
+                            let's create something{" "}
+                            <strong className="font-bold text-foreground">
+                                worth building
+                            </strong>
+                            .
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center px-10 py-5 rounded-xl bg-foreground text-background text-xl font-bold hover:scale-105 transition-transform duration-300"
+                                className="inline-flex items-center px-12 py-6 bg-foreground text-background text-xl font-bold hover:bg-accent hover:text-background transition-all duration-300 border-2 border-foreground hover:border-accent"
                             >
                                 Get in Touch
                             </Link>
                             <a
                                 href="mailto:andy@andynadal.com"
-                                className="px-10 py-5 rounded-xl border-2 border-foreground/20 hover:border-foreground/40 hover:bg-foreground/5 text-xl font-bold transition-all duration-300"
+                                className="px-12 py-6 border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-xl font-bold transition-all duration-300"
                             >
                                 andy@andynadal.com
                             </a>

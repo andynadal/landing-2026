@@ -12,75 +12,106 @@ export default function Hero() {
     });
 
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
     return (
         <div
             ref={containerRef}
             className="relative flex min-h-screen flex-col items-center justify-center px-6 py-12 pt-20 md:pt-24 overflow-hidden"
         >
-            {/* Enhanced animated background with particles */}
+            {/* Enhanced particle system - more sophisticated and elegant */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Large gradient orbs */}
+                {/* Floating organic shapes */}
                 <motion.div
                     animate={{
-                        scale: [1, 1.3, 1],
-                        rotate: [0, 180, 0],
+                        x: [0, 100, 0],
+                        y: [0, -50, 0],
+                        rotate: [0, 360, 0],
+                    }}
+                    transition={{
+                        duration: 40,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                    className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        x: [0, -80, 0],
+                        y: [0, 60, 0],
+                        rotate: [360, 0, 360],
+                    }}
+                    transition={{
+                        duration: 35,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                    className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent-light/8 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
                         x: [0, 50, 0],
-                        y: [0, -30, 0],
+                        y: [0, -40, 0],
+                        scale: [1, 1.2, 1],
                     }}
                     transition={{
-                        duration: 25,
+                        duration: 30,
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1.2, 1, 1.2],
-                        rotate: [180, 0, 180],
-                        x: [0, -50, 0],
-                        y: [0, 30, 0],
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                    className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.15, 1],
-                        rotate: [90, 270, 90],
-                        x: [0, 30, 0],
-                        y: [0, 50, 0],
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                    className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-gradient-to-r from-indigo-500/15 to-violet-500/15 rounded-full blur-3xl"
+                    className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-muted/15 rounded-full blur-3xl"
                 />
 
-                {/* Particle effects */}
-                {[...Array(20)].map((_, i) => (
+                {/* Refined particle effects - more numerous and elegant */}
+                {[...Array(40)].map((_, i) => (
                     <motion.div
                         key={`particle-${i}`}
-                        className="absolute w-1 h-1 bg-blue-500/30 rounded-full"
+                        className="absolute rounded-full"
                         style={{
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
+                            width: `${2 + Math.random() * 3}px`,
+                            height: `${2 + Math.random() * 3}px`,
+                            background:
+                                i % 3 === 0
+                                    ? "var(--accent)"
+                                    : i % 3 === 1
+                                      ? "var(--accent-light)"
+                                      : "var(--muted)",
+                            opacity: 0.3,
                         }}
                         animate={{
-                            y: [0, -100, 0],
-                            opacity: [0, 1, 0],
+                            y: [0, -150 - Math.random() * 100, 0],
+                            x: [0, (Math.random() - 0.5) * 50, 0],
+                            opacity: [0, 0.6, 0],
                             scale: [0, 1.5, 0],
                         }}
                         transition={{
-                            duration: 3 + Math.random() * 4,
+                            duration: 4 + Math.random() * 6,
+                            repeat: Infinity,
+                            delay: Math.random() * 8,
+                            ease: "easeInOut",
+                        }}
+                    />
+                ))}
+
+                {/* Gentle flowing lines */}
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={`line-${i}`}
+                        className="absolute h-px bg-accent/20"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            width: `${100 + Math.random() * 200}px`,
+                            transform: `rotate(${Math.random() * 360}deg)`,
+                        }}
+                        animate={{
+                            opacity: [0, 0.4, 0],
+                            scale: [0.8, 1, 0.8],
+                        }}
+                        transition={{
+                            duration: 5 + Math.random() * 3,
                             repeat: Infinity,
                             delay: Math.random() * 5,
                             ease: "easeInOut",
@@ -91,20 +122,20 @@ export default function Hero() {
 
             <motion.div
                 style={{ opacity, scale }}
-                className="max-w-5xl mx-auto text-center space-y-10 relative z-10"
+                className="max-w-6xl mx-auto text-center space-y-12 relative z-10"
             >
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
+                    <h1 className="font-display text-7xl md:text-9xl lg:text-[10rem] font-bold tracking-tight leading-none text-foreground">
                         <motion.span
-                            className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            className="inline-block"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{
-                                duration: 1,
+                                duration: 1.2,
                                 delay: 0.2,
                                 ease: [0.22, 1, 0.36, 1],
                             }}
@@ -115,56 +146,66 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                        duration: 1,
-                        delay: 0.3,
+                        duration: 1.2,
+                        delay: 0.4,
                         ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="space-y-4"
+                    className="space-y-6"
                 >
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground">
+                    <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-foreground/90 italic">
                         Founder of{" "}
-                        <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <span className="font-normal not-italic text-accent">
                             Pausa
                         </span>
                     </h2>
-                    <p className="text-xl md:text-2xl lg:text-3xl text-foreground/70 font-light max-w-3xl mx-auto leading-relaxed">
-                        Building products that help people live better lives.
-                        From wellness to fintech, solving real problems at
-                        scale.
+                    <p className="text-xl md:text-3xl lg:text-4xl font-serif text-foreground/70 max-w-4xl mx-auto leading-relaxed">
+                        Building products that{" "}
+                        <em className="font-medium">transform</em> how people
+                        live.
+                        <br />
+                        From wellness to fintech,{" "}
+                        <strong className="font-bold text-foreground">
+                            solving real problems
+                        </strong>{" "}
+                        at scale.
                     </p>
                 </motion.div>
 
                 <motion.p
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                        duration: 1,
-                        delay: 0.5,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="text-base md:text-xl text-foreground/60 max-w-3xl mx-auto leading-relaxed"
-                >
-                    Turning personal struggles into products that matter. Raised
-                    capital, built teams, and shipped products used by 100K+
-                    people.
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 1,
+                        duration: 1.2,
                         delay: 0.6,
                         ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+                    className="text-lg md:text-2xl text-foreground/60 max-w-3xl mx-auto leading-relaxed font-serif"
+                >
+                    Turning personal struggles into products that matter.
+                    <br />
+                    Raised capital, built teams, shipped to{" "}
+                    <strong className="text-foreground/80">
+                        100,000+ people
+                    </strong>
+                    .
+                </motion.p>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 1.2,
+                        delay: 0.8,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12"
                 >
                     <Link
                         href="/pausa"
-                        className="group px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 flex items-center"
+                        className="group px-10 py-5 rounded-none bg-accent text-background text-lg font-semibold hover:bg-accent-light transition-all duration-300 flex items-center border-2 border-accent hover:border-accent-light"
                     >
                         Explore Pausa
                         <svg
@@ -183,7 +224,7 @@ export default function Hero() {
                     </Link>
                     <Link
                         href="/contact"
-                        className="px-8 py-4 rounded-xl border-2 border-foreground/20 hover:border-foreground/40 hover:bg-foreground/5 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                        className="px-10 py-5 rounded-none border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-lg font-semibold transition-all duration-300"
                     >
                         Get in Touch
                     </Link>
@@ -192,20 +233,20 @@ export default function Hero() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1 }}
-                    className="pt-16"
+                    transition={{ duration: 1.2, delay: 1.2 }}
+                    className="pt-20"
                 >
                     <motion.div
-                        animate={{ y: [0, 12, 0] }}
+                        animate={{ y: [0, 15, 0] }}
                         transition={{
-                            duration: 2.5,
+                            duration: 3,
                             repeat: Infinity,
                             ease: "easeInOut",
                         }}
                         className="inline-block"
                     >
                         <svg
-                            className="w-8 h-8 text-foreground/40"
+                            className="w-8 h-8 text-accent/60"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
