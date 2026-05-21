@@ -129,7 +129,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <h1 className="font-display text-7xl md:text-9xl lg:text-[10rem] font-bold tracking-tight leading-none text-foreground">
+                    <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none text-foreground">
                         <motion.span
                             className="inline-block"
                             initial={{ opacity: 0, y: 20 }}
@@ -205,7 +205,7 @@ export default function Hero() {
                 >
                     <Link
                         href="/pausa"
-                        className="group px-10 py-5 rounded-none bg-accent text-background text-lg font-semibold hover:bg-accent-light transition-all duration-300 flex items-center border-2 border-accent hover:border-accent-light"
+                        className="group px-10 py-5 rounded-lg bg-accent text-background text-lg font-semibold hover:bg-accent-light transition-all duration-300 flex items-center border-2 border-accent hover:border-accent-light"
                     >
                         Explore Pausa
                         <svg
@@ -224,7 +224,7 @@ export default function Hero() {
                     </Link>
                     <Link
                         href="/contact"
-                        className="px-10 py-5 rounded-none border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-lg font-semibold transition-all duration-300"
+                        className="px-10 py-5 rounded-lg border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-lg font-semibold transition-all duration-300"
                     >
                         Get in Touch
                     </Link>

@@ -42,7 +42,7 @@ const MetricCard = ({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay }}
-        className="bg-accent/5 border border-accent/20 p-8 text-center hover:bg-accent/10 hover:border-accent/30 transition-all duration-500"
+        className="bg-accent/5 border border-accent/20 rounded-lg p-8 text-center"
     >
         <div className="text-4xl md:text-5xl font-display font-bold text-accent mb-3">
             {value}
@@ -143,7 +143,7 @@ export default function Home() {
                             className="relative"
                         >
                             {/* Screenshot placeholder */}
-                            <div className="aspect-[4/5] bg-accent/10 border-2 border-accent/30 flex flex-col items-center justify-center relative overflow-hidden group">
+                            <div className="aspect-[4/5] bg-accent/10 border-2 border-accent/30 rounded-lg flex flex-col items-center justify-center relative overflow-hidden group">
                                 <motion.div
                                     animate={{
                                         scale: [1, 1.05, 1],
@@ -217,7 +217,7 @@ export default function Home() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="bg-background border-2 border-accent/20 p-12 md:p-16"
+                        className="bg-background border-2 border-accent/20 rounded-lg p-12 md:p-16"
                     >
                         <h4 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
                             Building for Impact
@@ -356,7 +356,7 @@ export default function Home() {
                         >
                             <Link
                                 href="/pausa"
-                                className="group inline-flex items-center px-12 py-6 bg-accent text-background text-xl font-bold hover:bg-accent-light transition-all duration-300 border-2 border-accent hover:border-accent-light"
+                                className="group inline-flex items-center px-12 py-6 rounded-lg bg-accent text-background text-xl font-bold hover:bg-accent-light transition-all duration-300 border-2 border-accent hover:border-accent-light"
                             >
                                 Learn More About Pausa
                                 <svg
@@ -384,7 +384,7 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-background border-b border-border"
             >
                 <div className="max-w-7xl mx-auto">
                     <motion.div variants={itemVariants} className="mb-20">
@@ -403,7 +403,7 @@ export default function Home() {
 
                     <div className="grid md:grid-cols-2 gap-16 mb-20">
                         <motion.div variants={itemVariants}>
-                            <div className="bg-background border-2 border-accent/20 p-10 h-full">
+                            <div className="bg-accent/5 border-2 border-accent/20 rounded-lg p-10 h-full">
                                 <h3 className="font-display text-3xl md:text-4xl font-bold mb-6 text-foreground">
                                     Head of Product & Technology
                                 </h3>
@@ -461,7 +461,7 @@ export default function Home() {
 
                         <motion.div variants={itemVariants}>
                             {/* Screenshot placeholder for RUUT */}
-                            <div className="h-full min-h-[500px] bg-accent/10 border-2 border-accent/30 flex flex-col items-center justify-center relative overflow-hidden group">
+                            <div className="h-full min-h-[500px] bg-accent/10 border-2 border-accent/30 rounded-lg flex flex-col items-center justify-center relative overflow-hidden group">
                                 <motion.div
                                     animate={{
                                         y: [0, -20, 0],
@@ -500,11 +500,11 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 border-b border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
             >
                 <div className="max-w-5xl mx-auto">
                     <motion.div variants={itemVariants}>
-                        <div className="bg-accent/5 border-2 border-accent/20 p-12 md:p-16 text-center">
+                        <div className="bg-background border-2 border-accent/20 rounded-lg p-12 md:p-16 text-center">
                             <h3 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground">
                                 Tecnológico de Monterrey
                             </h3>
@@ -522,7 +522,7 @@ export default function Home() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="mt-20 bg-background border-2 border-accent/20 p-12 md:p-16"
+                        className="mt-20 bg-background border-2 border-accent/20 rounded-lg p-12 md:p-16"
                     >
                         <h3 className="font-display text-4xl font-bold mb-12 text-center text-foreground">
                             How I Work
@@ -569,7 +569,7 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-background border-b border-border"
             >
                 <div className="max-w-5xl mx-auto text-center space-y-12">
                     <motion.div variants={itemVariants}>
@@ -592,7 +592,7 @@ export default function Home() {
                     <motion.div variants={itemVariants}>
                         <Link
                             href="/blog"
-                            className="group inline-flex items-center px-12 py-6 bg-accent text-background text-xl font-bold hover:bg-accent-light transition-all duration-300 border-2 border-accent hover:border-accent-light"
+                            className="group inline-flex items-center px-12 py-6 rounded-lg bg-accent text-background text-xl font-bold hover:bg-accent-light transition-all duration-300 border-2 border-accent hover:border-accent-light"
                         >
                             Read Articles
                             <svg
@@ -619,11 +619,11 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5"
             >
                 <motion.div
                     variants={itemVariants}
-                    className="max-w-5xl mx-auto text-center bg-accent/10 border-2 border-accent/30 p-16 md:p-24 relative overflow-hidden"
+                    className="max-w-5xl mx-auto text-center bg-background border-2 border-accent/30 rounded-lg p-16 md:p-24 relative overflow-hidden"
                 >
                     {/* Animated particles */}
                     <motion.div
@@ -655,13 +655,13 @@ export default function Home() {
                         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center px-12 py-6 bg-foreground text-background text-xl font-bold hover:bg-accent hover:text-background transition-all duration-300 border-2 border-foreground hover:border-accent"
+                                className="inline-flex items-center px-12 py-6 rounded-lg bg-foreground text-background text-xl font-bold hover:bg-accent hover:text-background transition-all duration-300 border-2 border-foreground hover:border-accent"
                             >
                                 Get in Touch
                             </Link>
                             <a
                                 href="mailto:andy@andynadal.com"
-                                className="px-12 py-6 border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-xl font-bold transition-all duration-300"
+                                className="px-12 py-6 rounded-lg border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-xl font-bold transition-all duration-300"
                             >
                                 andy@andynadal.com
                             </a>
