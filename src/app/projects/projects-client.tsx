@@ -80,19 +80,34 @@ export default function ProjectsPage() {
     return (
         <main className="min-h-screen bg-background pt-20 md:pt-24">
             {/* Hero Section */}
-            <section className="relative overflow-hidden py-20 md:py-32">
+            <section className="relative overflow-hidden py-20 md:py-32 border-b border-border">
                 <div className="absolute inset-0 pointer-events-none">
+                    {/* Organic floating shapes matching home page */}
                     <motion.div
                         animate={{
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 90, 0],
+                            x: [0, 100, 0],
+                            y: [0, -50, 0],
+                            rotate: [0, 360, 0],
                         }}
                         transition={{
-                            duration: 20,
+                            duration: 40,
                             repeat: Infinity,
-                            ease: "linear",
+                            ease: "easeInOut",
                         }}
-                        className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+                        className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+                    />
+                    <motion.div
+                        animate={{
+                            x: [0, -80, 0],
+                            y: [0, 60, 0],
+                            rotate: [360, 0, 360],
+                        }}
+                        transition={{
+                            duration: 35,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent-light/8 rounded-full blur-3xl"
                     />
                 </div>
 
@@ -101,20 +116,20 @@ export default function ProjectsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center max-w-4xl mx-auto space-y-6"
+                        className="text-center max-w-4xl mx-auto space-y-8"
                     >
-                        <div className="text-6xl md:text-8xl mb-6">🚀</div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-                            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                                Projects
-                            </span>
+                        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight">
+                            Projects
                         </h1>
-                        <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto">
-                            A collection of innovative solutions and impactful
-                            products
+                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-3xl mx-auto leading-relaxed">
+                            Building products that solve{" "}
+                            <strong className="font-semibold not-italic text-foreground">
+                                real problems
+                            </strong>{" "}
+                            for real people
                         </p>
-                        <p className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto">
-                            From startups to enterprise solutions, each project
+                        <p className="font-serif text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+                            From mental health to fintech, each project
                             represents a commitment to excellence and
                             innovation.
                         </p>
@@ -139,14 +154,12 @@ export default function ProjectsPage() {
                                 whileHover={{ y: -8 }}
                                 className="group relative"
                             >
-                                {/* Gradient Glow Effect */}
-                                <div
-                                    className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-500`}
-                                />
+                                {/* Subtle accent glow on hover */}
+                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 rounded-lg blur-xl transition-opacity duration-500" />
 
-                                <div className="relative h-full p-8 rounded-2xl bg-background border border-foreground/10 hover:border-foreground/20 transition-all duration-300 hover:shadow-2xl backdrop-blur-sm">
+                                <div className="relative h-full p-8 rounded-lg bg-background border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-xl">
                                     {/* Category Badge */}
-                                    <div className="inline-block px-3 py-1 rounded-full bg-foreground/5 text-xs font-semibold text-foreground/70 mb-4 border border-foreground/5">
+                                    <div className="inline-block px-3 py-1 rounded-full bg-accent/10 text-xs font-semibold text-accent-light mb-4 border border-accent/20">
                                         {project.category}
                                     </div>
 
@@ -165,47 +178,43 @@ export default function ProjectsPage() {
                                         {project.icon}
                                     </motion.div>
 
-                                    {/* Title with enhanced gradient */}
-                                    <h3 className="text-2xl font-bold mb-3">
-                                        <span
-                                            className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
-                                        >
-                                            {project.title}
-                                        </span>
+                                    {/* Title */}
+                                    <h3 className="font-display text-2xl md:text-3xl font-bold mb-3 text-foreground">
+                                        {project.title}
                                     </h3>
 
                                     {/* Role */}
                                     {project.role && (
-                                        <p className="text-sm font-semibold text-foreground/60 mb-3">
+                                        <p className="font-serif text-sm font-semibold text-accent mb-3 italic">
                                             {project.role}
                                         </p>
                                     )}
 
-                                    {/* Description with better line height */}
-                                    <p className="text-foreground/70 mb-6 leading-relaxed">
+                                    {/* Description */}
+                                    <p className="font-serif text-foreground/70 mb-6 leading-relaxed">
                                         {project.description}
                                     </p>
 
-                                    {/* Tech Stack with improved styling */}
+                                    {/* Tech Stack */}
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {project.tech.map((tech, i) => (
                                             <span
                                                 key={i}
-                                                className="px-3 py-1 rounded-full bg-foreground/5 text-xs font-medium text-foreground/60 border border-foreground/5 hover:bg-foreground/10 transition-colors duration-200"
+                                                className="px-3 py-1 rounded-full bg-muted/30 text-xs font-medium text-foreground/60 border border-muted/50 hover:bg-muted/50 transition-colors duration-200"
                                             >
                                                 {tech}
                                             </span>
                                         ))}
                                     </div>
 
-                                    {/* Link with enhanced styling */}
+                                    {/* Link */}
                                     {project.link &&
                                         (project.link.startsWith("http") ? (
                                             <a
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`inline-flex items-center text-sm font-semibold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
+                                                className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent-light transition-colors group-hover:underline"
                                             >
                                                 Explore Project
                                                 <svg
@@ -225,7 +234,7 @@ export default function ProjectsPage() {
                                         ) : (
                                             <Link
                                                 href={project.link}
-                                                className={`inline-flex items-center text-sm font-semibold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:underline`}
+                                                className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent-light transition-colors group-hover:underline"
                                             >
                                                 Explore Project
                                                 <svg
@@ -251,7 +260,7 @@ export default function ProjectsPage() {
             </section>
 
             {/* Stats Section */}
-            <section className="py-20 md:py-32 bg-gradient-to-b from-foreground/5 to-transparent">
+            <section className="py-20 md:py-32 bg-accent/5 border-y border-border">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -260,27 +269,27 @@ export default function ProjectsPage() {
                         transition={{ duration: 0.6 }}
                         className="grid md:grid-cols-3 gap-8 text-center"
                     >
-                        <div className="p-8 rounded-2xl bg-background border border-foreground/10">
-                            <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                        <div className="p-8 rounded-lg bg-background border border-accent/20">
+                            <div className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">
                                 50+
                             </div>
-                            <div className="text-foreground/70">
+                            <div className="font-serif text-foreground/70 uppercase tracking-wider text-sm">
                                 Projects Delivered
                             </div>
                         </div>
-                        <div className="p-8 rounded-2xl bg-background border border-foreground/10">
-                            <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                        <div className="p-8 rounded-lg bg-background border border-accent/20">
+                            <div className="font-display text-4xl md:text-5xl font-bold text-accent-light mb-2">
                                 100K+
                             </div>
-                            <div className="text-foreground/70">
+                            <div className="font-serif text-foreground/70 uppercase tracking-wider text-sm">
                                 Users Reached
                             </div>
                         </div>
-                        <div className="p-8 rounded-2xl bg-background border border-foreground/10">
-                            <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-2">
+                        <div className="p-8 rounded-lg bg-background border border-accent/20">
+                            <div className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">
                                 10+
                             </div>
-                            <div className="text-foreground/70">
+                            <div className="font-serif text-foreground/70 uppercase tracking-wider text-sm">
                                 Years Experience
                             </div>
                         </div>
@@ -296,18 +305,18 @@ export default function ProjectsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-center bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-3xl p-12 md:p-16 border border-foreground/10"
+                        className="text-center bg-accent/10 rounded-lg p-12 md:p-16 border border-accent/30"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
                             Have a Project in Mind?
                         </h2>
-                        <p className="text-lg text-foreground/70 mb-8">
+                        <p className="font-serif text-lg md:text-xl text-foreground/70 mb-8 leading-relaxed">
                             Let&apos;s collaborate and build something
                             extraordinary together
                         </p>
                         <Link
                             href="/contact"
-                            className="inline-flex items-center px-8 py-4 rounded-lg bg-foreground text-background font-medium hover:scale-105 transition-transform duration-300"
+                            className="inline-flex items-center px-8 py-4 rounded-lg bg-accent text-background font-medium hover:bg-accent-light transition-colors duration-300"
                         >
                             Get in Touch
                         </Link>
