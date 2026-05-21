@@ -23,7 +23,7 @@ const itemVariants = {
     },
 };
 
-export function BlogListClient({ children }: { children: React.ReactNode }) {
+export function VideosClient({ children }: { children: React.ReactNode }) {
     return (
         <>
             <div className="absolute inset-0 pointer-events-none">
