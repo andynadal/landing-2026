@@ -177,17 +177,17 @@ export default function Hero() {
                     className="space-y-6"
                 >
                     <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-foreground/90 italic">
-                        Founder of{" "}
+                        Founder & CEO of{" "}
                         <span className="font-normal not-italic text-accent">
                             <TypingText text="Pausa" delay={1000} />
                         </span>
                     </h2>
                     <p className="text-xl md:text-3xl lg:text-4xl font-serif text-foreground/70 max-w-4xl mx-auto leading-relaxed">
+                        CTO · Founding Engineer · AI Product Engineer
+                        <br />
                         Building products that{" "}
                         <em className="font-medium">transform</em> how people
-                        live.
-                        <br />
-                        From wellness to fintech,{" "}
+                        live—from wellness to fintech,{" "}
                         <strong className="font-bold text-foreground">
                             solving real problems
                         </strong>{" "}
