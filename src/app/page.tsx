@@ -32,22 +32,36 @@ const MetricCard = ({
     value,
     label,
     delay = 0,
+    inverted = false,
 }: {
     value: string;
     label: string;
     delay?: number;
+    inverted?: boolean;
 }) => (
     <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay }}
-        className="bg-accent/5 border border-accent/20 rounded-lg p-8 text-center"
+        className={`${
+            inverted
+                ? "bg-background/10 border-background/30 text-background"
+                : "bg-accent/5 border-accent/20"
+        } border rounded-lg p-8 text-center`}
     >
-        <div className="text-4xl md:text-5xl font-display font-bold text-accent mb-3">
+        <div
+            className={`text-4xl md:text-5xl font-display font-bold mb-3 ${
+                inverted ? "text-accent-light" : "text-accent"
+            }`}
+        >
             {value}
         </div>
-        <div className="text-sm md:text-base text-foreground/60 font-medium uppercase tracking-wider">
+        <div
+            className={`text-sm md:text-base font-medium uppercase tracking-wider ${
+                inverted ? "text-background/70" : "text-foreground/60"
+            }`}
+        >
             {label}
         </div>
     </motion.div>
@@ -55,12 +69,31 @@ const MetricCard = ({
 
 export default function Home() {
     const pausaSectionRef = useRef<HTMLElement>(null);
+    const impactSectionRef = useRef<HTMLElement>(null);
+    const ruutSectionRef = useRef<HTMLElement>(null);
+
     const { scrollYProgress: pausaProgress } = useScroll({
         target: pausaSectionRef,
         offset: ["start end", "end start"],
     });
 
+    const { scrollYProgress: impactProgress } = useScroll({
+        target: impactSectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const { scrollYProgress: ruutProgress } = useScroll({
+        target: ruutSectionRef,
+        offset: ["start end", "end start"],
+    });
+
     const pausaY = useTransform(pausaProgress, [0, 1], [100, -100]);
+    const impactScale = useTransform(
+        impactProgress,
+        [0, 0.5, 1],
+        [0.95, 1, 0.95]
+    );
+    const ruutY = useTransform(ruutProgress, [0, 1], [-50, 50]);
 
     return (
         <main className="min-h-screen bg-background">
@@ -167,23 +200,30 @@ export default function Home() {
                 </div>
             </motion.section>
 
-            {/* Pausa Section 2: The Impact */}
+            {/* Pausa Section 2: The Impact - INVERTED COLORS */}
             <motion.section
+                ref={impactSectionRef}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-y border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-foreground text-background border-y border-accent/30 relative overflow-hidden"
             >
-                <div className="max-w-7xl mx-auto">
+                {/* Animated background element */}
+                <motion.div
+                    style={{ scale: impactScale }}
+                    className="absolute inset-0 bg-accent/5 pointer-events-none"
+                />
+
+                <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         variants={itemVariants}
                         className="text-center mb-24"
                     >
-                        <h3 className="font-display text-5xl md:text-7xl font-bold mb-8 text-foreground">
+                        <h3 className="font-display text-5xl md:text-7xl font-bold mb-8 text-background">
                             Making an Impact
                         </h3>
-                        <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl mx-auto italic">
+                        <p className="font-serif text-xl md:text-3xl text-background/80 max-w-3xl mx-auto italic">
                             Real numbers from helping people manage stress,
                             anxiety, and emotional overwhelm
                         </p>
@@ -197,21 +237,25 @@ export default function Home() {
                             value="$125K"
                             label="Seed Funding"
                             delay={0.1}
+                            inverted={true}
                         />
                         <MetricCard
                             value="15K+"
                             label="Downloads"
                             delay={0.2}
+                            inverted={true}
                         />
                         <MetricCard
                             value="500+"
                             label="Hours of Breathing"
                             delay={0.3}
+                            inverted={true}
                         />
                         <MetricCard
                             value="5"
                             label="Team Members"
                             delay={0.4}
+                            inverted={true}
                         />
                     </motion.div>
 
@@ -219,7 +263,7 @@ export default function Home() {
                         variants={itemVariants}
                         className="bg-background border-2 border-accent/20 rounded-lg p-12 md:p-16"
                     >
-                        <h4 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
+                        <h4 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center text-background">
                             Building for Impact
                         </h4>
                         <div className="grid md:grid-cols-2 gap-12">
@@ -227,10 +271,10 @@ export default function Home() {
                                 <div className="flex items-start gap-6">
                                     <div className="text-3xl">🎯</div>
                                     <div className="space-y-2">
-                                        <h5 className="font-bold text-xl text-foreground">
+                                        <h5 className="font-bold text-xl text-background">
                                             Product-First Mindset
                                         </h5>
-                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                        <p className="font-serif text-background/70 leading-relaxed">
                                             Every decision starts with the user.
                                             Built products from scratch that
                                             people actually want to use{" "}
@@ -241,10 +285,10 @@ export default function Home() {
                                 <div className="flex items-start gap-6">
                                     <div className="text-3xl">��</div>
                                     <div className="space-y-2">
-                                        <h5 className="font-bold text-xl text-foreground">
+                                        <h5 className="font-bold text-xl text-background">
                                             Building Businesses
                                         </h5>
-                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                        <p className="font-serif text-background/70 leading-relaxed">
                                             Created{" "}
                                             <strong>
                                                 sustainable revenue models
@@ -257,10 +301,10 @@ export default function Home() {
                                 <div className="flex items-start gap-6">
                                     <div className="text-3xl">👥</div>
                                     <div className="space-y-2">
-                                        <h5 className="font-bold text-xl text-foreground">
+                                        <h5 className="font-bold text-xl text-background">
                                             Team Building
                                         </h5>
-                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                        <p className="font-serif text-background/70 leading-relaxed">
                                             Hired and led teams that ship.
                                             Created culture where execution
                                             meets excellence.
@@ -272,10 +316,10 @@ export default function Home() {
                                 <div className="flex items-start gap-6">
                                     <div className="text-3xl">📈</div>
                                     <div className="space-y-2">
-                                        <h5 className="font-bold text-xl text-foreground">
+                                        <h5 className="font-bold text-xl text-background">
                                             Growth & Scale
                                         </h5>
-                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                        <p className="font-serif text-background/70 leading-relaxed">
                                             Drove user acquisition from 0 to{" "}
                                             <strong>100K+</strong> through
                                             marketing, growth experiments, and
@@ -286,10 +330,10 @@ export default function Home() {
                                 <div className="flex items-start gap-6">
                                     <div className="text-3xl">💡</div>
                                     <div className="space-y-2">
-                                        <h5 className="font-bold text-xl text-foreground">
+                                        <h5 className="font-bold text-xl text-background">
                                             Problem Solving
                                         </h5>
-                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                        <p className="font-serif text-background/70 leading-relaxed">
                                             Identified pain points and built
                                             solutions. From{" "}
                                             <em>stress management</em> to{" "}
@@ -300,10 +344,10 @@ export default function Home() {
                                 <div className="flex items-start gap-6">
                                     <div className="text-3xl">🚀</div>
                                     <div className="space-y-2">
-                                        <h5 className="font-bold text-xl text-foreground">
+                                        <h5 className="font-bold text-xl text-background">
                                             Fundraising & Investors
                                         </h5>
-                                        <p className="font-serif text-foreground/70 leading-relaxed">
+                                        <p className="font-serif text-background/70 leading-relaxed">
                                             Raised capital and worked with top
                                             investors including{" "}
                                             <strong>500 Global</strong>.
@@ -378,15 +422,22 @@ export default function Home() {
                 </div>
             </motion.section>
 
-            {/* RUUT CTO Section */}
+            {/* RUUT CTO Section - ACCENT BACKGROUND */}
             <motion.section
+                ref={ruutSectionRef}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-background border-b border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/10 border-b border-accent/30 relative overflow-hidden"
             >
-                <div className="max-w-7xl mx-auto">
+                {/* Animated background element */}
+                <motion.div
+                    style={{ y: ruutY }}
+                    className="absolute top-0 left-0 w-full h-full bg-accent-light/5 pointer-events-none"
+                />
+
+                <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div variants={itemVariants} className="mb-20">
                         <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-10 text-center text-foreground">
                             RUUT
@@ -613,13 +664,13 @@ export default function Home() {
                 </div>
             </motion.section>
 
-            {/* Contact CTA */}
+            {/* Contact CTA - MUTED ACCENT BACKGROUND */}
             <motion.section
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-muted/20"
             >
                 <motion.div
                     variants={itemVariants}

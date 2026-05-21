@@ -129,7 +129,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none text-foreground">
+                    <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none text-foreground">
                         <motion.span
                             className="inline-block"
                             initial={{ opacity: 0, y: 20 }}
