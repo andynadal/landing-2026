@@ -7,9 +7,19 @@ import Link from "next/link";
 const projects = [
     {
         title: "Pausa",
-        description: "AI-powered productivity and work-life balance platform",
+        description:
+            "Guided breathwork app for stress, anxiety, emotional awareness, and screen-time reduction. Started as a side project in July 2024, launched publicly in January 2025, became full-time in July 2025. $120K raised, 15K+ downloads, B2C/B2B subscription revenue.",
         category: "Current Startup",
-        tech: ["Next.js", "AI/ML", "TypeScript", "Cloud"],
+        tech: [
+            "Swift",
+            "SwiftUI",
+            "Kotlin",
+            "Jetpack Compose",
+            "Next.js",
+            "TypeScript",
+            "Supabase",
+            "AI/ML",
+        ],
         logo: "/assets/pausa-icon.png",
         link: "/pausa",
     },
@@ -23,12 +33,21 @@ const projects = [
     {
         title: "RUUT",
         description:
-            "An investment platform for non-investors, making stock investments more accessible for Mexicans. Allows users to transfer Mexican pesos and invest in US dollars in the US stock market",
+            "Investment platform for non-investors. Making US stock investments accessible for Mexicans—transfer Mexican pesos, invest in US dollars in the US stock market. Reached 100K downloads, backed by 500 Global.",
         category: "FinTech",
-        tech: ["iOS", "Android", "Serverless", "Cloud"],
+        tech: [
+            "Swift",
+            "SwiftUI",
+            "UIKit",
+            "Kotlin",
+            "iOS",
+            "Android",
+            "Fintech",
+            "KYC",
+        ],
         logo: "/assets/ruut-icon.png",
         link: "https://ruut.mx",
-        role: "Head of Technology",
+        role: "CTO & Founding Team",
     },
     {
         title: "Journal Habit",

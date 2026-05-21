@@ -243,7 +243,7 @@ export default function Home() {
                         className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24"
                     >
                         <MetricCard
-                            value="$125K"
+                            value="$120K"
                             label="Seed Funding"
                             delay={0.1}
                             inverted={true}
@@ -256,13 +256,13 @@ export default function Home() {
                         />
                         <MetricCard
                             value="500+"
-                            label="Hours of Breathing"
+                            label="Guided Breathing Hours"
                             delay={0.3}
                             inverted={true}
                         />
                         <MetricCard
-                            value="5"
-                            label="Team Members"
+                            value="B2C/B2B"
+                            label="Subscription Revenue"
                             delay={0.4}
                             inverted={true}
                         />
@@ -459,12 +459,13 @@ export default function Home() {
                             RUUT
                         </h2>
                         <p className="font-serif text-2xl md:text-4xl text-center text-foreground/70 italic max-w-4xl mx-auto leading-relaxed">
-                            Founding team member at{" "}
+                            Founding team member and{" "}
                             <strong className="not-italic font-semibold text-accent">
-                                500 Global-backed
+                                CTO
                             </strong>{" "}
-                            fintech. Built and scaled products helping Mexicans
-                            invest in US markets.
+                            at 500 Global-backed fintech. Built investment
+                            platform for non-investors, making US stock market
+                            accessible for Mexicans.
                         </p>
                     </motion.div>
 
@@ -472,10 +473,10 @@ export default function Home() {
                         <motion.div variants={itemVariants}>
                             <div className="bg-accent/5 border-2 border-accent/20 rounded-lg p-10 h-full">
                                 <h3 className="font-display text-3xl md:text-4xl font-bold mb-6 text-foreground">
-                                    Head of Product & Technology
+                                    CTO & Founding Team
                                 </h3>
                                 <p className="text-foreground/60 mb-8 font-medium uppercase tracking-wider text-sm">
-                                    March 2022 - July 2025 · Founding Team
+                                    March 2022 - July 2025
                                 </p>
                                 <ul className="space-y-6 font-serif text-foreground/70 text-lg">
                                     <li className="flex items-start gap-4">
@@ -483,12 +484,12 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span className="leading-relaxed">
-                                            Joined as{" "}
+                                            Started as{" "}
                                             <strong className="font-bold text-foreground">
-                                                founding team member
-                                            </strong>{" "}
-                                            and built product from 0 to 100K
-                                            users
+                                                Senior iOS Engineer
+                                            </strong>
+                                            , promoted to CTO after leading iOS
+                                            app from scratch through launch
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-4">
@@ -496,9 +497,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span className="leading-relaxed">
-                                            Led team of 7, built mobile and web
-                                            products enabling{" "}
-                                            <em>cross-border investing</em>
+                                            Built and scaled product from 0 to{" "}
+                                            <strong>100K downloads</strong>,
+                                            managed 7-person engineering team
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-4">
@@ -506,10 +507,10 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span className="leading-relaxed">
-                                            Shipped instant money transfers
-                                            between Mexico and US, reducing
-                                            transfer time from{" "}
-                                            <strong>3 days to seconds</strong>
+                                            Led money-transfer infrastructure
+                                            reducing Mexico-US transfer time
+                                            from{" "}
+                                            <strong>~3 days to instant</strong>
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-4">
@@ -517,9 +518,9 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span className="leading-relaxed">
-                                            Worked directly with 500 Global and
-                                            navigated regulatory requirements
-                                            with Mexico's securities commission
+                                            Worked with 500 Global on product,
+                                            technology, fundraising, and
+                                            regulatory conversations
                                         </span>
                                     </li>
                                 </ul>
@@ -555,7 +556,7 @@ export default function Home() {
                         variants={itemVariants}
                         className="grid grid-cols-2 md:grid-cols-3 gap-6"
                     >
-                        <MetricCard value="100K+" label="App Downloads" />
+                        <MetricCard value="100K+" label="Downloads" />
                         <MetricCard value="7" label="Team Members" />
                         <MetricCard value="500 Global" label="Backed By" />
                     </motion.div>
