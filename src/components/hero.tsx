@@ -2,7 +2,28 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+
+const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+    const [displayedText, setDisplayedText] = useState("");
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const timeout = setTimeout(
+            () => {
+                if (currentIndex < text.length) {
+                    setDisplayedText((prev) => prev + text[currentIndex]);
+                    setCurrentIndex((prev) => prev + 1);
+                }
+            },
+            delay + currentIndex * 50
+        ); // 50ms per character
+
+        return () => clearTimeout(timeout);
+    }, [currentIndex, text, delay]);
+
+    return <span>{displayedText}</span>;
+};
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -158,7 +179,7 @@ export default function Hero() {
                     <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-foreground/90 italic">
                         Founder of{" "}
                         <span className="font-normal not-italic text-accent">
-                            Pausa
+                            <TypingText text="Pausa" delay={1000} />
                         </span>
                     </h2>
                     <p className="text-xl md:text-3xl lg:text-4xl font-serif text-foreground/70 max-w-4xl mx-auto leading-relaxed">

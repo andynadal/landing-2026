@@ -71,6 +71,8 @@ export default function Home() {
     const pausaSectionRef = useRef<HTMLElement>(null);
     const impactSectionRef = useRef<HTMLElement>(null);
     const ruutSectionRef = useRef<HTMLElement>(null);
+    const missionSectionRef = useRef<HTMLElement>(null);
+    const blogSectionRef = useRef<HTMLElement>(null);
 
     const { scrollYProgress: pausaProgress } = useScroll({
         target: pausaSectionRef,
@@ -87,6 +89,16 @@ export default function Home() {
         offset: ["start end", "end start"],
     });
 
+    const { scrollYProgress: missionProgress } = useScroll({
+        target: missionSectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const { scrollYProgress: blogProgress } = useScroll({
+        target: blogSectionRef,
+        offset: ["start end", "end start"],
+    });
+
     const pausaY = useTransform(pausaProgress, [0, 1], [100, -100]);
     const impactScale = useTransform(
         impactProgress,
@@ -94,6 +106,12 @@ export default function Home() {
         [0.95, 1, 0.95]
     );
     const ruutY = useTransform(ruutProgress, [0, 1], [-50, 50]);
+    const missionOpacity = useTransform(
+        missionProgress,
+        [0, 0.3, 0.7, 1],
+        [0.5, 1, 1, 0.5]
+    );
+    const blogScale = useTransform(blogProgress, [0, 0.5, 1], [0.98, 1, 0.98]);
 
     return (
         <main className="min-h-screen bg-background">
@@ -261,7 +279,7 @@ export default function Home() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="bg-background border-2 border-accent/20 rounded-lg p-12 md:p-16"
+                        className="bg-background/10 border-2 border-background/30 rounded-lg p-12 md:p-16"
                     >
                         <h4 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center text-background">
                             Building for Impact
@@ -274,7 +292,7 @@ export default function Home() {
                                         <h5 className="font-bold text-xl text-background">
                                             Product-First Mindset
                                         </h5>
-                                        <p className="font-serif text-background/70 leading-relaxed">
+                                        <p className="font-serif text-background/80 leading-relaxed">
                                             Every decision starts with the user.
                                             Built products from scratch that
                                             people actually want to use{" "}
@@ -361,15 +379,22 @@ export default function Home() {
                 </div>
             </motion.section>
 
-            {/* Pausa Section 3: The Mission */}
+            {/* Pausa Section 3: The Mission - INVERTED MUTED */}
             <motion.section
+                ref={missionSectionRef}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 border-b border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-muted/30 border-b border-muted/50 relative overflow-hidden"
             >
-                <div className="max-w-7xl mx-auto">
+                {/* Animated background element */}
+                <motion.div
+                    style={{ opacity: missionOpacity }}
+                    className="absolute inset-0 bg-accent/5 pointer-events-none"
+                />
+
+                <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         variants={itemVariants}
                         className="text-center max-w-5xl mx-auto space-y-12"
@@ -614,15 +639,22 @@ export default function Home() {
                 </div>
             </motion.section>
 
-            {/* Blog Section */}
+            {/* Blog Section - ACCENT LIGHT BACKGROUND */}
             <motion.section
+                ref={blogSectionRef}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-background border-b border-border"
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent-light/10 border-b border-accent/20 relative overflow-hidden"
             >
-                <div className="max-w-5xl mx-auto text-center space-y-12">
+                {/* Animated background element */}
+                <motion.div
+                    style={{ scale: blogScale }}
+                    className="absolute inset-0 bg-accent/5 pointer-events-none"
+                />
+
+                <div className="max-w-5xl mx-auto text-center space-y-12 relative z-10">
                     <motion.div variants={itemVariants}>
                         <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-foreground">
                             Blog & Insights
