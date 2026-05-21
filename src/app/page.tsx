@@ -484,12 +484,12 @@ export default function Home() {
                                             ✓
                                         </span>
                                         <span className="leading-relaxed">
-                                            Promoted to{" "}
+                                            Started as{" "}
                                             <strong className="font-bold text-foreground">
-                                                CTO
-                                            </strong>{" "}
-                                            after leading iOS app from scratch
-                                            through launch
+                                                Senior iOS Engineer
+                                            </strong>
+                                            , promoted to CTO after leading iOS
+                                            app from scratch through launch
                                         </span>
                                     </li>
                                     <li className="flex items-start gap-4">
