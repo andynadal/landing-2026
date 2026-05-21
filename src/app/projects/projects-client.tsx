@@ -152,10 +152,10 @@ export default function ProjectsPage() {
                                 key={index}
                                 variants={itemVariants}
                                 whileHover={{ y: -8 }}
-                                className="group relative"
+                                className="group relative will-change-transform"
                             >
                                 {/* Subtle accent glow on hover */}
-                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 rounded-lg blur-xl transition-opacity duration-500" />
+                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 rounded-lg blur-lg transition-opacity duration-500" />
 
                                 <div className="relative h-full p-8 rounded-lg bg-background border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-xl">
                                     {/* Category Badge */}

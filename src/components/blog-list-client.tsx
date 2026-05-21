@@ -58,7 +58,6 @@ export function BlogListClient({ children }: { children: React.ReactNode }) {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                viewport={{ once: true }}
             >
                 <motion.div variants={itemVariants}>{children}</motion.div>
             </motion.div>
