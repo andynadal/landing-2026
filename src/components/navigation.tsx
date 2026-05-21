@@ -45,7 +45,7 @@ export default function Navigation() {
                         {/* Logo */}
                         <Link href="/" className="flex items-center group">
                             <motion.span
-                                className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                                className="text-xl md:text-2xl font-display font-bold text-accent"
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ duration: 0.2 }}
                             >
@@ -62,7 +62,7 @@ export default function Navigation() {
                                     className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors group"
                                 >
                                     {link.label}
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300" />
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
                                 </Link>
                             ))}
                             <div className="ml-4">

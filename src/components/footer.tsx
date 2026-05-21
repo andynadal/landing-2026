@@ -34,11 +34,11 @@ export default function Footer() {
                         className="space-y-4"
                     >
                         <Link href="/" className="inline-block">
-                            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            <h3 className="text-2xl font-display font-bold text-accent">
                                 Andy Nadal
                             </h3>
                         </Link>
-                        <p className="text-sm text-foreground/60 max-w-xs">
+                        <p className="text-sm font-serif text-foreground/60 max-w-xs">
                             Entrepreneur & Developer building innovative
                             solutions and leading technical teams to success.
                         </p>

@@ -67,6 +67,119 @@ You are not allowed to be vague.
 
 ---
 
+## Editorial Design Language
+
+### Color Palette
+
+The site uses a **warm, editorial aesthetic** inspired by magazine layouts:
+
+```css
+:root {
+    --background: #faf9f7; /* warm cream */
+    --foreground: #1a1814; /* near black */
+    --accent: #8b7355; /* warm brown */
+    --accent-light: #b89968; /* golden tan */
+    --muted: #d4c5b3; /* muted tan */
+}
+```
+
+**Color Usage:**
+
+- **Primary text**: `text-foreground` (near black)
+- **Accent elements**: `text-accent` or `bg-accent` (warm brown)
+- **Highlights**: `text-accent-light` (golden tan)
+- **Subtle backgrounds**: `bg-muted` or `bg-accent/10`
+- **Inverted sections**: `bg-foreground` with `text-background`
+
+**Avoid:**
+
+- Blue/purple gradients (old design)
+- Bright, saturated colors
+- Tech-heavy color schemes
+
+### Typography
+
+**Font Families:**
+
+- **Display/Headings**: Georgia or Garamond serif (`font-display`)
+- **Body text**: Georgia or Garamond serif (`font-serif`)
+- **UI elements**: System sans-serif (sparingly)
+
+**Hierarchy:**
+
+- Hero name: `text-5xl md:text-6xl lg:text-7xl`
+- Section headings: `text-5xl md:text-7xl lg:text-8xl`
+- Subheadings: `text-3xl md:text-4xl lg:text-5xl`
+- Body: `text-xl md:text-2xl` or `text-xl md:text-3xl`
+
+**Styling:**
+
+- Use strategic **bold** and _italics_ for emphasis
+- Maintain generous line-height for readability
+- Tight letter-spacing on display fonts
+
+### Visual Elements
+
+**Buttons & Cards:**
+
+- Always use `rounded-lg` for corner radius
+- Prefer subtle borders over heavy shadows
+- Use `border-accent/20` or `border-foreground/10`
+
+**Sections:**
+
+- Each section should have a **distinct visual identity**
+- Vary backgrounds: light, muted, accent-tinted, or inverted
+- Use `border-b border-border` or `border-muted/50` between sections
+
+**Animations:**
+
+- Use **Framer Motion** for all animations
+- Scroll-based animations with `useScroll` and `useTransform`
+- Typing animations for dynamic text reveals
+- Parallax effects for depth
+- Scale animations (0.95 → 1 → 0.95) for emphasis
+- All animations use `easeInOut` curves
+- Animation durations: 4-40s for organic particles, 0.3-0.8s for interactions
+
+### Component Patterns
+
+**Navigation:**
+
+- Logo: `font-display font-bold text-accent`
+- Links: Underline on hover with `bg-accent` (not gradients)
+
+**Footer:**
+
+- Branding: `font-display font-bold text-accent`
+- Body text: `font-serif`
+
+**Hero:**
+
+- Large serif typography
+- Organic particle system (40+ particles)
+- Typing animations for key text
+- Scroll-based fade effects
+
+**Content Sections:**
+
+- Alternate backgrounds for visual variety
+- Use inverted sections (dark bg, light text) for dramatic contrast
+- Screenshot placeholders with emoji icons
+- Metric cards with optional inverted theme
+
+### Design Principles
+
+1. **Editorial First**: Think magazine layout, not tech startup
+2. **Warm & Inviting**: Use warm tones, serif fonts, generous spacing
+3. **Visual Variety**: No two adjacent sections should look the same
+4. **Scroll Experience**: Make scrolling interesting with animations and varied
+   designs
+5. **Intentional Restraint**: Fewer elements, stronger presence
+6. **Timeless Over Trendy**: Classic editorial aesthetic that ages well
+
+---
+
 ## UI & Styling
 
 - Use **Tailwind CSS** for styling.
