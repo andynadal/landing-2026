@@ -42,8 +42,38 @@ export default function AboutPage() {
     return (
         <main className="min-h-screen bg-background pt-20 md:pt-24">
             {/* Hero Section */}
-            <section className="relative overflow-hidden py-12 md:py-20">
-                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden py-20 md:py-32 border-b border-border">
+                <div className="absolute inset-0 pointer-events-none">
+                    {/* Organic floating shapes matching home page */}
+                    <motion.div
+                        animate={{
+                            x: [0, 100, 0],
+                            y: [0, -50, 0],
+                            rotate: [0, 360, 0],
+                        }}
+                        transition={{
+                            duration: 40,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+                    />
+                    <motion.div
+                        animate={{
+                            x: [0, -80, 0],
+                            y: [0, 60, 0],
+                            rotate: [360, 0, 360],
+                        }}
+                        transition={{
+                            duration: 35,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent-light/8 rounded-full blur-3xl"
+                    />
+                </div>
+
+                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div
                         initial="hidden"
                         animate="visible"
@@ -52,20 +82,23 @@ export default function AboutPage() {
                     >
                         <motion.h1
                             variants={fadeInItem}
-                            className="text-4xl md:text-6xl font-bold text-center"
+                            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-center text-foreground leading-tight"
                         >
                             About Andy Nadal
                         </motion.h1>
 
                         <motion.div
                             variants={fadeInItem}
-                            className="space-y-4 text-center"
+                            className="space-y-6 text-center"
                         >
-                            <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
-                                CEO and Founder of Pausa
+                            <p className="font-serif text-2xl md:text-4xl text-foreground/90 leading-relaxed italic">
+                                CEO and Founder of{" "}
+                                <strong className="font-semibold not-italic">
+                                    Pausa
+                                </strong>
                             </p>
 
-                            <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
+                            <p className="font-serif text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl mx-auto">
                                 Building technology that makes mental health
                                 support accessible when it matters most.
                             </p>
@@ -75,7 +108,7 @@ export default function AboutPage() {
             </section>
 
             {/* Who I Am */}
-            <section className="py-12 md:py-20 bg-foreground/5">
+            <section className="py-20 md:py-32 bg-accent/5 border-b border-border">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -86,14 +119,14 @@ export default function AboutPage() {
                     >
                         <motion.h2
                             variants={fadeInItem}
-                            className="text-3xl md:text-4xl font-bold"
+                            className="font-display text-4xl md:text-6xl font-bold text-foreground"
                         >
                             Who I Am
                         </motion.h2>
 
                         <motion.div
                             variants={staggerContainer}
-                            className="space-y-4 text-lg text-foreground/80 leading-relaxed"
+                            className="space-y-6 font-serif text-lg md:text-xl text-foreground/80 leading-relaxed"
                         >
                             <motion.p variants={fadeInItem}>
                                 I&apos;m an entrepreneur and software engineer
@@ -120,7 +153,7 @@ export default function AboutPage() {
             </section>
 
             {/* Pausa - My Current Focus */}
-            <section className="py-12 md:py-20">
+            <section className="py-20 md:py-32">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -131,7 +164,7 @@ export default function AboutPage() {
                     >
                         <motion.h2
                             variants={fadeInItem}
-                            className="text-3xl md:text-4xl font-bold"
+                            className="font-display text-4xl md:text-6xl font-bold text-foreground"
                         >
                             What I&apos;m Building Now
                         </motion.h2>
@@ -142,7 +175,7 @@ export default function AboutPage() {
                         >
                             <motion.p
                                 variants={fadeInItem}
-                                className="text-xl md:text-2xl font-medium text-foreground leading-relaxed"
+                                className="font-serif text-2xl md:text-3xl font-medium text-foreground leading-relaxed italic"
                             >
                                 Pausa is a breathing app for people who
                                 don&apos;t meditate.
@@ -150,7 +183,7 @@ export default function AboutPage() {
 
                             <motion.p
                                 variants={fadeInItem}
-                                className="text-lg text-foreground/80 leading-relaxed"
+                                className="font-serif text-lg md:text-xl text-foreground/80 leading-relaxed"
                             >
                                 Born from my own experience with a panic attack,
                                 Pausa provides guided breathwork to help you
@@ -161,11 +194,11 @@ export default function AboutPage() {
 
                             <motion.div
                                 variants={staggerContainer}
-                                className="bg-foreground/5 rounded-lg p-6 md:p-8 space-y-4"
+                                className="bg-accent/10 rounded-lg p-6 md:p-8 space-y-4 border border-accent/20"
                             >
                                 <motion.p
                                     variants={fadeInItem}
-                                    className="text-lg text-foreground font-medium"
+                                    className="font-serif text-lg text-foreground font-medium"
                                 >
                                     Resources for mental wellness:
                                 </motion.p>
@@ -179,7 +212,7 @@ export default function AboutPage() {
                                             href="https://pausaapp.com/nadal"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                            className="font-serif text-lg text-accent hover:text-accent-light transition-colors inline-flex items-center gap-2"
                                         >
                                             Pausa App
                                             <svg
@@ -196,7 +229,7 @@ export default function AboutPage() {
                                                 />
                                             </svg>
                                         </Link>
-                                        <p className="text-base text-foreground/70 mt-1">
+                                        <p className="font-serif text-base text-foreground/70 mt-1">
                                             Guided breathwork to help you manage
                                             stress and anxiety without feeling
                                             alone
@@ -208,7 +241,7 @@ export default function AboutPage() {
                                             href="https://business.pausaapp.com"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                            className="font-serif text-lg text-accent hover:text-accent-light transition-colors inline-flex items-center gap-2"
                                         >
                                             Pausa for Business
                                             <svg
@@ -225,7 +258,7 @@ export default function AboutPage() {
                                                 />
                                             </svg>
                                         </Link>
-                                        <p className="text-base text-foreground/70 mt-1">
+                                        <p className="font-serif text-base text-foreground/70 mt-1">
                                             Reduce employee burnout and turnover
                                             with workplace wellness solutions
                                         </p>
@@ -236,7 +269,7 @@ export default function AboutPage() {
                                             href="https://app.pausaapp.com/quiz"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                            className="font-serif text-lg text-accent hover:text-accent-light transition-colors inline-flex items-center gap-2"
                                         >
                                             Stress & Anxiety Assessment
                                             <svg
@@ -253,7 +286,7 @@ export default function AboutPage() {
                                                 />
                                             </svg>
                                         </Link>
-                                        <p className="text-base text-foreground/70 mt-1">
+                                        <p className="font-serif text-base text-foreground/70 mt-1">
                                             Do you know if you have anxiety or
                                             stress? Take the assessment to find
                                             out
@@ -264,11 +297,11 @@ export default function AboutPage() {
 
                             <motion.div
                                 variants={staggerContainer}
-                                className="bg-foreground/5 rounded-lg p-6 md:p-8 space-y-4 mt-6"
+                                className="bg-accent/10 rounded-lg p-6 md:p-8 space-y-4 mt-6 border border-accent/20"
                             >
                                 <motion.p
                                     variants={fadeInItem}
-                                    className="text-lg text-foreground font-medium"
+                                    className="font-serif text-lg text-foreground font-medium"
                                 >
                                     Developer tools & resources:
                                 </motion.p>
@@ -282,7 +315,7 @@ export default function AboutPage() {
                                             href="https://minutecms.com"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                            className="font-serif text-lg text-accent hover:text-accent-light transition-colors inline-flex items-center gap-2"
                                         >
                                             Minute CMS
                                             <svg
@@ -299,7 +332,7 @@ export default function AboutPage() {
                                                 />
                                             </svg>
                                         </Link>
-                                        <p className="text-base text-foreground/70 mt-1">
+                                        <p className="font-serif text-base text-foreground/70 mt-1">
                                             The easiest CMS to integrate into
                                             your website — simple, fast, and
                                             developer-friendly
@@ -311,7 +344,7 @@ export default function AboutPage() {
                                             href="https://andynadal.com"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-lg text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+                                            className="font-serif text-lg text-accent hover:text-accent-light transition-colors inline-flex items-center gap-2"
                                         >
                                             Andy Nadal
                                             <svg
@@ -328,7 +361,7 @@ export default function AboutPage() {
                                                 />
                                             </svg>
                                         </Link>
-                                        <p className="text-base text-foreground/70 mt-1">
+                                        <p className="font-serif text-base text-foreground/70 mt-1">
                                             Personal landing page showcasing
                                             projects, blog, and professional
                                             experience
@@ -342,7 +375,7 @@ export default function AboutPage() {
             </section>
 
             {/* My Philosophy */}
-            <section className="py-12 md:py-20 bg-foreground/5">
+            <section className="py-20 md:py-32 bg-accent/5 border-y border-border">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -353,14 +386,14 @@ export default function AboutPage() {
                     >
                         <motion.h2
                             variants={fadeInItem}
-                            className="text-3xl md:text-4xl font-bold"
+                            className="font-display text-4xl md:text-6xl font-bold text-foreground"
                         >
                             How I Build
                         </motion.h2>
 
                         <motion.div
                             variants={staggerContainer}
-                            className="space-y-4 text-lg text-foreground/80 leading-relaxed"
+                            className="space-y-6 font-serif text-lg md:text-xl text-foreground/80 leading-relaxed"
                         >
                             <motion.p variants={fadeInItem}>
                                 I build companies from first principles. Every
@@ -395,7 +428,7 @@ export default function AboutPage() {
             </section>
 
             {/* Why Mental Health Tech */}
-            <section className="py-12 md:py-20">
+            <section className="py-20 md:py-32">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -406,14 +439,14 @@ export default function AboutPage() {
                     >
                         <motion.h2
                             variants={fadeInItem}
-                            className="text-3xl md:text-4xl font-bold"
+                            className="font-display text-4xl md:text-6xl font-bold text-foreground"
                         >
                             Why Mental Health Technology
                         </motion.h2>
 
                         <motion.div
                             variants={staggerContainer}
-                            className="space-y-4 text-lg text-foreground/80 leading-relaxed"
+                            className="space-y-6 font-serif text-lg md:text-xl text-foreground/80 leading-relaxed"
                         >
                             <motion.p variants={fadeInItem}>
                                 Most mental health tools fail when you need them
@@ -432,7 +465,7 @@ export default function AboutPage() {
 
                             <motion.p
                                 variants={fadeInItem}
-                                className="text-xl font-medium text-foreground pt-4"
+                                className="font-serif text-xl md:text-2xl font-medium text-foreground pt-4 italic"
                             >
                                 Mental health support should be as fast and
                                 reliable as turning on a light switch.
@@ -443,7 +476,7 @@ export default function AboutPage() {
             </section>
 
             {/* Connect */}
-            <section className="py-16 md:py-24 bg-gradient-to-b from-transparent to-foreground/5">
+            <section className="py-20 md:py-32 bg-accent/5 border-t border-border">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -458,7 +491,7 @@ export default function AboutPage() {
                         >
                             <motion.p
                                 variants={fadeInItem}
-                                className="text-xl md:text-2xl font-medium text-foreground leading-relaxed"
+                                className="font-serif text-2xl md:text-3xl font-medium text-foreground leading-relaxed italic"
                             >
                                 Want to connect or learn more about what
                                 I&apos;m building?
@@ -466,19 +499,19 @@ export default function AboutPage() {
 
                             <motion.p
                                 variants={fadeInItem}
-                                className="text-lg text-foreground/80 leading-relaxed"
+                                className="font-serif text-lg md:text-xl text-foreground/80 leading-relaxed"
                             >
                                 Visit my{" "}
                                 <Link
                                     href="/"
-                                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                                    className="text-accent hover:text-accent-light transition-colors underline"
                                 >
                                     personal landing page
                                 </Link>{" "}
                                 or reach out through my{" "}
                                 <Link
                                     href="/contact"
-                                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                                    className="text-accent hover:text-accent-light transition-colors underline"
                                 >
                                     contact page
                                 </Link>
@@ -489,7 +522,7 @@ export default function AboutPage() {
                         <motion.div variants={scaleIn} className="pt-4">
                             <Link
                                 href="/pausa"
-                                className="inline-flex items-center px-8 py-4 rounded-lg bg-foreground text-background font-medium hover:scale-105 transition-transform duration-300 text-lg"
+                                className="inline-flex items-center px-8 py-4 rounded-lg bg-accent text-background font-medium hover:bg-accent-light transition-colors duration-300 text-lg"
                             >
                                 Learn More About Pausa
                             </Link>

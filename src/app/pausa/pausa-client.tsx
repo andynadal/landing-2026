@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const staggerContainer = {
     hidden: { opacity: 0 },
@@ -49,15 +50,20 @@ export default function PausaPage() {
                         variants={staggerContainer}
                         className="space-y-12"
                     >
-                        {/* Logo Placeholder */}
+                        {/* Pausa Logo */}
                         <motion.div
                             variants={scaleIn}
                             className="flex justify-center"
                         >
-                            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center">
-                                <span className="text-foreground/40 text-sm font-medium">
-                                    Logo
-                                </span>
+                            <div className="w-32 md:w-40">
+                                <Image
+                                    src="/assets/pausa-dark.svg"
+                                    alt="Pausa logo"
+                                    width={512}
+                                    height={512}
+                                    className="h-auto w-full"
+                                    priority
+                                />
                             </div>
                         </motion.div>
 
@@ -581,15 +587,24 @@ export default function PausaPage() {
                         variants={staggerContainer}
                         className="text-center space-y-10"
                     >
-                        {/* Brand Placeholder */}
+                        {/* Screenshot Placeholder */}
                         <motion.div
                             variants={scaleIn}
                             className="flex justify-center"
                         >
-                            <div className="w-full max-w-md h-48 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-foreground/10 flex items-center justify-center">
-                                <span className="text-foreground/40 text-sm font-medium">
-                                    Brand Assets Placeholder
-                                </span>
+                            <div className="w-full max-w-md rounded-2xl overflow-hidden bg-foreground/5 relative">
+                                <Image
+                                    src="/assets/pausa-ss-d.png"
+                                    alt="Pausa app screenshot placeholder"
+                                    width={768}
+                                    height={1536}
+                                    className="w-full h-auto object-cover"
+                                />
+                                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-4">
+                                    <p className="text-background/90 text-xs uppercase tracking-wider font-medium text-center">
+                                        Screenshot Placeholder
+                                    </p>
+                                </div>
                             </div>
                         </motion.div>
 

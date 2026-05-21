@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -193,25 +194,15 @@ export default function Home() {
                             transition={{ duration: 1 }}
                             className="relative"
                         >
-                            {/* Screenshot placeholder */}
-                            <div className="aspect-[4/5] bg-accent/10 border-2 border-accent/30 rounded-lg flex flex-col items-center justify-center relative overflow-hidden group">
-                                <motion.div
-                                    animate={{
-                                        scale: [1, 1.05, 1],
-                                    }}
-                                    transition={{
-                                        duration: 5,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                    }}
-                                    className="text-8xl opacity-30"
-                                >
-                                    ⏸️
-                                </motion.div>
+                            <div className="aspect-[4/5] rounded-lg relative overflow-hidden group bg-background">
+                                <Image
+                                    src="/assets/pausa-ss-a.png"
+                                    alt="Pausa app screenshot"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 40vw"
+                                    className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                                />
                                 <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <p className="absolute bottom-8 text-center text-sm text-foreground/40 uppercase tracking-widest px-4">
-                                    App Screenshot Placeholder
-                                </p>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -536,25 +527,26 @@ export default function Home() {
                         </motion.div>
 
                         <motion.div variants={itemVariants}>
-                            {/* Screenshot placeholder for RUUT */}
-                            <div className="h-full min-h-[500px] bg-accent/10 border-2 border-accent/30 rounded-lg flex flex-col items-center justify-center relative overflow-hidden group">
+                            <div className="h-full min-h-[500px] bg-accent/10 rounded-lg flex items-center justify-center relative overflow-hidden p-8">
                                 <motion.div
                                     animate={{
-                                        y: [0, -20, 0],
+                                        y: [0, -8, 0],
                                     }}
                                     transition={{
-                                        duration: 6,
+                                        duration: 5,
                                         repeat: Infinity,
                                         ease: "easeInOut",
                                     }}
-                                    className="text-9xl opacity-30"
+                                    className="w-full max-w-[320px]"
                                 >
-                                    📱
+                                    <Image
+                                        src="/assets/ruut-icon.png"
+                                        alt="RUUT logo"
+                                        width={768}
+                                        height={768}
+                                        className="h-auto w-full object-contain"
+                                    />
                                 </motion.div>
-                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <p className="absolute bottom-8 text-center text-sm text-foreground/40 uppercase tracking-widest px-4">
-                                    RUUT App Screenshot Placeholder
-                                </p>
                             </div>
                         </motion.div>
                     </div>

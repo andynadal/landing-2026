@@ -61,18 +61,18 @@ export default async function BlogPage({
         <main className="min-h-screen bg-background pt-20 md:pt-24">
             {/* Hero Section */}
             <BlogListClient>
-                <section className="relative overflow-hidden py-20 md:py-32">
+                <section className="relative overflow-hidden py-20 md:py-32 border-b border-border">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <div className="text-center max-w-4xl mx-auto space-y-6">
-                            <div className="text-6xl md:text-8xl mb-6">✍️</div>
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-                                <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                                    Blog & Insights
-                                </span>
+                        <div className="text-center max-w-4xl mx-auto space-y-8">
+                            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight">
+                                Blog & Insights
                             </h1>
-                            <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto">
-                                Thoughts on entrepreneurship, development, and
-                                building products that matter
+                            <p className="font-serif text-2xl md:text-4xl text-foreground/70 max-w-3xl mx-auto leading-relaxed italic">
+                                Thoughts on{" "}
+                                <strong className="font-semibold not-italic text-foreground">
+                                    entrepreneurship, development,
+                                </strong>{" "}
+                                and building products that matter
                             </p>
                         </div>
                     </div>
@@ -96,11 +96,11 @@ export default async function BlogPage({
                                             href={`/blog/${article.slug}`}
                                             className="group"
                                         >
-                                            <article className="h-full rounded-2xl bg-background border border-foreground/10 hover:border-foreground/20 transition-all duration-300 hover:shadow-xl overflow-hidden">
+                                            <article className="h-full rounded-lg bg-background border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-xl overflow-hidden">
                                                 {/* Content */}
                                                 <div className="p-6 space-y-4">
                                                     {/* Published Date and Author */}
-                                                    <div className="flex items-center gap-2 text-sm text-foreground/60">
+                                                    <div className="flex items-center gap-2 text-sm text-accent-light font-serif">
                                                         <span>
                                                             {new Date(
                                                                 article.published_at
@@ -120,12 +120,12 @@ export default async function BlogPage({
                                                     </div>
 
                                                     {/* Title */}
-                                                    <h2 className="text-2xl font-bold group-hover:text-green-600 transition-colors">
+                                                    <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground group-hover:text-accent transition-colors">
                                                         {article.title}
                                                     </h2>
 
                                                     {/* Read More Link */}
-                                                    <div className="flex items-center text-sm font-medium text-green-600">
+                                                    <div className="flex items-center text-sm font-medium text-accent hover:text-accent-light transition-colors">
                                                         Read More
                                                         <svg
                                                             className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform"

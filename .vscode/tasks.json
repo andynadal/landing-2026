@@ -6,13 +6,10 @@
             "type": "npm",
             "script": "dev",
             "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
+                "panel": "shared"
             }
         },
         {
@@ -21,7 +18,8 @@
             "script": "build",
             "problemMatcher": [],
             "group": {
-                "kind": "build"
+                "kind": "build",
+                "isDefault": true
             }
         },
         {
