@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 const projects = [
@@ -9,8 +10,7 @@ const projects = [
         description: "AI-powered productivity and work-life balance platform",
         category: "Current Startup",
         tech: ["Next.js", "AI/ML", "TypeScript", "Cloud"],
-        gradient: "from-blue-600 to-purple-600",
-        icon: "⏸️",
+        logo: "/assets/pausa-icon.png",
         link: "/pausa",
     },
     {
@@ -18,8 +18,6 @@ const projects = [
         description: "The simplest CMS to integrate for automatic AI blogging",
         category: "Content Management",
         tech: ["CMS", "AI", "Automation", "Cloud"],
-        gradient: "from-cyan-600 to-blue-600",
-        icon: "✍️",
         link: "https://minutecms.com",
     },
     {
@@ -28,8 +26,7 @@ const projects = [
             "An investment platform for non-investors, making stock investments more accessible for Mexicans. Allows users to transfer Mexican pesos and invest in US dollars in the US stock market",
         category: "FinTech",
         tech: ["iOS", "Android", "Serverless", "Cloud"],
-        gradient: "from-purple-600 to-pink-600",
-        icon: "💰",
+        logo: "/assets/ruut-icon.png",
         link: "https://ruut.mx",
         role: "Head of Technology",
     },
@@ -39,8 +36,7 @@ const projects = [
             "An app that combines journaling with habit tracking, to promote a safe space for building the life you want",
         category: "Personal Development",
         tech: ["Mobile", "Cloud", "Habit Tracking"],
-        gradient: "from-green-600 to-blue-600",
-        icon: "📓",
+        logo: "/assets/journal-habit-logo.png",
         role: "Founder & Developer",
     },
     {
@@ -49,8 +45,7 @@ const projects = [
             "An app that allows you to track your expenses and get professional-grade financial analysis and metrics",
         category: "Finance",
         tech: ["Mobile", "Analytics", "Financial Tools"],
-        gradient: "from-orange-600 to-red-600",
-        icon: "📊",
+        logo: "/assets/pro-ledger-logo.png",
         role: "Founder & Developer",
     },
 ];
@@ -163,20 +158,27 @@ export default function ProjectsPage() {
                                         {project.category}
                                     </div>
 
-                                    {/* Icon with subtle animation */}
-                                    <motion.div
-                                        className="text-5xl mb-4"
-                                        whileHover={{
-                                            scale: 1.1,
-                                            rotate: [0, -10, 10, 0],
-                                        }}
-                                        transition={{
-                                            duration: 0.5,
-                                            ease: "easeInOut",
-                                        }}
-                                    >
-                                        {project.icon}
-                                    </motion.div>
+                                    {project.logo && (
+                                        <motion.div
+                                            className="mb-5 h-14 w-14 rounded-lg overflow-hidden bg-background"
+                                            whileHover={{
+                                                scale: 1.06,
+                                                rotate: [0, -4, 4, 0],
+                                            }}
+                                            transition={{
+                                                duration: 0.5,
+                                                ease: "easeInOut",
+                                            }}
+                                        >
+                                            <Image
+                                                src={project.logo}
+                                                alt={`${project.title} logo`}
+                                                width={56}
+                                                height={56}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </motion.div>
+                                    )}
 
                                     {/* Title */}
                                     <h3 className="font-display text-2xl md:text-3xl font-bold mb-3 text-foreground">
