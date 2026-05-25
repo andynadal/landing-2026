@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRef } from "react";
 
 import Hero from "@/components/hero";
+import TechSkillsCarousel from "@/components/tech-skills-carousel";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -205,6 +206,34 @@ export default function Home() {
                                 <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </div>
                         </motion.div>
+                    </motion.div>
+                </div>
+            </motion.section>
+
+            {/* Technical Skills Carousel */}
+            <motion.section
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
+            >
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        variants={itemVariants}
+                        className="text-center mb-16"
+                    >
+                        <h3 className="font-display text-5xl md:text-7xl font-bold mb-8 text-foreground">
+                            Technical Excellence
+                        </h3>
+                        <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl mx-auto italic">
+                            A decade of experience building scalable products
+                            across the full stack
+                        </p>
+                    </motion.div>
+
+                    <motion.div variants={itemVariants}>
+                        <TechSkillsCarousel />
                     </motion.div>
                 </div>
             </motion.section>
