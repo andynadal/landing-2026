@@ -61,9 +61,9 @@ export default function TechSkillsCarousel() {
                                     href={`/tech-skills/${skill.slug}`}
                                     className="block group h-full"
                                 >
-                                    <div className="bg-background rounded-lg p-8 hover:bg-accent/5 transition-all duration-300 h-full flex flex-col">
+                                    <div className="bg-accent/5 rounded-lg p-8 hover:bg-accent/10 transition-all duration-300 h-full flex flex-col">
                                         {/* Category Badge */}
-                                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium uppercase tracking-wider mb-4 self-start">
+                                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-medium uppercase tracking-wider mb-4 self-start">
                                             {skill.category}
                                         </div>
 
@@ -135,10 +135,10 @@ export default function TechSkillsCarousel() {
                         <button
                             key={idx}
                             onClick={() => setCurrentIndex(idx)}
-                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            className={`h-2 rounded-full transition-all duration-300 ${
                                 idx === currentIndex
                                     ? "bg-accent w-8"
-                                    : "bg-accent/30 hover:bg-accent/50"
+                                    : "bg-accent/60 hover:bg-accent/80 w-2"
                             }`}
                             aria-label={`Go to slide ${idx + 1}`}
                         />

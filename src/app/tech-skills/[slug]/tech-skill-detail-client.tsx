@@ -201,7 +201,7 @@ export default function TechSkillDetailClient({ skill }: Props) {
                                         href={project.url}
                                         className="block group"
                                     >
-                                        <div className="bg-background rounded-lg p-8 hover:bg-accent/5 transition-all duration-300 h-full">
+                                        <div className="bg-accent/5 rounded-lg p-8 hover:bg-accent/10 transition-all duration-300 h-full">
                                             <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
                                                 {project.name}
                                             </h3>

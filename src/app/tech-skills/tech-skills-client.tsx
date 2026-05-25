@@ -96,10 +96,10 @@ export default function TechSkillsClient() {
                                             href={`/tech-skills/${skill.slug}`}
                                             className="block group h-full"
                                         >
-                                            <div className="bg-background rounded-lg p-8 hover:bg-accent/5 transition-all duration-300 h-full flex flex-col">
+                                            <div className="bg-accent/5 rounded-lg p-8 hover:bg-accent/10 transition-all duration-300 h-full flex flex-col">
                                                 {/* Experience Badge */}
                                                 <div className="flex items-start justify-end mb-4">
-                                                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium uppercase tracking-wider">
+                                                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-medium uppercase tracking-wider">
                                                         {skill.experience}
                                                     </div>
                                                 </div>
