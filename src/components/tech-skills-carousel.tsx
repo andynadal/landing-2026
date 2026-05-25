@@ -61,14 +61,14 @@ export default function TechSkillsCarousel() {
                                     href={`/tech-skills/${skill.slug}`}
                                     className="block group h-full"
                                 >
-                                    <div className="bg-accent/5 rounded-lg p-8 hover:bg-accent/10 transition-all duration-300 h-full flex flex-col">
+                                    <div className="bg-accent/10 rounded-lg p-8 hover:bg-accent/15 transition-all duration-300 h-full flex flex-col">
                                         {/* Category Badge */}
-                                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-medium uppercase tracking-wider mb-4 self-start">
+                                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/20 text-accent-light text-xs font-medium uppercase tracking-wider mb-4 self-start">
                                             {skill.category}
                                         </div>
 
                                         {/* Title */}
-                                        <h4 className="font-display text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
+                                        <h4 className="font-display text-2xl font-bold text-foreground mb-3 group-hover:text-accent-light transition-colors">
                                             {skill.title}
                                         </h4>
 
@@ -137,8 +137,8 @@ export default function TechSkillsCarousel() {
                             onClick={() => setCurrentIndex(idx)}
                             className={`h-2 rounded-full transition-all duration-300 ${
                                 idx === currentIndex
-                                    ? "bg-accent w-8"
-                                    : "bg-accent/60 hover:bg-accent/80 w-2"
+                                    ? "bg-accent-light w-8"
+                                    : "bg-muted hover:bg-accent-light w-2"
                             }`}
                             aria-label={`Go to slide ${idx + 1}`}
                         />
