@@ -67,14 +67,13 @@ export default function TechSkillDetailClient({ skill }: Props) {
                         </span>
                     </motion.div>
 
-                    {/* Icon and Category */}
+                    {/* Category Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="flex items-center gap-4 mb-8"
                     >
-                        <div className="text-7xl">{skill.icon}</div>
                         <div className="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold uppercase tracking-wider">
                             {skill.category}
                         </div>
@@ -147,6 +146,93 @@ export default function TechSkillDetailClient({ skill }: Props) {
                 </div>
             </motion.section>
 
+            {/* Detailed Description Section */}
+            {skill.detailedDescription &&
+                skill.detailedDescription.length > 0 && (
+                    <motion.section
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-background"
+                    >
+                        <div className="max-w-5xl mx-auto">
+                            <motion.h2
+                                variants={itemVariants}
+                                className="font-display text-4xl md:text-5xl font-bold text-foreground mb-12"
+                            >
+                                In-Depth Experience
+                            </motion.h2>
+                            <div className="space-y-6">
+                                {skill.detailedDescription.map((para, idx) => (
+                                    <motion.p
+                                        key={idx}
+                                        variants={itemVariants}
+                                        className="font-serif text-lg md:text-xl text-foreground/70 leading-relaxed"
+                                    >
+                                        {para}
+                                    </motion.p>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.section>
+                )}
+
+            {/* Projects Section */}
+            {skill.projects && skill.projects.length > 0 && (
+                <motion.section
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-accent/5"
+                >
+                    <div className="max-w-5xl mx-auto">
+                        <motion.h2
+                            variants={itemVariants}
+                            className="font-display text-4xl md:text-5xl font-bold text-foreground mb-12"
+                        >
+                            Projects Using This Skill
+                        </motion.h2>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {skill.projects.map((project, idx) => (
+                                <motion.div key={idx} variants={itemVariants}>
+                                    <Link
+                                        href={project.url}
+                                        className="block group"
+                                    >
+                                        <div className="bg-background rounded-lg p-8 hover:bg-accent/5 transition-all duration-300 h-full">
+                                            <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
+                                                {project.name}
+                                            </h3>
+                                            <p className="font-serif text-lg text-foreground/70 leading-relaxed mb-4">
+                                                {project.description}
+                                            </p>
+                                            <div className="flex items-center text-accent font-medium group-hover:text-accent-light transition-colors">
+                                                <span>View project</span>
+                                                <svg
+                                                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M9 5l7 7-7 7"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.section>
+            )}
+
             {/* Highlights Section */}
             <motion.section
                 variants={containerVariants}
@@ -216,7 +302,7 @@ export default function TechSkillDetailClient({ skill }: Props) {
                             {skill.technologies.map((tech) => (
                                 <div
                                     key={tech}
-                                    className="px-6 py-3 rounded-lg bg-background border-2 border-accent/20 text-foreground font-semibold text-lg hover:border-accent/40 transition-colors"
+                                    className="px-6 py-3 rounded-lg bg-background text-foreground font-semibold text-lg hover:bg-accent/5 transition-colors"
                                 >
                                     {tech}
                                 </div>
