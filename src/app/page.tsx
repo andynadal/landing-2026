@@ -135,16 +135,13 @@ export default function Home() {
                 />
 
                 <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        variants={itemVariants}
-                        className="text-center mb-24"
-                    >
-                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight text-foreground">
+                    <motion.div variants={itemVariants} className="mb-24">
+                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-tight text-foreground tracking-tight">
                             Pausa
                         </h2>
-                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-4xl mx-auto leading-relaxed">
+                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-4xl leading-relaxed">
                             Born from a panic attack,{" "}
-                            <strong className="font-semibold not-italic text-foreground">
+                            <strong className="font-semibold not-italic text-accent-teal">
                                 built to help others
                             </strong>{" "}
                             breathe through life's hardest moments
@@ -156,19 +153,19 @@ export default function Home() {
                         className="grid md:grid-cols-2 gap-20 items-start mb-24"
                     >
                         <div className="space-y-8">
-                            <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+                            <h3 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight">
                                 The Founding Story
                             </h3>
                             <div className="space-y-6 font-serif text-lg md:text-xl text-foreground/70 leading-relaxed">
                                 <p>
                                     After personally experiencing a{" "}
-                                    <em className="text-foreground/90">
+                                    <em className="text-accent-cyan font-semibold not-italic">
                                         panic attack
                                     </em>
                                     , I turned that moment of vulnerability into
                                     action. Pausa was born from the simple truth
                                     that breathing can{" "}
-                                    <strong className="font-bold text-foreground">
+                                    <strong className="font-bold text-accent-teal">
                                         transform
                                     </strong>{" "}
                                     how we feel—but most people don't know where
@@ -179,7 +176,7 @@ export default function Home() {
                                     helps people identify how they feel, feel
                                     less alone, and regulate their nervous
                                     system through breathing.{" "}
-                                    <strong className="font-bold">
+                                    <strong className="font-bold text-foreground">
                                         No meditation required, no spiritual
                                         rituals
                                     </strong>
@@ -219,15 +216,15 @@ export default function Home() {
                 className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-accent/5 border-b border-border"
             >
                 <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        variants={itemVariants}
-                        className="text-center mb-16"
-                    >
-                        <h3 className="font-display text-5xl md:text-7xl font-bold mb-8 text-foreground">
+                    <motion.div variants={itemVariants} className="mb-16">
+                        <h3 className="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-8 text-foreground tracking-tight">
                             Technical Excellence
                         </h3>
-                        <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl mx-auto italic">
-                            A decade of experience building scalable products
+                        <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl italic">
+                            A decade of experience building{" "}
+                            <span className="not-italic font-bold text-accent-green">
+                                scalable products
+                            </span>{" "}
                             across the full stack
                         </p>
                     </motion.div>
@@ -484,12 +481,12 @@ export default function Home() {
 
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div variants={itemVariants} className="mb-20">
-                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-10 text-center text-foreground">
+                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-black mb-10 text-foreground tracking-tight">
                             RUUT
                         </h2>
-                        <p className="font-serif text-2xl md:text-4xl text-center text-foreground/70 italic max-w-4xl mx-auto leading-relaxed">
+                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-4xl leading-relaxed">
                             Founding team member and{" "}
-                            <strong className="not-italic font-semibold text-accent">
+                            <strong className="not-italic font-semibold text-accent-cyan">
                                 CTO
                             </strong>{" "}
                             at 500 Global-backed fintech. Built investment
@@ -622,12 +619,12 @@ export default function Home() {
                         variants={itemVariants}
                         className="mt-20 bg-background border-2 border-accent/20 rounded-lg p-12 md:p-16"
                     >
-                        <h3 className="font-display text-4xl font-bold mb-12 text-center text-foreground">
+                        <h3 className="font-display text-4xl md:text-5xl font-black mb-12 text-center text-foreground tracking-tight">
                             How I Work
                         </h3>
                         <div className="grid md:grid-cols-3 gap-12">
                             <div className="space-y-4">
-                                <h4 className="font-bold text-2xl mb-4 text-accent">
+                                <h4 className="font-bold text-2xl mb-4 text-accent-teal">
                                     Build & Ship
                                 </h4>
                                 <p className="font-serif text-foreground/70 leading-relaxed">
@@ -637,7 +634,7 @@ export default function Home() {
                                 </p>
                             </div>
                             <div className="space-y-4">
-                                <h4 className="font-bold text-2xl mb-4 text-accent-light">
+                                <h4 className="font-bold text-2xl mb-4 text-accent-cyan">
                                     Raise & Scale
                                 </h4>
                                 <p className="font-serif text-foreground/70 leading-relaxed">
@@ -647,7 +644,7 @@ export default function Home() {
                                 </p>
                             </div>
                             <div className="space-y-4">
-                                <h4 className="font-bold text-2xl mb-4 text-accent">
+                                <h4 className="font-bold text-2xl mb-4 text-accent-green">
                                     Product & Business
                                 </h4>
                                 <p className="font-serif text-foreground/70 leading-relaxed">
@@ -678,17 +675,17 @@ export default function Home() {
 
                 <div className="max-w-5xl mx-auto text-center space-y-12 relative z-10">
                     <motion.div variants={itemVariants}>
-                        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-foreground">
+                        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-8 text-foreground tracking-tight">
                             Blog & Insights
                         </h2>
                         <p className="font-serif text-xl md:text-3xl text-foreground/70 leading-relaxed">
                             Thoughts on{" "}
-                            <em className="text-foreground/90">
+                            <em className="text-accent-green font-semibold not-italic">
                                 entrepreneurship
                             </em>
                             , building compelling products, breathwork, and
                             creating solutions that matter.{" "}
-                            <strong className="font-semibold text-foreground">
+                            <strong className="font-semibold text-accent-teal">
                                 Lessons from the trenches
                             </strong>{" "}
                             of startup building.
@@ -745,14 +742,14 @@ export default function Home() {
                     />
 
                     <div className="relative z-10 space-y-10">
-                        <h2 className="font-display text-5xl md:text-7xl font-bold text-foreground">
+                        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-foreground tracking-tight">
                             Let's Build Something Compelling
                         </h2>
                         <p className="font-serif text-xl md:text-3xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
                             Looking for a founder who ships? Whether you're an
                             investor, fellow entrepreneur, or potential partner,
                             let's create something{" "}
-                            <strong className="font-bold text-foreground">
+                            <strong className="font-bold text-accent-teal">
                                 worth building
                             </strong>
                             .
@@ -760,13 +757,13 @@ export default function Home() {
                         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center px-12 py-6 rounded-lg bg-foreground text-background text-xl font-bold hover:bg-accent hover:text-background transition-all duration-300 border-2 border-foreground hover:border-accent"
+                                className="inline-flex items-center px-12 py-6 rounded-lg bg-accent-teal text-background text-xl font-bold hover:bg-accent-cyan transition-all duration-300 border-2 border-accent-teal hover:border-accent-cyan"
                             >
                                 Get in Touch
                             </Link>
                             <a
                                 href="mailto:andy@andynadal.com"
-                                className="px-12 py-6 rounded-lg border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-xl font-bold transition-all duration-300"
+                                className="px-12 py-6 rounded-lg border-2 border-foreground/30 hover:border-accent-teal hover:bg-accent-teal/5 text-xl font-bold transition-all duration-300"
                             >
                                 andy@andynadal.com
                             </a>
