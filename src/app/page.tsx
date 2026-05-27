@@ -136,10 +136,10 @@ export default function Home() {
 
                 <div className="max-w-7xl mx-auto">
                     <motion.div variants={itemVariants} className="mb-24">
-                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-tight text-foreground tracking-tight">
+                        <h2 className="font-display text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-none text-foreground">
                             Pausa
                         </h2>
-                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-4xl leading-relaxed">
+                        <p className="font-serif text-2xl md:text-4xl text-foreground/70 italic max-w-4xl leading-relaxed mx-auto">
                             Born from a panic attack,{" "}
                             <strong className="font-semibold not-italic text-accent-teal">
                                 built to help others

@@ -157,12 +157,12 @@ export default function Hero() {
                             }}
                         >
                             <h1 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter leading-[0.9] text-foreground">
-                                HI, I'M YOUR{" "}
+                                Hi, I'm Your{" "}
                                 <span className="block text-accent-teal">
-                                    FRACTIONAL
+                                    Fractional
                                 </span>{" "}
-                                <span className="block">TECHNICAL</span>{" "}
-                                <span className="block">CO-FOUNDER</span>
+                                <span className="block">Technical</span>{" "}
+                                <span className="block">Co-Founder</span>
                             </h1>
                         </motion.div>
 
@@ -193,7 +193,7 @@ export default function Hero() {
                                 href="/contact"
                                 className="group px-12 py-6 rounded-lg bg-foreground text-background text-xl font-bold hover:bg-accent-teal transition-all duration-300 flex items-center justify-center sm:justify-start w-full sm:w-auto"
                             >
-                                WORK WITH ME
+                                Work with Me
                             </Link>
                         </motion.div>
 
@@ -207,8 +207,8 @@ export default function Hero() {
                             }}
                             className="pt-4 border-l-4 border-accent-teal pl-6"
                         >
-                            <p className="text-sm uppercase tracking-wider text-foreground/50 mb-2 font-semibold">
-                                FRACTIONAL CTO & CO-FOUNDER
+                            <p className="text-sm tracking-wide text-foreground/50 mb-2 font-semibold">
+                                Fractional CTO & Co-Founder
                             </p>
                             <p className="text-base text-foreground/70">
                                 Founder & CEO of{" "}
@@ -252,7 +252,7 @@ export default function Hero() {
                                 <div className="h-px bg-accent-cyan/30" />
                                 <div>
                                     <div className="text-5xl font-black text-accent-green mb-2">
-                                        500K+
+                                        $500K+
                                     </div>
                                     <div className="text-lg font-medium text-foreground/70">
                                         Capital Raised
