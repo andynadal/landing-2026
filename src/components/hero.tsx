@@ -38,7 +38,7 @@ export default function Hero() {
     return (
         <div
             ref={containerRef}
-            className="relative flex min-h-screen flex-col items-center justify-center px-6 py-12 pt-20 md:pt-24 overflow-hidden"
+            className="relative flex min-h-screen flex-col items-start justify-center px-6 md:px-12 lg:px-20 py-12 pt-20 md:pt-24 overflow-hidden"
         >
             {/* Enhanced particle system - more sophisticated and elegant */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -54,7 +54,7 @@ export default function Hero() {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+                    className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent-teal/15 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -67,7 +67,7 @@ export default function Hero() {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent-light/8 rounded-full blur-3xl"
+                    className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent-cyan/12 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -80,7 +80,7 @@ export default function Hero() {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-muted/15 rounded-full blur-3xl"
+                    className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-accent-green/10 rounded-full blur-3xl"
                 />
 
                 {/* Refined particle effects - more numerous and elegant */}
@@ -95,10 +95,10 @@ export default function Hero() {
                             height: `${2 + Math.random() * 3}px`,
                             background:
                                 i % 3 === 0
-                                    ? "var(--accent)"
+                                    ? "var(--accent-teal)"
                                     : i % 3 === 1
-                                      ? "var(--accent-light)"
-                                      : "var(--muted)",
+                                      ? "var(--accent-cyan)"
+                                      : "var(--accent-green)",
                             opacity: 0.3,
                         }}
                         animate={{
@@ -120,7 +120,7 @@ export default function Hero() {
                 {[...Array(8)].map((_, i) => (
                     <motion.div
                         key={`line-${i}`}
-                        className="absolute h-px bg-accent/20"
+                        className="absolute h-px bg-accent-teal/20"
                         style={{
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
@@ -143,119 +143,131 @@ export default function Hero() {
 
             <motion.div
                 style={{ opacity, scale }}
-                className="max-w-6xl mx-auto text-center space-y-12 relative z-10"
+                className="max-w-7xl w-full relative z-10"
             >
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none text-foreground">
-                        <motion.span
-                            className="inline-block"
-                            initial={{ opacity: 0, y: 20 }}
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    {/* Left column - Main content */}
+                    <div className="space-y-8 lg:space-y-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{
                                 duration: 1.2,
-                                delay: 0.2,
                                 ease: [0.22, 1, 0.36, 1],
                             }}
                         >
-                            Andy Nadal
-                        </motion.span>
-                    </h1>
-                </motion.div>
+                            <h1 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter leading-[0.9] text-foreground">
+                                HI, I'M YOUR{" "}
+                                <span className="block text-accent-teal">
+                                    FRACTIONAL
+                                </span>{" "}
+                                <span className="block">TECHNICAL</span>{" "}
+                                <span className="block">CO-FOUNDER</span>
+                            </h1>
+                        </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 1.2,
-                        delay: 0.4,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="space-y-6"
-                >
-                    <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-foreground/90 italic">
-                        Founder & CEO of{" "}
-                        <span className="font-normal not-italic text-accent">
-                            <TypingText text="Pausa" delay={1000} />
-                        </span>
-                    </h2>
-                    <p className="text-xl md:text-3xl lg:text-4xl font-serif text-foreground/70 max-w-4xl mx-auto leading-relaxed">
-                        CTO · Founding Engineer · AI Product Engineer
-                        <br />
-                        Building products that{" "}
-                        <em className="font-medium">transform</em> how people
-                        live—from wellness to fintech,{" "}
-                        <strong className="font-bold text-foreground">
-                            solving real problems
-                        </strong>{" "}
-                        at scale.
-                    </p>
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 1.2,
-                        delay: 0.6,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="text-lg md:text-2xl text-foreground/60 max-w-3xl mx-auto leading-relaxed font-serif"
-                >
-                    Turning personal struggles into products that matter.
-                    <br />
-                    Raised capital, built teams, shipped to{" "}
-                    <strong className="text-foreground/80">
-                        100,000+ people
-                    </strong>
-                    .
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 1.2,
-                        delay: 0.8,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12"
-                >
-                    <Link
-                        href="/pausa"
-                        className="group px-10 py-5 rounded-lg bg-accent text-background text-lg font-semibold hover:bg-accent-light transition-all duration-300 flex items-center border-2 border-accent hover:border-accent-light"
-                    >
-                        Explore Pausa
-                        <svg
-                            className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                        <motion.p
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 1.2,
+                                delay: 0.3,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="text-xl md:text-2xl lg:text-3xl text-foreground/70 leading-relaxed max-w-2xl"
                         >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
-                    </Link>
-                    <Link
-                        href="/contact"
-                        className="px-10 py-5 rounded-lg border-2 border-foreground/30 hover:border-foreground hover:bg-foreground/5 text-lg font-semibold transition-all duration-300"
+                            Let's take your startup from idea to revenue.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 1.2,
+                                delay: 0.5,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="flex flex-col sm:flex-row gap-6 pt-6"
+                        >
+                            <Link
+                                href="/contact"
+                                className="group px-12 py-6 rounded-lg bg-foreground text-background text-xl font-bold hover:bg-accent-teal transition-all duration-300 flex items-center justify-center sm:justify-start w-full sm:w-auto"
+                            >
+                                WORK WITH ME
+                            </Link>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 1.2,
+                                delay: 0.7,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="pt-4 border-l-4 border-accent-teal pl-6"
+                        >
+                            <p className="text-sm uppercase tracking-wider text-foreground/50 mb-2 font-semibold">
+                                FRACTIONAL CTO & CO-FOUNDER
+                            </p>
+                            <p className="text-base text-foreground/70">
+                                Founder & CEO of{" "}
+                                <span className="font-bold text-accent">
+                                    <TypingText text="Pausa" delay={1500} />
+                                </span>
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    {/* Right column - Visual element / Stats */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 60 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                            duration: 1.2,
+                            delay: 0.4,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="hidden lg:flex flex-col gap-8 justify-center"
                     >
-                        Get in Touch
-                    </Link>
-                </motion.div>
+                        <div className="bg-accent-teal/10 border-2 border-accent-teal/30 rounded-2xl p-10">
+                            <div className="space-y-6">
+                                <div>
+                                    <div className="text-6xl font-black text-accent-teal mb-2">
+                                        100K+
+                                    </div>
+                                    <div className="text-lg font-medium text-foreground/70">
+                                        Users Reached
+                                    </div>
+                                </div>
+                                <div className="h-px bg-accent-teal/30" />
+                                <div>
+                                    <div className="text-5xl font-black text-accent-cyan mb-2">
+                                        2+
+                                    </div>
+                                    <div className="text-lg font-medium text-foreground/70">
+                                        Companies Founded
+                                    </div>
+                                </div>
+                                <div className="h-px bg-accent-cyan/30" />
+                                <div>
+                                    <div className="text-5xl font-black text-accent-green mb-2">
+                                        500K+
+                                    </div>
+                                    <div className="text-lg font-medium text-foreground/70">
+                                        Capital Raised
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
 
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1.2, delay: 1.2 }}
-                    className="pt-20"
+                    className="pt-20 flex justify-center lg:justify-start"
                 >
                     <motion.div
                         animate={{ y: [0, 15, 0] }}
@@ -267,7 +279,7 @@ export default function Hero() {
                         className="inline-block"
                     >
                         <svg
-                            className="w-8 h-8 text-accent/60"
+                            className="w-8 h-8 text-accent-teal/60"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
