@@ -69,7 +69,7 @@ export default function PausaPage() {
 
                         <motion.h1
                             variants={fadeInItem}
-                            className="text-4xl md:text-6xl font-bold text-center"
+                            className="text-5xl md:text-7xl lg:text-8xl font-black text-center tracking-tight"
                         >
                             Pausa
                         </motion.h1>

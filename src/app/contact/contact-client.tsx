@@ -68,7 +68,7 @@ export default function ContactPage() {
                             repeat: Infinity,
                             ease: "linear",
                         }}
-                        className="absolute top-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"
+                        className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent-teal/10 rounded-full blur-3xl"
                     />
                 </div>
 
@@ -80,15 +80,15 @@ export default function ContactPage() {
                         className="text-center max-w-4xl mx-auto space-y-6"
                     >
                         <div className="text-6xl md:text-8xl mb-6">👋</div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-                            <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight">
+                            <span className="bg-gradient-to-r from-accent-teal to-accent-cyan bg-clip-text text-transparent">
                                 Let&apos;s Connect
                             </span>
                         </h1>
-                        <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto">
+                        <p className="text-xl md:text-3xl text-foreground/80 max-w-3xl mx-auto font-serif">
                             Have a project in mind or just want to chat?
                         </p>
-                        <p className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto">
+                        <p className="text-base md:text-xl text-foreground/60 max-w-2xl mx-auto font-serif">
                             I&apos;m always open to discussing new
                             opportunities, collaborations, or interesting ideas.
                             Let&apos;s build something amazing together.
